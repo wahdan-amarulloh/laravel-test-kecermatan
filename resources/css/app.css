@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .dark .flatpickr-calendar {
+    @apply bg-gray-800 border border-gray-200 text-white shadow-lg; 
+  }
+
+  .dark .flatpickr-months,
+  .dark .flatpickr-months .flatpickr-month,
+  .dark .flatpickr-months .flatpickr-next-month,
+  .dark .flatpickr-months .flatpickr-prev-month,
+  .dark span.flatpickr-weekday,
+  .dark .flatpickr-day {
+    @apply text-gray-400 fill-gray-400;
+  }
+
+  .dark span.flatpickr-day.prevMonthDay, 
+  .dark span.flatpickr-day.nextMonthDay {
+    @apply text-orange-400 opacity-50;
+  }
+
+  .dark .flatpickr-time input:focus,
+  .dark .flatpickr-time input:hover {
+    @apply bg-gray-700 text-white;
+  }
+}
+
+.scrollbars::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbars::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px transparent;
+    border-radius: 10px;
+  }
+  .scrollbars::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+  }
+  .scrollbars.show::-webkit-scrollbar-thumb, .scrollbars:hover::-webkit-scrollbar-thumb {
+    background: #777;
+  }
