@@ -10,11 +10,11 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flipclock@0.10.8/dist/flipclock.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flipclock@0.10.8/dist/flipclock.css"> --}}
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="https://cdn.jsdelivr.net/npm/flipclock@0.10.8/dist/flipclock.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/flipclock@0.10.8/dist/flipclock.js"></script> --}}
 </head>
 
 <body class="bg-slate-800 bg-hero-pattern bg-scroll p-6">
@@ -58,17 +58,22 @@
         </div>
     </nav>
 
-    <div class="container mx-auto flex content-center justify-center">
-        <section class="relative pt-8">
+    <div class="container mx-auto flex content-center justify-center" x-data="countdown()">
+        <section class="relative pt-8" x-show="!isRunning"
+            x-transition:enter="transition-transform transition-opacity ease-out duration-300"
+            x-transition:enter-start="opacity-0 transform translate-x-2"
+            x-transition:enter-end="opacity-100 transform translate-y-0"
+            x-transition:leave="transition ease-in duration-300"
+            x-transition:leave-end="opacity-0 transform -translate-x-2">
             <div class="container block">
                 <div class="flex flex-row justify-center">
-                    <div class="col-md-6 text-center" id="notice">
+                    <div class="col-md-6 text-center">
                         <h3 class="mt-3 text-4xl text-white">Selamat Datang di Trial Tes Kecermatan</h3>
                         <h5 class="mt-2 text-2xl text-white">Peserta bisa mencoba simulasi Tes Kecermatan pada halaman
                             ini.
                         </h5>
-                        <button
-                            class="start mt-5 rounded bg-green-500 py-2 px-4 font-semibold text-white hover:bg-green-600 active:bg-green-700">
+                        <button x-ref="button" @click="toggle()"
+                            class="start mt-5 rounded bg-blue-500 py-2 px-4 font-semibold text-white hover:bg-blue-600 active:bg-blue-700">
                             Mulai Test
                         </button>
 
@@ -81,8 +86,15 @@
             </div>
         </section>
 
-        <div class="mx-auto hidden p-6" id="test">
-            <div class="clock text-3xl font-bold" id="timer"></div>
+        <div class="mx-auto p-6" style="display: none" x-show="isRunning" x-transition>
+            <div class="clock text-3xl font-bold" x-ref="wrapper">
+            </div>
+            <dev class="flex flex-row justify-center">
+                <button x-ref="button" @click="reset()"
+                    class="start mt-5 rounded bg-blue-600 py-2 px-4 font-semibold text-white hover:bg-blue-500 active:bg-blue-800">
+                    Reset
+                </button>
+            </dev>
             {{-- <div class="message"></div> --}}
 
             {{-- <div class="mt-4 flex space-x-4">
@@ -91,13 +103,10 @@
                 <button class="stop rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">Pause</button>
             </div> --}}
         </div>
-
-
-
     </div>
 
 
-    <script>
+    {{-- <script>
         var el = document.querySelector('.clock');
         let isRunning = false;
 
@@ -136,7 +145,7 @@
         // document.querySelector('.stop').addEventListener('click', event => {
         //     clock.timer.isRunning && clock.stop();
         // });
-    </script>
+    </script> --}}
 
 </body>
 
