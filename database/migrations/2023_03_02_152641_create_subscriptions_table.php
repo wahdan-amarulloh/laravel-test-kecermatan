@@ -16,6 +16,7 @@ return new class () extends Migration {
             $table->id();
             $table->string('name');
             $table->string('status', 5)->default('NA');
+            $table->smallInteger('attempt');
             $table->timestamps();
         });
     }

@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "flatpickr": "^4.6.13",
-        "flipclock": "^0.10.8"
+        "flipclock": "^0.10.8",
+        "sweetalert2": "^11.7.3"
     }
 }

@@ -3,12 +3,15 @@ import "./bootstrap";
 // style imports
 import "flatpickr/dist/themes/airbnb.css";
 import "flipclock/dist/flipclock.css";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 import Alpine from "alpinejs";
 import flatpickr from "flatpickr";
 import FlipClock from "flipclock";
+import Swal from "sweetalert2";
 
 window.Alpine = Alpine;
+window.Swal = Swal;
 window.flatpickr = flatpickr;
 
 document.addEventListener("alpine:init", () => {

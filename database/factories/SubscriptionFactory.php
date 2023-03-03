@@ -19,6 +19,7 @@ class SubscriptionFactory extends Factory
         return [
             'name' => fake()->word(),
             'status' => 'AC',
+            'attempt' => fake()->randomDigit(),
         ];
     }
 }

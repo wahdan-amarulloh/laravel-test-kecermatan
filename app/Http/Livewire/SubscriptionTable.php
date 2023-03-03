@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Subscription;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
@@ -10,7 +11,13 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class SubscriptionTable extends DataTableComponent
 {
+    use LivewireAlert;
+
     protected $model = Subscription::class;
+
+    protected $listeners = [
+        'confirmedDelete' => 'confirmedDelete',
+    ];
 
     public function configure(): void
     {
@@ -29,14 +36,12 @@ class SubscriptionTable extends DataTableComponent
             Column::make("Status", "status")
                 ->searchable()
                 ->sortable(),
+            Column::make("Attempt", "attempt")
+                ->sortable(),
             Column::make("Created at", "created_at")
                 ->sortable(),
             Column::make("Updated at", "updated_at")
                 ->sortable(),
-            Column::make('Name')
-                ->format(
-                    fn ($value, $row, Column $column) => view('components.table.actions')
-                ),
             ButtonGroupColumn::make('Actions')
                 ->unclickable()
                 ->attributes(function ($row) {
@@ -68,16 +73,40 @@ class SubscriptionTable extends DataTableComponent
                         ->attributes(function ($row) {
                             return [
                                 'class' => 'underline text-red-600',
-                                'wire:click' => 'delete('.$row->id.')',
+                                'wire:click' => 'askDelete('.$row->id.')',
                             ];
                         }),
                 ]),
         ];
     }
 
-    public function delete(Subscription $subscription)
+    public function askDelete(Subscription $subscription)
     {
-        $subscription->status = 'NA';
-        $subscription->save();
+        $this->alert('question', 'Confirm delete ' . $subscription->name . ' ?', [
+            'position' => 'center',
+            'timer' => 3000,
+            'toast' => false,
+            'showConfirmButton' => true,
+            'confirmButtonText' => 'Delete',
+            'showCancelButton' => true,
+            'cancelButtonText' => 'Cancel',
+            'inputAttributes' => [
+                'value' => $subscription->id,
+             ],
+             'onConfirmed' => 'confirmedDelete',
+           ]);
+    }
+
+    public function confirmedDelete($data)
+    {
+        $id = $data['data']['inputAttributes']['value'];
+        $subscription = Subscription::query()->where('id', $id)->first();
+        $subscription->delete();
+
+        $this->alert('success', $subscription->name .' berhasil di hapus ');
+        // if ($subscription) {
+        //     $subscription->status = 'NA';
+        //     $subscription->save();
+        // }
     }
 }
