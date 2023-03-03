@@ -29,7 +29,7 @@ Route::get('/', function () {
 Route::get('/dashboard', DashboardController::class)->middleware(['auth'])->name('dashboard');
 
 Route::get('/test', function () {
-    return view('test.index');
+    return view('test.member');
 })->name('test');
 
 Route::middleware(['auth'])->group(function () {
@@ -39,7 +39,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/docs', function () {
-    return view('docs')->name('docs');
-});
+    return view('docs');
+})->name('docs');
 
 require __DIR__.'/auth.php';

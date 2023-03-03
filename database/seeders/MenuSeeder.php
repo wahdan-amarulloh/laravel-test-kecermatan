@@ -30,17 +30,16 @@ class MenuSeeder extends Seeder
             [
                 'name' => 'PERMISSION',
             ],
-            [
-                'name' => 'DOCS',
-            ],
         ];
 
         $menusRoute = [
             [
                 'name' => 'PLAN',
-                'parent_id' => null,
                 'route' => 'subscription.index',
-                'status' => 'AC',
+            ],
+            [
+                'name' => 'DOCS',
+                'route' => 'docs',
             ],
         ];
 
