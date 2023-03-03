@@ -10,16 +10,40 @@ class MenuSeeder extends Seeder
     {
         $menus = [
             [
-                'name' => 'dashboard',
+                'name' => 'DASHBOARD',
             ],
             [
-                'name' => 'Menu',
+                'name' => 'PLAN',
             ],
             [
-                'name' => 'users',
+                'name' => 'MEMBER',
             ],
             [
-                'name' => 'permission',
+                'name' => 'BANK',
+            ],
+            [
+                'name' => 'TEST',
+            ],
+            [
+                'name' => 'MENU',
+            ],
+            [
+                'name' => 'USERS',
+            ],
+            [
+                'name' => 'PERMISSION',
+            ],
+        ];
+
+        $member_menus = [
+            [
+                'name' => 'PLAN',
+            ],
+            [
+                'name' => 'PAYMENT',
+            ],
+            [
+                'name' => 'TEST',
             ],
         ];
 

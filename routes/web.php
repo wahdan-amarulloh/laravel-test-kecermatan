@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -24,9 +25,7 @@ Route::get('/', function () {
     return view('homepage');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', DashboardController::class)->middleware(['auth'])->name('dashboard');
 
 Route::get('/test', function () {
     return view('test.index');
@@ -35,6 +34,10 @@ Route::get('/test', function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('menu', MenuController::class);
     Route::resource('user', UserController::class);
+});
+
+Route::get('/docs', function () {
+    return view('docs');
 });
 
 require __DIR__.'/auth.php';

@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(1000)->create();
+        \App\Models\User::factory(100)->create();
+        \App\Models\Subscription::factory(10)->create();
 
         $this->call(
             MenuSeeder::class
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@dev.com',
             'password' => bcrypt('admindev'),
+            'is_admin' => 1,
         ]);
     }
 }

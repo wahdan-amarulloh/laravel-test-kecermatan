@@ -6,289 +6,149 @@
     </x-slot>
 
     <div class="mx-auto p-2">
+        {{-- Put content here --}}
+        <div class="mx-auto mt-3 w-full">
+            <div>
+                <div class="flex flex-wrap">
+                    <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
+                        <div class="relative mb-6 flex min-w-0 flex-col break-words rounded bg-white shadow-lg xl:mb-0">
+                            <div class="flex-auto p-4">
+                                <div class="flex flex-wrap">
+                                    <div class="relative w-full max-w-full flex-1 flex-grow pr-4">
+                                        <h5 class="text-blueGray-400 text-xs font-bold uppercase">
+                                            Traffic
+                                        </h5>
+                                        <span class="text-xl font-semibold text-gray-700">
+                                            350,897
+                                        </span>
+                                    </div>
+                                    <div class="relative w-auto flex-initial pl-4">
+                                        <div
+                                            class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-red-500 p-3 text-center text-white shadow-lg">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                            </svg>
 
-        <div class="flex flex-row justify-between gap-2 md:gap-4">
-            <x-card title="detail event" class="flex-1">
-                <div class="-mx-4 flex flex-row flex-wrap divide-x">
-                    <div class="w-full max-w-full flex-shrink px-4 pt-8 lg:w-1/2">
-                        <div class="mb-6">
-                            <input type="text"
-                                class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                id="exampleInput1" placeholder="Judul Acara Event">
-                        </div>
-                        <div class="mb-6">
-                            <div class="mb-4 flex flex-row flex-nowrap items-center">
-                                <div class="mr-6">
-                                    <input
-                                        class="form-checkbox h-5 w-5 rounded rounded-full border border-gray-300 text-indigo-500 focus:outline-none ltr:mr-3 rtl:ml-3 dark:border-gray-700 dark:bg-gray-700"
-                                        type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="inline-block" for="flexRadioDefault2">
-                                        Langsung
-                                    </label>
-                                </div>
-
-                                <div class="mr-6">
-                                    <input
-                                        class="form-checkbox h-5 w-5 rounded rounded-full border border-gray-300 text-indigo-500 focus:outline-none ltr:mr-3 rtl:ml-3 dark:border-gray-700 dark:bg-gray-700"
-                                        type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="inline-block" for="flexRadioDefault2">
-                                        Daring
-                                    </label>
-                                </div>
-
-                                <div class="mr-6">
-                                    <div id="datepicks"
-                                        class="flex flex-row items-center justify-center md:flex-row md:justify-between">
-                                        <input id="datepick" x-time
-                                            class="datepick relative w-20 overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 text-sm leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                            type="text" name="start" placeholder="Jam">
+                                        </div>
                                     </div>
                                 </div>
+                                <p class="text-blueGray-400 mt-4 text-sm">
+                                    <span class="mr-2 text-emerald-500">
+                                        <i class="fas fa-arrow-up"></i> 3.48%
+                                    </span>
+                                    <span class="whitespace-nowrap">
+                                        Since last month
+                                    </span>
+                                </p>
                             </div>
-                        </div>
-
-                        <div class="mb-6">
-                            <select
-                                class="select-caret relative inline-block w-full appearance-none overflow-x-auto rounded border border-gray-300 bg-white py-2 pl-3 pr-8 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                aria-label="Default select example">
-                                <option selected>Provinsi</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-6">
-                            <select
-                                class="select-caret relative inline-block w-full appearance-none overflow-x-auto rounded border border-gray-300 bg-white py-2 pl-3 pr-8 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                aria-label="Default select example">
-                                <option selected>Kabupaten</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-6">
-                            <select
-                                class="select-caret relative inline-block w-full appearance-none overflow-x-auto rounded border border-gray-300 bg-white py-2 pl-3 pr-8 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                aria-label="Default select example">
-                                <option selected>Kecamatan</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-6">
-                            <select
-                                class="select-caret relative inline-block w-full appearance-none overflow-x-auto rounded border border-gray-300 bg-white py-2 pl-3 pr-8 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                aria-label="Default select example">
-                                <option selected>Kelurahan</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-6 flex flex-row flex-nowrap items-center justify-between">
-                            <label class="w-full" for="exampleInput1">Jumlah Acara</label>
-                            <input type="text"
-                                class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                id="exampleInput1" placeholder="Judul Acara Event">
                         </div>
                     </div>
-                    <div class="w-full max-w-full flex-shrink px-4 lg:w-1/2">
-                        <h3 class="mb-2 text-base font-bold capitalize">Doorprize :</h3>
+                    <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
+                        <div class="relative mb-6 flex min-w-0 flex-col break-words rounded bg-white shadow-lg xl:mb-0">
+                            <div class="flex-auto p-4">
+                                <div class="flex flex-wrap">
+                                    <div class="relative w-full max-w-full flex-1 flex-grow pr-4">
+                                        <h5 class="text-blueGray-400 text-xs font-bold uppercase">
+                                            New users
+                                        </h5>
+                                        <span class="text-blueGray-700 text-xl font-semibold">
+                                            {{ $users }}
+                                        </span>
+                                    </div>
+                                    <div class="relative w-auto flex-initial pl-4">
+                                        <div
+                                            class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-orange-500 p-3 text-center text-white shadow-lg">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                                            </svg>
 
-                        <div class="-mx-4 mb-6 flex flex-row flex-wrap">
-                            <div class="mb-6 w-full max-w-full flex-shrink px-4 lg:mb-0 lg:w-2/3">
-                                <input type="text"
-                                    class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                    placeholder="Doorprize" aria-label="First name">
-                            </div>
-                            <div class="mb-6 w-full max-w-full flex-shrink px-4 lg:mb-0 lg:w-1/3">
-                                <input type="text"
-                                    class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                    placeholder="Last name" aria-label="Last name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-blueGray-400 mt-4 text-sm">
+                                    <span class="mr-2 text-red-500">
+                                        <i class="fas fa-arrow-down"></i> 3.48%
+                                    </span>
+                                    <span class="whitespace-nowrap"> Since last week </span>
+                                </p>
                             </div>
                         </div>
+                    </div>
+                    <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
+                        <div class="relative mb-6 flex min-w-0 flex-col break-words rounded bg-white shadow-lg xl:mb-0">
+                            <div class="flex-auto p-4">
+                                <div class="flex flex-wrap">
+                                    <div class="relative w-full max-w-full flex-1 flex-grow pr-4">
+                                        <h5 class="text-blueGray-400 text-xs font-bold uppercase">
+                                            Sales
+                                        </h5>
+                                        <span class="text-blueGray-700 text-xl font-semibold">
+                                            924
+                                        </span>
+                                    </div>
+                                    <div class="relative w-auto flex-initial pl-4">
+                                        <div
+                                            class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-pink-500 p-3 text-center text-white shadow-lg">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                                            </svg>
 
-                        <div class="-mx-4 mb-6 flex flex-row flex-wrap">
-                            <div class="mb-6 w-full max-w-full flex-shrink px-4 lg:mb-0 lg:w-2/3">
-                                <input type="text"
-                                    class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                    placeholder="Doorprize" aria-label="First name">
-                            </div>
-                            <div class="mb-6 w-full max-w-full flex-shrink px-4 lg:mb-0 lg:w-1/3">
-                                <input type="text"
-                                    class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                    placeholder="Last name" aria-label="Last name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-blueGray-400 mt-4 text-sm">
+                                    <span class="mr-2 text-orange-500">
+                                        <i class="fas fa-arrow-down"></i> 1.10%
+                                    </span>
+                                    <span class="whitespace-nowrap"> Since yesterday </span>
+                                </p>
                             </div>
                         </div>
+                    </div>
+                    <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
+                        <div class="relative mb-6 flex min-w-0 flex-col break-words rounded bg-white shadow-lg xl:mb-0">
+                            <div class="flex-auto p-4">
+                                <div class="flex flex-wrap">
+                                    <div class="relative w-full max-w-full flex-1 flex-grow pr-4">
+                                        <h5 class="text-blueGray-400 text-xs font-bold uppercase">
+                                            Performance
+                                        </h5>
+                                        <span class="text-blueGray-700 text-xl font-semibold">
+                                            49,65%
+                                        </span>
+                                    </div>
+                                    <div class="relative w-auto flex-initial pl-4">
+                                        <div
+                                            class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 p-3 text-center text-white shadow-lg">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                                            </svg>
 
-                        <div class="-mx-4 mb-6 flex flex-row flex-wrap">
-                            <div class="mb-6 w-full max-w-full flex-shrink px-4 lg:mb-0 lg:w-2/3">
-                                <input type="text"
-                                    class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                    placeholder="Doorprize" aria-label="First name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-blueGray-400 mt-4 text-sm">
+                                    <span class="mr-2 text-emerald-500">
+                                        <i class="fas fa-arrow-up"></i> 12%
+                                    </span>
+                                    <span class="whitespace-nowrap">
+                                        Since last month
+                                    </span>
+                                </p>
                             </div>
-                            <div class="mb-6 w-full max-w-full flex-shrink px-4 lg:mb-0 lg:w-1/3">
-                                <input type="text"
-                                    class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                    placeholder="Last name" aria-label="Last name">
-                            </div>
-                        </div>
-
-                        <div class="-mx-4 mb-6 flex flex-row flex-wrap">
-                            <div class="mb-6 w-full max-w-full flex-shrink px-4 lg:mb-0 lg:w-2/3">
-                                <input type="text"
-                                    class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                    placeholder="Doorprize" aria-label="First name">
-                            </div>
-                            <div class="mb-6 w-full max-w-full flex-shrink px-4 lg:mb-0 lg:w-1/3">
-                                <input type="text"
-                                    class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                    placeholder="Last name" aria-label="Last name">
-                            </div>
-                        </div>
-
-                        <div class="-mx-4 mb-6 flex flex-row flex-wrap">
-                            <div class="mb-6 w-full max-w-full flex-shrink px-4 lg:mb-0 lg:w-2/3">
-                                <input type="text"
-                                    class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                    placeholder="Doorprize" aria-label="First name">
-                            </div>
-                            <div class="mb-6 w-full max-w-full flex-shrink px-4 lg:mb-0 lg:w-1/3">
-                                <input type="text"
-                                    class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                    placeholder="Last name" aria-label="Last name">
-                            </div>
-                        </div>
-
-                        <div class="-mx-4 mb-6 flex flex-row flex-wrap">
-                            <div class="mb-6 w-full max-w-full flex-shrink px-4 lg:mb-0 lg:w-2/3">
-                                <input type="text"
-                                    class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                    placeholder="Doorprize" aria-label="First name">
-                            </div>
-                            <div class="mb-6 w-full max-w-full flex-shrink px-4 lg:mb-0 lg:w-1/3">
-                                <input type="text"
-                                    class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                    placeholder="Last name" aria-label="Last name">
-                            </div>
-                        </div>
-
-                        <div class="-mx-4 mb-6 flex flex-row flex-wrap">
-                            <div class="mb-6 w-full max-w-full flex-shrink px-4 lg:mb-0 lg:w-2/3">
-                                <input type="text"
-                                    class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                    placeholder="Doorprize" aria-label="First name">
-                            </div>
-                            <div class="mb-6 w-full max-w-full flex-shrink px-4 lg:mb-0 lg:w-1/3">
-                                <input type="text"
-                                    class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                                    placeholder="Last name" aria-label="Last name">
-                            </div>
-                        </div>
-
-                        <div class="flex flex-row flex-nowrap items-center justify-end">
-                            <button type="button"
-                                class="mb-3 inline-block rounded rounded-full border border-indigo-500 bg-indigo-500 p-2 text-center leading-5 text-gray-100 hover:border-indigo-600 hover:bg-indigo-600 hover:text-white hover:ring-0 focus:border-indigo-600 focus:bg-indigo-600 focus:outline-none focus:ring-0">
-                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                </svg>
-                            </button>
                         </div>
                     </div>
                 </div>
-            </x-card>
-
-            <x-card title="Calender">
-                <div class="mb-6">
-                    <input type="text" x-calendar
-                        class="relative hidden w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                        placeholder="Doorprize" aria-label="First name">
-                </div>
-                <div class="mb-6">
-                    <div class="mb-6">
-                        <label for="exampleTextarea1" class="mb-2 inline-block text-base font-bold">Catatan</label>
-                        <textarea
-                            class="relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                            id="exampleTextarea1" rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="mb-6 flex flex-row flex-nowrap items-center justify-end">
-                    <button type="button"
-                        class="mb-3 mr-2 inline-block rounded border border-red-500 bg-red-500 py-2 px-4 text-center leading-5 text-gray-100 hover:border-red-600 hover:bg-red-600 hover:text-white hover:ring-0 focus:border-red-600 focus:bg-red-600 focus:outline-none focus:ring-0">Batal</button>
-                    <button type="button"
-                        class="mb-3 inline-block rounded border border-indigo-500 bg-indigo-500 py-2 px-4 text-center leading-5 text-gray-100 hover:border-indigo-600 hover:bg-indigo-600 hover:text-white hover:ring-0 focus:border-indigo-600 focus:bg-indigo-600 focus:outline-none focus:ring-0">Simpan</button>
-
-                </div>
-            </x-card>
+            </div>
         </div>
-
-        <x-card title="buttons">
-            <div class="mb-6">
-                <button type="button"
-                    class="mb-3 inline-block rounded border border-indigo-500 bg-indigo-500 py-2 px-4 text-center leading-5 text-gray-100 hover:border-indigo-600 hover:bg-indigo-600 hover:text-white hover:ring-0 focus:border-indigo-600 focus:bg-indigo-600 focus:outline-none focus:ring-0">Primary</button>
-                <button type="button"
-                    class="mb-3 inline-block rounded border border-green-500 bg-green-500 py-2 px-4 text-center leading-5 text-gray-100 hover:border-green-600 hover:bg-green-600 hover:text-white hover:ring-0 focus:border-green-600 focus:bg-green-600 focus:outline-none focus:ring-0">Success</button>
-                <button type="button"
-                    class="mb-3 inline-block rounded border border-red-500 bg-red-500 py-2 px-4 text-center leading-5 text-gray-100 hover:border-red-600 hover:bg-red-600 hover:text-white hover:ring-0 focus:border-red-600 focus:bg-red-600 focus:outline-none focus:ring-0">Danger</button>
-                <button type="button"
-                    class="mb-3 inline-block rounded border border-yellow-300 bg-yellow-300 py-2 px-4 text-center leading-5 text-gray-800 hover:border-yellow-400 hover:bg-yellow-400 hover:text-gray-900 hover:ring-0 focus:border-yellow-400 focus:bg-yellow-400 focus:outline-none focus:ring-0">Warning</button>
-                <button type="button"
-                    class="mb-3 inline-block rounded border border-indigo-300 bg-indigo-300 py-2 px-4 text-center leading-5 text-gray-800 hover:border-indigo-500 hover:bg-indigo-500 hover:text-gray-900 hover:ring-0 focus:border-indigo-500 focus:bg-indigo-500 focus:outline-none focus:ring-0">Info</button>
-                <button type="button"
-                    class="mb-3 inline-block rounded border border-gray-100 bg-gray-100 py-2 px-4 text-center leading-5 text-gray-800 hover:border-gray-200 hover:bg-gray-200 hover:text-gray-900 hover:ring-0 focus:border-gray-200 focus:bg-gray-200 focus:outline-none focus:ring-0">Light</button>
-                <button type="button"
-                    class="mb-3 inline-block rounded border border-gray-900 bg-gray-900 py-2 px-4 text-center leading-5 text-gray-100 hover:border-black hover:bg-black hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">Dark</button>
-                <button type="button"
-                    class="mb-3 mr-2 inline-block cursor-not-allowed rounded border border-indigo-500 bg-indigo-500 py-2 px-4 text-center leading-5 text-gray-100 opacity-70"
-                    disabled>Primary</button>
-            </div>
-
-            <div class="mb-6">
-                <button type="button"
-                    class="mb-3 inline-block rounded border border-indigo-500 bg-transparent py-2 px-4 text-center leading-5 text-indigo-500 hover:border-indigo-500 hover:bg-indigo-500 hover:text-gray-100 hover:ring-0 focus:border-indigo-500 focus:bg-indigo-500 focus:text-gray-100 focus:outline-none focus:ring-0">Primary</button>
-                <button type="button"
-                    class="mb-3 inline-block rounded border border-green-500 bg-transparent py-2 px-4 text-center leading-5 text-green-500 hover:border-green-500 hover:bg-green-500 hover:text-white hover:ring-0 focus:border-green-500 focus:bg-green-500 focus:text-white focus:outline-none focus:ring-0">Success</button>
-                <button type="button"
-                    class="mb-3 inline-block rounded border border-red-500 bg-transparent py-2 px-4 text-center leading-5 text-red-500 hover:border-red-500 hover:bg-red-500 hover:text-white hover:ring-0 focus:border-red-500 focus:bg-red-500 focus:text-white focus:outline-none focus:ring-0">Danger</button>
-                <button type="button"
-                    class="mb-3 inline-block rounded border border-yellow-500 bg-transparent py-2 px-4 text-center leading-5 text-yellow-500 hover:border-yellow-500 hover:bg-yellow-500 hover:text-gray-100 hover:ring-0 focus:border-yellow-500 focus:bg-yellow-500 focus:text-gray-900 focus:outline-none focus:ring-0">Warning</button>
-                <button type="button"
-                    class="mb-3 inline-block rounded border border-indigo-300 bg-transparent py-2 px-4 text-center leading-5 text-indigo-300 hover:border-indigo-300 hover:bg-indigo-300 hover:text-gray-900 hover:ring-0 focus:border-indigo-300 focus:bg-indigo-300 focus:text-gray-900 focus:outline-none focus:ring-0">Info</button>
-                <button type="button"
-                    class="mb-3 inline-block rounded border border-gray-100 bg-transparent py-2 px-4 text-center leading-5 text-gray-100 hover:border-gray-200 hover:bg-gray-200 hover:text-gray-900 hover:ring-0 focus:border-gray-200 focus:bg-gray-200 focus:text-gray-900 focus:outline-none focus:ring-0">Light</button>
-                <button type="button"
-                    class="mb-3 inline-block rounded border border-gray-900 bg-transparent py-2 px-4 text-center leading-5 text-gray-900 hover:border-black hover:bg-black hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:text-white focus:outline-none focus:ring-0">Dark</button>
-            </div>
-        </x-card>
-
-
-        <x-card title="flatpickr " description="flatpickr ">
-            <div class="mb-6" x-data x-init="flatpickr($refs.input, {});">
-                <label for="datepick" class="mb-2 inline-block">Date picker</label>
-                <div id="datepicks" class="flex flex-col justify-center md:flex-row md:justify-between">
-                    <input id="datepick" x-ref="input"
-                        class="datepick relative w-full overflow-x-auto rounded border border-gray-300 bg-white py-2 px-4 text-sm leading-5 text-gray-800 focus:border-gray-400 focus:outline-none focus:ring-0 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-600"
-                        type="text" name="start">
-                </div>
-            </div>
-        </x-card>
-
-        <x-card title="hallo" description="hallo all">
-            <x-slot name="action">
-                <x-card.action-link label="Daily" />
-            </x-slot>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, non obcaecati accusamus dolore, cumque
-            officiis modi perferendis ducimus a maiores dignissimos doloremque sint beatae! Voluptatibus modi nisi iste
-            odio. Fugiat?
-        </x-card>
+        {{-- end content --}}
     </div>
-
 </x-app-layout>
