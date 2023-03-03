@@ -12,7 +12,8 @@
         "laravel/sanctum": "^3.0",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",
-        "opcodesio/log-viewer": "^1.2"
+        "opcodesio/log-viewer": "^1.2",
+        "rappasoft/laravel-livewire-tables": "^2.11"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
