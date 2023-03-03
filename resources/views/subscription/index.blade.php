@@ -9,7 +9,7 @@
 
         <x-card title="{{ __('Plan') }}">
             <x-slot name="action">
-                <x-card.action-link label="Create" />
+                <x-card.action-link href="{{ route('subscription.create') }}" label="Create" />
             </x-slot>
             <livewire:subscription-table />
         </x-card>

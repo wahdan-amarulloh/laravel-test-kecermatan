@@ -13,9 +13,6 @@ class MenuSeeder extends Seeder
                 'name' => 'DASHBOARD',
             ],
             [
-                'name' => 'PLAN',
-            ],
-            [
                 'name' => 'MEMBER',
             ],
             [
@@ -33,20 +30,21 @@ class MenuSeeder extends Seeder
             [
                 'name' => 'PERMISSION',
             ],
+            [
+                'name' => 'DOCS',
+            ],
         ];
 
-        $member_menus = [
+        $menusRoute = [
             [
                 'name' => 'PLAN',
-            ],
-            [
-                'name' => 'PAYMENT',
-            ],
-            [
-                'name' => 'TEST',
+                'parent_id' => null,
+                'route' => 'subscription.index',
+                'status' => 'AC',
             ],
         ];
 
         \Illuminate\Support\Facades\DB::table('menus')->insert($menus);
+        \Illuminate\Support\Facades\DB::table('menus')->insert($menusRoute);
     }
 }

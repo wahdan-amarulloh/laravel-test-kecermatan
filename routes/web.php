@@ -39,7 +39,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/docs', function () {
-    return view('docs');
+    return view('docs')->name('docs');
 });
 
 require __DIR__.'/auth.php';
