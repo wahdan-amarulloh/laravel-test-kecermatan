@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,7 +19,10 @@ class DatabaseSeeder extends Seeder
         \App\Models\Subscription::factory(10)->create();
 
         $this->call(
-            MenuSeeder::class
+            [
+            MenuSeeder::class,
+            QuestionSeeder::class,
+            ]
         );
 
         \App\Models\User::factory()->create([
