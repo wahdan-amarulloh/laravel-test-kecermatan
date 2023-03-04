@@ -16,7 +16,11 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <x-livewire-alert::scripts />
-
+    <script>
+        window.sharedData = {
+            user: @js(auth()->user()),
+        }
+    </script>
 </head>
 
 <body
