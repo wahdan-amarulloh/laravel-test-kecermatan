@@ -20,6 +20,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/answer', function (Request $request) {
+    logger($request);
+    $validated = $request->validated();
+
+    return response()->json(
+        [
+            'request' => $validated,
+            'message' => 'success',
+        ]
+    );
+})->name('answer.store');
+
 Route::post('/questions', function (Request $request) {
     $rules = [
         'name' => 'required|string|max:255',

@@ -72,81 +72,64 @@
                     </div>
 
                     {{-- answer --}}
+                    <div
+                        class="mx-auto mt-3 flex w-full max-w-2xl content-center justify-center space-x-2 space-x-10 rounded-md bg-slate-300 text-lg shadow-sm">
+                        <span x-text="questions?.detail[currentStep]['A']"
+                            class="py-6 text-3xl font-extrabold tracking-tight text-amber-500 dark:text-slate-50 sm:text-4xl">
+                            A
+                        </span>
+                        <span x-text="questions?.detail[currentStep]['B']"
+                            class="py-6 text-3xl font-extrabold tracking-tight text-amber-500 dark:text-slate-50 sm:text-4xl">
+                            A
+                        </span>
+                        <span x-text="questions?.detail[currentStep]['C']"
+                            class="mttext-3xl py-6 font-extrabold tracking-tight text-amber-500 dark:text-slate-50 sm:text-4xl">
+                            A
+                        </span>
+                        <span x-text="questions?.detail[currentStep]['D']"
+                            class="py-6 text-3xl font-extrabold tracking-tight text-amber-500 dark:text-slate-50 sm:text-4xl">
+                            A
+                        </span>
+                        <span x-text="questions?.detail[currentStep]['E']"
+                            class="py-6 text-3xl font-extrabold tracking-tight text-amber-500 dark:text-slate-50 sm:text-4xl">
+                            A
+                        </span>
+                    </div>
                     <div class="mt-3 flex w-full justify-center space-x-2 text-lg">
                         <div @click="answer('A')"
                             class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300">
-                            <span x-text="questions?.detail[currentStep]['A']"
+                            <span
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 A
                             </span>
-                            <div class="absolute inset-x-0 bottom-0 w-full">
-                                <div class="flex content-center justify-center">
-                                    <button type="button"
-                                        class="inline-block rounded border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
-                                        A
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                         <div @click="answer('B')"
                             class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300">
-                            <span x-text="questions?.detail[currentStep]['B']"
+                            <span
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 B
                             </span>
-                            <div class="absolute inset-x-0 bottom-0 w-full">
-                                <div class="flex content-center justify-center">
-                                    <button type="button"
-                                        class="inline-block rounded border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
-                                        B
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                         <div @click="answer('C')"
                             class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300">
-                            <span x-text="questions?.detail[currentStep]['C']"
+                            <span
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 C
                             </span>
-                            <div class="absolute inset-x-0 bottom-0 w-full">
-                                <div class="flex content-center justify-center">
-                                    <button type="button"
-                                        class="inline-block rounded border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
-                                        C
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                         <div @click="answer('D')"
                             class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300">
-                            <span x-text="questions?.detail[currentStep]['D']"
+                            <span
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 D
                             </span>
-                            <div class="absolute inset-x-0 bottom-0 w-full">
-                                <div class="flex content-center justify-center">
-                                    <button type="button"
-                                        class="inline-block rounded border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
-                                        D
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                         <div @click="answer('E')"
                             class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300">
-                            <span x-text="questions?.detail[currentStep]['E']"
+                            <span
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 E
                             </span>
-                            <div class="absolute inset-x-0 bottom-0 w-full">
-                                <div class="flex content-center justify-center">
-                                    <button type="button"
-                                        class="inline-block rounded border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
-                                        E
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -166,6 +149,8 @@
         <script>
             document.addEventListener('alpine:init', () => {
                 Alpine.data('local', () => ({
+                    storeAnswer: {},
+                    questions_detail: [],
                     questions: {
                         A: 'A',
                         B: 'B',
@@ -186,12 +171,17 @@
                     currentStep: 0,
                     answer(answer) {
                         if (this.percentage < 90) {
+                            this.questions_detail.push({
+                                id: this.questions.detail[this.currentStep].id,
+                                answer: answer
+                            });
+                            console.log('questions_detail', this.questions_detail);
                             this.currentStep++;
                         } else {
+                            this.sendAnswer();
                             this.currentStep = 0;
                             this.getQuestions();
                         }
-                        console.log(this.currentStep + ' ' + this.questionsTotal + ' ' + this.percentage)
                     },
                     get percentage() {
                         return (this.currentStep / this.questionsTotal) * 100;
@@ -201,11 +191,25 @@
                             .then((response) => {
                                 this.questions = response.data;
                                 this.questionsTotal = response.data.detail.length;
+                                this.storeAnswer.question_id = this.questions.id;
+                                console.log('getQuestions', this.storeAnswer);
                             });
                     },
                     getDetail() {
                         this.questions.detail[currentStep];
 
+                    },
+                    async sendAnswer() {
+                        let param = {
+                            question_id: this.storeAnswer.question_id,
+                            question_detail_id: this.questions_detail
+                        }
+                        console.log('sending answer', param);
+                        let responses = axios.post('http://127.0.0.1:8000/api/answer', this.storeAnswer)
+                            .then((response) => {
+                                console.log('sendAnswer', response.data);
+                            });
+                        console.log('responses', responses);
                     },
                     init() {
                         console.log('init')

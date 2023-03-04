@@ -13,7 +13,14 @@
     <livewire:styles />
 
     <!-- Scripts -->
+    @env('local')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @endenv
+
+    @env(['staging', 'production'])
+    <link href="{{ asset('build/assets/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('build/assets/app.js') }}" defer></script>
+    @endenv
 
     <x-livewire-alert::scripts />
     <script>

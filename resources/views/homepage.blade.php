@@ -11,8 +11,16 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
+
     <!-- Scripts -->
+    @env('local')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @endenv
+
+    @env(['staging', 'production'])
+    <link href="{{ asset('build/assets/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('build/assets/app.js') }}" defer></script>
+    @endenv
 </head>
 
 <body class="bg-slate-800 bg-hero-pattern bg-cover p-6">
@@ -113,8 +121,9 @@
                             <div
                                 class="absolute left-0 top-0 inline-flex h-full w-10 items-center justify-center text-gray-400">
                                 <span>
-                                    <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg class="h-6 w-6" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                        stroke="currentColor">
                                         <path
                                             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                     </svg>
