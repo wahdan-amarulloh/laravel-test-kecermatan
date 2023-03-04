@@ -5,6 +5,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,15 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/docs', function () {
     return view('docs');
+})->name('docs');
+
+Route::get('/deploy', function () {
+    $info = [
+        'optimize' => Artisan::call('optimize:clear'),
+        'migrate' => Artisan::call('migrate:fresh --seed'),
+    ];
+
+    return $info;
 })->name('docs');
 
 require __DIR__.'/auth.php';
