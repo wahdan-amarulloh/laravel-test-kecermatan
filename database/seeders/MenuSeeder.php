@@ -12,27 +12,13 @@ class MenuSeeder extends Seeder
             [
                 'name' => 'DASHBOARD',
             ],
-            [
-                'name' => 'MEMBER',
-            ],
-            [
-                'name' => 'BANK',
-            ],
-            [
-                'name' => 'TEST',
-            ],
-            [
-                'name' => 'MENU',
-            ],
-            [
-                'name' => 'USERS',
-            ],
-            [
-                'name' => 'PERMISSION',
-            ],
         ];
 
         $menusRoute = [
+            [
+                'name' => 'USERS',
+                'route' => 'user.index',
+            ],
             [
                 'name' => 'PLAN',
                 'route' => 'subscription.index',
@@ -40,6 +26,10 @@ class MenuSeeder extends Seeder
             [
                 'name' => 'DOCS',
                 'route' => 'docs',
+            ],
+            [
+                'name' => 'TEST',
+                'route' => 'test',
             ],
         ];
 

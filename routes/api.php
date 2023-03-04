@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/questions/{id?}', function (int $id = null) {
+    $questions = \App\Models\Question::with('detail')
+    ->when(! is_null($id), fn ($query, $id) => $query->where('id', $id))
+    ->when(is_null($id), fn ($query) => $query->inRandomOrder())
+    ->first();
+
+    return response()->json($questions);
+});

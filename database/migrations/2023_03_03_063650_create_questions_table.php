@@ -15,6 +15,7 @@ return new class () extends Migration {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('status', '3')->default('AC');
             $table->string('A');
             $table->string('B');
             $table->string('C');
