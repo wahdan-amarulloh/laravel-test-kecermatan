@@ -166,7 +166,6 @@
         <script>
             document.addEventListener('alpine:init', () => {
                 Alpine.data('local', () => ({
-                    open: false,
                     questions: {
                         A: 'A',
                         B: 'B',
@@ -185,9 +184,6 @@
                     },
                     questionsTotal: 0,
                     currentStep: 0,
-                    toggle() {
-                        this.open = !this.open
-                    },
                     answer(answer) {
                         if (this.percentage < 90) {
                             this.currentStep++;

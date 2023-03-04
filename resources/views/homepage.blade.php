@@ -60,6 +60,11 @@
     <div class="container mx-auto px-6 py-4 md:flex md:items-center md:justify-end">
         <div class="flex w-full max-w-md flex-col rounded-md bg-white/60 px-4 py-8 shadow-md sm:px-6 md:px-8 lg:px-10">
             <div class="self-center text-xl font-medium uppercase text-gray-800 sm:text-2xl">Login To Your Account</div>
+            <!-- Session Status -->
+            <x-auth-session-status class="mb-4" :status="session('status')" />
+
+            <!-- Validation Errors -->
+            <x-auth-validation-errors class="mb-4" :errors="$errors" />
             <div class="flex items-center justify-center">
                 <a href="{{ route('auth.google') }}"
                     class="mt-3 inline-flex w-full items-center rounded-md border-2 border-gray-500 bg-white px-6 py-3 font-semibold text-gray-900 shadow outline-none hover:border-blue-400 hover:bg-blue-50 focus:outline-none"><svg
@@ -81,7 +86,8 @@
                 </a>
             </div>
             <div class="mt-6">
-                <form action="#">
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
                     <div class="mb-6 flex flex-col">
                         <label for="email" class="mb-1 text-xs tracking-wide text-gray-600 sm:text-sm">E-Mail
                             Address:</label>
@@ -123,9 +129,12 @@
 
                     <div class="mb-6 -mt-4 flex items-center">
                         <div class="ml-auto flex">
-                            <a href="#"
-                                class="inline-flex text-xs text-blue-500 hover:text-blue-700 sm:text-sm">Forgot Your
-                                Password?</a>
+                            @if (Route::has('password.request'))
+                                <a href="{{ route('password.request') }}"
+                                    class="inline-flex text-xs text-blue-500 hover:text-blue-700 sm:text-sm">
+                                    Forgot Your Password?
+                                </a>
+                            @endif
                         </div>
                     </div>
 
@@ -153,7 +162,8 @@
                                 d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                         </svg>
                     </span>
-                    <span class="ml-2">You don't have an account?</span>
+                    <a href="{{ route('register') }}" class="ml-2">You don't have an account ? </a>
+
                 </a>
             </div>
         </div>

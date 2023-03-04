@@ -20,6 +20,10 @@ class MenuSeeder extends Seeder
                 'route' => 'user.index',
             ],
             [
+                'name' => 'QUESTION',
+                'route' => 'question.index',
+            ],
+            [
                 'name' => 'PLAN',
                 'route' => 'subscription.index',
             ],

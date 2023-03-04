@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('menu', MenuController::class);
     Route::resource('subscription', SubscriptionController::class);
     Route::resource('user', UserController::class);
+    Route::resource('question', QuestionController::class);
 });
 
 Route::get('/docs', function () {

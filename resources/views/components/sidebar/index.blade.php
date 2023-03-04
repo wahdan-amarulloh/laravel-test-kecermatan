@@ -33,21 +33,23 @@
 
         </ul>
 
-        <!-- Banner -->
-        <div class="box-banner px-4">
-            <div class="my-8 rounded-lg bg-gray-300 bg-opacity-50 p-4 text-center dark:bg-gray-700">
-                <h4 class="mb-2 inline-block font-bold">Confirm Account</h4>
-                <div class="mb-3 text-sm">
-                    You have not confirmed your account !
-                </div>
+        @if (auth()->user()->plan->name === 'Free Plan')
+            <!-- Banner -->
+            <div class="box-banner px-4">
+                <div class="my-8 rounded-lg bg-gray-300 bg-opacity-50 p-4 text-center dark:bg-gray-700">
+                    <h4 class="mb-2 inline-block font-bold">Confirm Account</h4>
+                    <div class="mb-3 text-sm">
+                        Upgrade to a paid plan and enjoy enhanced functionality.
+                    </div>
 
-                <div class="grid">
-                    <a href="#"
-                        class="mb-3 inline-block rounded border border-pink-500 bg-pink-500 py-2 px-4 text-center leading-5 text-gray-100 hover:border-pink-600 hover:bg-pink-600 hover:text-white hover:ring-0 focus:border-pink-600 focus:bg-pink-600 focus:outline-none focus:ring-0"
-                        target="_blank">Confirm</a>
+                    <div class="grid">
+                        <a href="#"
+                            class="mb-3 inline-block rounded border border-pink-500 bg-pink-500 py-2 px-4 text-center leading-5 text-gray-100 hover:border-pink-600 hover:bg-pink-600 hover:text-white hover:ring-0 focus:border-pink-600 focus:bg-pink-600 focus:outline-none focus:ring-0"
+                            target="_blank">Confirm</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- end banner -->
+            <!-- end banner -->
+        @endif
     </div>
 </nav>
