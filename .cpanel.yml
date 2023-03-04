@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/tesh4008/public_html/
+    - /bin/cp -R * $DEPLOYPATH

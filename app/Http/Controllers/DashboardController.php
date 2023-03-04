@@ -9,8 +9,6 @@ class DashboardController extends Controller
         $users = \App\Models\User::query()->count();
         $histories = \App\Models\User::with('questions')->where('id', auth()->id())->get();
 
-        debug($histories);
-
         return view('dashboard')
         ->with('users', $users)
         ->with('histories', $histories);

@@ -18,8 +18,6 @@
                     ->parent()
                     ->get();
             });
-            
-            debug(url()->current());
         @endphp
 
         <!-- Sidebar menu -->
