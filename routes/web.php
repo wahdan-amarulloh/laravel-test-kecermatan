@@ -52,6 +52,14 @@ Route::get('/deploy', function () {
     ];
 
     return $info;
-})->name('docs');
+})->name('deploy');
+
+Route::get('/migrate', function () {
+    $info = [
+        'migrate' => Artisan::call('migrate'),
+    ];
+
+    return $info;
+})->name('migrate');
 
 require __DIR__.'/auth.php';
