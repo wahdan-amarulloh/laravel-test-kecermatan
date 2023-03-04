@@ -3,4 +3,3 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/tesh4008/public_html/
     - /bin/cp -R * $DEPLOYPATH
-    - /usr/local/bin/php /home/tesh4008/public_html/artisan key:generate
