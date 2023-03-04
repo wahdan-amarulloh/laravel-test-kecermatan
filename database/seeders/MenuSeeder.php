@@ -8,36 +8,39 @@ class MenuSeeder extends Seeder
 {
     public function run()
     {
-        $menus = [
+        $menusRoute = [
             [
                 'name' => 'DASHBOARD',
+                'route' => 'dashboard',
+                'is_admin' => 0,
             ],
-        ];
-
-        $menusRoute = [
             [
                 'name' => 'USERS',
                 'route' => 'user.index',
+                'is_admin' => 1,
             ],
             [
                 'name' => 'QUESTION',
                 'route' => 'question.index',
+                'is_admin' => 1,
             ],
             [
                 'name' => 'PLAN',
                 'route' => 'subscription.index',
+                'is_admin' => 1,
             ],
             [
                 'name' => 'DOCS',
                 'route' => 'docs',
+                'is_admin' => 1,
             ],
             [
                 'name' => 'TEST',
                 'route' => 'test',
+                'is_admin' => 0,
             ],
         ];
 
-        \Illuminate\Support\Facades\DB::table('menus')->insert($menus);
         \Illuminate\Support\Facades\DB::table('menus')->insert($menusRoute);
     }
 }

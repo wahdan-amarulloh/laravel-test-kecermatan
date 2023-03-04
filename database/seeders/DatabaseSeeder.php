@@ -34,12 +34,18 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-
         \App\Models\User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@dev.com',
             'password' => bcrypt('admindev'),
             'is_admin' => 1,
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Member',
+            'email' => 'member@dev.com',
+            'password' => bcrypt('memberdev'),
+            'is_admin' => 0,
         ]);
     }
 }

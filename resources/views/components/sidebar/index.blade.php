@@ -16,6 +16,9 @@
             $menus = session()->remember('menus', function () {
                 return App\Models\Menu::with('childs')
                     ->parent()
+                    ->when(!auth()->user()->is_admin, function ($q) {
+                        return $q->where('is_admin', '0');
+                    })
                     ->get();
             });
         @endphp
