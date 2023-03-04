@@ -26,13 +26,13 @@ Route::get('/', function () {
     }
 
     return view('homepage');
-});
+})->name('homepage');
 
 Route::get('/dashboard', DashboardController::class)->middleware(['auth'])->name('dashboard');
 
 Route::get('/test', function () {
     return view('test.member');
-})->name('test');
+})->middleware(['auth'])->name('test');
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('menu', MenuController::class);
