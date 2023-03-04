@@ -7,10 +7,12 @@
 
     <div class="mx-auto p-2">
         {{-- Put content here --}}
+
+        {{-- info --}}
         <div class="mx-auto mt-3 w-full">
             <div>
                 <div class="flex flex-wrap">
-                    <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
+                    <div class="w-full p-0 md:basis-1/4 md:p-1">
                         <div class="relative mb-6 flex min-w-0 flex-col break-words rounded bg-white shadow-lg xl:mb-0">
                             <div class="flex-auto p-4">
                                 <div class="flex flex-wrap">
@@ -45,7 +47,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
+                    <div class="w-full p-0 md:basis-1/4 md:p-1">
                         <div class="relative mb-6 flex min-w-0 flex-col break-words rounded bg-white shadow-lg xl:mb-0">
                             <div class="flex-auto p-4">
                                 <div class="flex flex-wrap">
@@ -78,7 +80,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
+                    <div class="w-full p-0 md:basis-1/4 md:p-1">
                         <div class="relative mb-6 flex min-w-0 flex-col break-words rounded bg-white shadow-lg xl:mb-0">
                             <div class="flex-auto p-4">
                                 <div class="flex flex-wrap">
@@ -111,7 +113,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-full px-4 lg:w-6/12 xl:w-3/12">
+                    <div class="w-full p-0 md:basis-1/4 md:p-1">
                         <div class="relative mb-6 flex min-w-0 flex-col break-words rounded bg-white shadow-lg xl:mb-0">
                             <div class="flex-auto p-4">
                                 <div class="flex flex-wrap">
@@ -149,6 +151,71 @@
                 </div>
             </div>
         </div>
+        {{-- end info --}}
+
+        {{-- member --}}
+        {{-- @dump($histories) --}}
+        <div class="mx-auto mt-3 flex flex-col items-center items-stretch space-x-0 md:flex-row md:space-x-4">
+            <x-card class="scrollbars w-full grow-0 md:grow" title="1">
+            </x-card>
+
+            <x-card class="w-full basis-5/12" title="Test History">
+                <div class="mt-0">
+                    <div class="scrollbars flex max-h-[400px] w-full flex-col overflow-y-scroll">
+                        @forelse ($histories as $history)
+                            @forelse ($history->questions as $question)
+                                <div
+                                    class="group flex cursor-pointer items-center gap-x-5 rounded-md px-2.5 py-2 transition-all duration-75 hover:bg-green-100">
+                                    <div
+                                        class="flex h-12 w-12 items-center rounded-lg bg-gray-200 text-black group-hover:bg-green-200">
+                                        <span
+                                            class="tag w-full text-center text-2xl font-medium text-gray-700 group-hover:text-green-900">
+                                            <svg class="mx-auto h-6 w-6" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+                                            </svg>
+
+                                        </span>
+                                    </div>
+                                    <div class="flex flex-col items-start justify-between font-light text-gray-600">
+                                        <p class="text-[15px]">Placeholder</p>
+                                        <span
+                                            class="text-xs font-light text-gray-400">{{ Carbon\Carbon::parse($question->pivot->test_at)->diffForHumans() }}</span>
+                                    </div>
+                                </div>
+                            @empty
+                                <div
+                                    class="group flex cursor-pointer items-center gap-x-5 rounded-md px-2.5 py-2 transition-all duration-75 hover:bg-green-100">
+                                    <div
+                                        class="flex h-12 w-12 items-center rounded-lg bg-gray-200 text-black group-hover:bg-green-200">
+                                        <span
+                                            class="tag w-full text-center text-2xl font-medium text-gray-700 group-hover:text-green-900">
+                                            <svg class="mx-auto h-6 w-6" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+                                            </svg>
+
+                                        </span>
+                                    </div>
+                                    <div class="flex flex-col items-start justify-between font-light text-gray-600">
+                                        <p class="text-[15px]">You haven't done the test yet</p>
+                                        <span
+                                            class="text-xs font-light text-gray-400">{{ now()->diffForHumans() }}</span>
+                                    </div>
+                                </div>
+                            @endforelse
+                        @empty
+                            {{--  --}}
+                        @endforelse
+                    </div>
+                </div>
+            </x-card>
+        </div>
+        {{-- end member --}}
         {{-- end content --}}
     </div>
 </x-app-layout>

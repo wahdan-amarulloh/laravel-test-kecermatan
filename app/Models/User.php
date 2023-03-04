@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -57,5 +58,15 @@ class User extends Authenticatable
         return $this->hasOne(Subscription::class, 'id', 'subscription_id')->withDefault([
             'name' => 'Free Plan',
         ]);
+    }
+
+    /**
+     * The questions that belong to the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function questions(): BelongsToMany
+    {
+        return $this->belongsToMany(Question::class)->withPivot('test_at')->orderByPivot('test_at', 'desc');
     }
 }

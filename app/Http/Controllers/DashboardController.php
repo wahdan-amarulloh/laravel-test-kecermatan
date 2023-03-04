@@ -7,12 +7,12 @@ class DashboardController extends Controller
     public function __invoke()
     {
         $users = \App\Models\User::query()->count();
-        $isAdmin = auth()->user()->is_admin;
-        if ($isAdmin) {
-            logger('Admin');
-        }
+        $histories = \App\Models\User::with('questions')->where('id', auth()->id())->get();
+
+        debug($histories);
 
         return view('dashboard')
-        ->with('users', $users);
+        ->with('users', $users)
+        ->with('histories', $histories);
     }
 }
