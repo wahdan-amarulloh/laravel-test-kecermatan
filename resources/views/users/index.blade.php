@@ -8,10 +8,10 @@
     <div class="mx-auto p-2">
 
         <x-card title="{{ __('Plan') }}">
-            <x-slot name="action">
+            {{-- <x-slot name="action">
                 <x-card.action-link href="{{ route('subscription.create') }}" label="Create" />
-            </x-slot>
-            <livewire:subscription-table />
+            </x-slot> --}}
+            <livewire:user-table />
         </x-card>
 
     </div>

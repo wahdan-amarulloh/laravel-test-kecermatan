@@ -61,10 +61,11 @@ class SubscriptionTable extends DataTableComponent
                         }),
                     LinkColumn::make('Disable')
                         ->title(fn ($row) => 'Disable')
-                        ->location(fn ($row) => 'https://'.$row->id.'google2.com')
+                        ->location(fn ($row) => '#')
                         ->attributes(function ($row) {
                             return [
-                                'class' => 'underline text-orange-500',
+                                'class' => 'underline text-red-600',
+                                'wire:click' => 'askDelete('.$row->id.')',
                             ];
                         }),
                     LinkColumn::make('Delete')
