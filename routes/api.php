@@ -31,7 +31,7 @@ Route::post('/answer', function (AnswerRequest $request) {
     $testToday = (new \App\Models\User())->todatTest($request->user_id) ;
     $time = time();
 
-    if (count($testToday) >= 1) {
+    if (count($testToday) >= $user->subscription_id) {
         return response()->json([
             'error' => 'Error',
             'message' => 'Anda sudah tidak punya kuota test untuk hari ini !',
