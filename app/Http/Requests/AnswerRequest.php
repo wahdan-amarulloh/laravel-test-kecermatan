@@ -25,7 +25,8 @@ class AnswerRequest extends FormRequest
     {
         return [
             'question_id' => 'required',
-            'question_detail_id' => 'nullable',
+            'user_id' => 'required',
+            'detail_id' => 'nullable',
         ];
     }
 }

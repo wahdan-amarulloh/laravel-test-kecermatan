@@ -73,7 +73,7 @@
 
                     {{-- answer --}}
                     <div
-                        class="mx-auto mt-3 flex w-full max-w-2xl content-center justify-center space-x-2 space-x-10 rounded-md bg-slate-300 text-lg shadow-sm">
+                        class="shadow-s mx-auto mt-3 flex w-full max-w-2xl content-center justify-center space-x-2 space-x-10 rounded-md bg-slate-300 text-lg">
                         <span x-text="questions?.detail[currentStep]['A']"
                             class="py-6 text-3xl font-extrabold tracking-tight text-amber-500 dark:text-slate-50 sm:text-4xl">
                             A
@@ -201,11 +201,12 @@
                     },
                     async sendAnswer() {
                         let param = {
+                            user_id: sharedData.user.id,
                             question_id: this.storeAnswer.question_id,
-                            question_detail_id: this.questions_detail
+                            detail_id: this.questions_detail
                         }
                         console.log('sending answer', param);
-                        let responses = axios.post('http://127.0.0.1:8000/api/answer', this.storeAnswer)
+                        let responses = axios.post('http://127.0.0.1:8000/api/answer', param)
                             .then((response) => {
                                 console.log('sendAnswer', response.data);
                             });

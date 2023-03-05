@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Question;
-use App\Models\QuestionDetail;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,13 +14,13 @@ return new class () extends Migration {
      */
     public function up()
     {
-        Schema::create('question_user', function (Blueprint $table) {
+        Schema::create('user_question', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Question::class);
-            $table->foreignIdFor(QuestionDetail::class);
             $table->string('answer', 5)->nullable();
-            $table->timestamp('test_at')->nullable();
+            $table->unsignedInteger('detail_id')->nullable();
+            $table->timestamp('test_at')->useCurrent()->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ return new class () extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('question_user');
+        Schema::dropIfExists('user_question');
     }
 };

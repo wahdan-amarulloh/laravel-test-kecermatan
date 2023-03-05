@@ -67,6 +67,6 @@ class User extends Authenticatable
      */
     public function questions(): BelongsToMany
     {
-        return $this->belongsToMany(Question::class)->withPivot('test_at')->orderByPivot('test_at', 'desc');
+        return $this->belongsToMany(Question::class, 'user_question')->withPivot(['test_at','detail_id'])->orderByPivot('test_at', 'desc');
     }
 }

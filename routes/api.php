@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Requests\AnswerRequest;
+use App\Models\Question;
 use App\Models\Subscription;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
@@ -20,13 +23,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/answer', function (Request $request) {
-    logger($request);
-    $validated = $request->validated();
+Route::post('/answer', function (AnswerRequest $request) {
+    $request->validated();
+
+    $question = Question::find($request->question_id);
+    $user = User::find($request->user_id);
+
+    foreach ($request->detail_id as $detail) {
+        $user->questions()->attach($question->id, ['answer' => $detail['answer'],'detail_id' => $detail['id']]);
+    }
+
 
     return response()->json(
         [
-            'request' => $validated,
+            'request' => $request->all(),
+            'question' => $question,
+            'detail' => $question->detail_id,
+            'user' => $user,
             'message' => 'success',
         ]
     );

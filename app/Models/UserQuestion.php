@@ -17,4 +17,13 @@ class UserQuestion extends Model
     protected $casts = [
         'test_at' => 'datetime',
     ];
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = ['id'];
+
+    public $timestamps = false;
 }
