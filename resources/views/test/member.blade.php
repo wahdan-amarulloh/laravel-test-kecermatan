@@ -83,7 +83,7 @@
                             A
                         </span>
                         <span x-text="questions?.detail[currentStep]['C']"
-                            class="mttext-3xl py-6 font-extrabold tracking-tight text-amber-500 dark:text-slate-50 sm:text-4xl">
+                            class="py-6 text-3xl font-extrabold tracking-tight text-amber-500 dark:text-slate-50 sm:text-4xl">
                             A
                         </span>
                         <span x-text="questions?.detail[currentStep]['D']"
