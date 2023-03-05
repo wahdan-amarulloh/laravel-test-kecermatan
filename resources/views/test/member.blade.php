@@ -150,6 +150,7 @@
             document.addEventListener('alpine:init', () => {
                 Alpine.data('local', () => ({
                     storeAnswer: {},
+                    timeTest: 120,
                     running: false,
                     errorMessage: null,
                     questions_detail: [],
@@ -229,7 +230,7 @@
                         return new Date(new Date().setSeconds(new Date().getSeconds() + offset))
                     },
                     start() {
-                        this.expiry = this.date(120)
+                        this.expiry = this.date(this.timeTest)
                         this.running = true;
                         this.setRemaining()
                         this.interval = setInterval(() => {
@@ -240,6 +241,7 @@
                         const diff = this.expiry - new Date().getTime();
                         this.remaining = parseInt(diff / 1000);
                         if (this.remaining <= 0) {
+                            this.running = false;
                             clearInterval(this.interval);
                         }
                     },
