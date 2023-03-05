@@ -73,7 +73,7 @@
 
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
-            <div class="flex items-center justify-center">
+            {{-- <div class="flex items-center justify-center">
                 <a href="{{ route('auth.google') }}"
                     class="mt-3 inline-flex w-full items-center rounded-md border-2 border-gray-500 bg-white px-6 py-3 font-semibold text-gray-900 shadow outline-none hover:border-blue-400 hover:bg-blue-50 focus:outline-none"><svg
                         xmlns="http://www.w3.org/2000/svg" class="mr-3 inline h-4 w-4 fill-current text-gray-900"
@@ -92,7 +92,7 @@
                         </path>
                     </svg>Sign in with Google
                 </a>
-            </div>
+            </div> --}}
             <div class="mt-6">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -121,9 +121,8 @@
                             <div
                                 class="absolute left-0 top-0 inline-flex h-full w-10 items-center justify-center text-gray-400">
                                 <span>
-                                    <svg class="h-6 w-6" fill="none" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                        stroke="currentColor">
+                                    <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                                         <path
                                             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                     </svg>
