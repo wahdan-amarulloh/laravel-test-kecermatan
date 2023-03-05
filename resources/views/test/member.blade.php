@@ -189,7 +189,7 @@
                         return (this.currentStep / this.questionsTotal) * 100;
                     },
                     getQuestions() {
-                        axios.get('http://127.0.0.1:8000/api/questions', {})
+                        axios.get('{{ route('questions.take') }}', {})
                             .then((response) => {
                                 this.questions = response.data;
                                 this.questionsTotal = response.data.detail.length;
@@ -207,7 +207,7 @@
                             question_id: this.storeAnswer.question_id,
                             detail_id: this.questions_detail
                         }
-                        let responses = axios.post('http://127.0.0.1:8000/api/answer', param)
+                        let responses = axios.post('{{ route('answer.store') }}', param)
                             .then((response) => {
                                 this.takeResponse(response);
                             });

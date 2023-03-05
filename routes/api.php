@@ -90,7 +90,7 @@ Route::post('/questions', function (Request $request) {
             'message' => 'success',
         ]
     );
-});
+})->name('questions.store');
 
 Route::get('/questions/{id?}', function (int $id = null) {
     $questions = \App\Models\Question::with('detail')
@@ -99,4 +99,4 @@ Route::get('/questions/{id?}', function (int $id = null) {
     ->first();
 
     return response()->json($questions);
-});
+})->name('questions.take');
