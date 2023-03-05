@@ -241,6 +241,7 @@
                         const diff = this.expiry - new Date().getTime();
                         this.remaining = parseInt(diff / 1000);
                         if (this.remaining <= 0) {
+                            this.sendAnswer();
                             this.running = false;
                             clearInterval(this.interval);
                         }
