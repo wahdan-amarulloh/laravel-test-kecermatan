@@ -69,4 +69,26 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Question::class, 'user_question')->withPivot(['test_at','detail_id'])->orderByPivot('test_at', 'desc');
     }
+
+    public function todatTest($user_id)
+    {
+        return \Illuminate\Support\Facades\DB::select(
+            'select
+                test_id,
+                user_id
+            from
+                `questions`
+            inner join `user_question` on
+                `questions`.`id` = `user_question`.`question_id`
+            where
+                `user_question`.`user_id` = ?
+                and date(`user_question`.`test_at`) = ?
+            group by
+                `test_id`,
+                `user_id`
+            order by
+                `user_question`.`test_at` desc',
+            [$user_id,today()]
+        );
+    }
 }

@@ -19,6 +19,7 @@ return new class () extends Migration {
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Question::class);
             $table->string('answer', 5)->nullable();
+            $table->unsignedInteger('test_id')->nullable();
             $table->unsignedInteger('detail_id')->nullable();
             $table->timestamp('test_at')->useCurrent()->nullable();
             $table->timestamps();

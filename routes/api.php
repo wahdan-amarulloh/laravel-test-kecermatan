@@ -28,9 +28,22 @@ Route::post('/answer', function (AnswerRequest $request) {
 
     $question = Question::find($request->question_id);
     $user = User::find($request->user_id);
+    $testToday = (new \App\Models\User())->todatTest($request->user_id) ;
+    $time = time();
+
+    if (count($testToday) >= 1) {
+        return response()->json([
+            'error' => 'Error',
+            'message' => 'Anda sudah tidak punya kuota test untuk hari ini !',
+        ]);
+    }
 
     foreach ($request->detail_id as $detail) {
-        $user->questions()->attach($question->id, ['answer' => $detail['answer'],'detail_id' => $detail['id']]);
+        $user->questions()->attach($question->id, [
+            'answer' => $detail['answer'],
+            'detail_id' => $detail['id'],
+            'test_id' => $time,
+            ]);
     }
 
 
@@ -40,6 +53,7 @@ Route::post('/answer', function (AnswerRequest $request) {
             'question' => $question,
             'detail' => $question->detail_id,
             'user' => $user,
+            'testToday' => count($testToday),
             'message' => 'success',
         ]
     );

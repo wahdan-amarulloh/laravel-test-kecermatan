@@ -150,6 +150,7 @@
             document.addEventListener('alpine:init', () => {
                 Alpine.data('local', () => ({
                     storeAnswer: {},
+                    errorMessage: null,
                     questions_detail: [],
                     questions: {
                         A: 'A',
@@ -175,7 +176,6 @@
                                 id: this.questions.detail[this.currentStep].id,
                                 answer: answer
                             });
-                            console.log('questions_detail', this.questions_detail);
                             this.currentStep++;
                         } else {
                             this.sendAnswer();
@@ -205,12 +205,21 @@
                             question_id: this.storeAnswer.question_id,
                             detail_id: this.questions_detail
                         }
-                        console.log('sending answer', param);
                         let responses = axios.post('http://127.0.0.1:8000/api/answer', param)
                             .then((response) => {
-                                console.log('sendAnswer', response.data);
+                                this.takeResponse(response);
                             });
-                        console.log('responses', responses);
+                    },
+                    takeResponse(response) {
+                        console.log('response', response.data.error == 'Error')
+                        if (response.data.error == 'Error') {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'An error occurred: ' + response.data.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
                     },
                     init() {
                         console.log('init')
