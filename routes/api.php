@@ -27,11 +27,14 @@ Route::post('/answer', function (AnswerRequest $request) {
     $request->validated();
 
     $question = Question::find($request->question_id);
-    $user = User::find($request->user_id);
+    // $user = User::with('plan')->find($request->user_id);
+    $user = User::with('plan')->where('id', $request->user_id)->first();
     $testToday = (new \App\Models\User())->todatTest($request->user_id) ;
     $time = time();
 
-    if (count($testToday) >= $user->subscription_id) {
+    logger([count($testToday), $user->subscription_id]);
+
+    if ($user->plan->attempt - count($testToday) <= 0) {
         return response()->json([
             'error' => 'Error',
             'message' => 'Anda sudah tidak punya kuota test untuk hari ini !',

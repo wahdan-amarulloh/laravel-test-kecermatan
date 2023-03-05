@@ -51,7 +51,6 @@ class DatabaseSeeder extends Seeder
         if (App::environment('local')) {
             // The environment is local
             \App\Models\User::factory(100)->create();
-            \App\Models\Subscription::factory(10)->create();
             $this->call(
                 [
                 QuestionSeeder::class,
