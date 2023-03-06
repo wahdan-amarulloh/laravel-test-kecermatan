@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use App\Models\Question;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class QuestionTable extends DataTableComponent
 {
@@ -34,6 +36,24 @@ class QuestionTable extends DataTableComponent
                 ->sortable(),
             Column::make("Updated at", "updated_at")
                 ->sortable(),
+                ButtonGroupColumn::make('Actions')
+                ->unclickable()
+                ->attributes(function ($row) {
+                    return [
+                        'class' => 'space-x-2',
+                    ];
+                })
+                ->buttons([
+                    LinkColumn::make('Edit')
+                        ->title(fn ($row) => 'Edit')
+                        ->location(fn ($row) => '#')
+                        ->attributes(function ($row) {
+                            return [
+                                'class' => 'text-blue-500 hover:text-blue-600',
+                                '@click' => 'toggleDetail('.$row->id.')',
+                            ];
+                        }),
+                ]),
         ];
     }
 }
