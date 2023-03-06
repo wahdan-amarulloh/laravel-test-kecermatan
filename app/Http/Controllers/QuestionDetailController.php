@@ -14,7 +14,7 @@ class QuestionDetailController extends Controller
      */
     public function index()
     {
-        //
+        return 'hallo';
     }
 
     /**
@@ -35,7 +35,14 @@ class QuestionDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        logger($request);
+
+        return response()->json(
+            [
+                'request' => $request->all(),
+                'message' => 'success',
+            ]
+        );
     }
 
     /**

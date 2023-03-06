@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuestionDetailController;
 use App\Http\Requests\AnswerRequest;
 use App\Models\Question;
 use App\Models\Subscription;
@@ -100,3 +101,5 @@ Route::get('/questions/{id?}', function (int $id = null) {
 
     return response()->json($questions);
 })->name('questions.take');
+
+Route::apiResource('/question/detail', QuestionDetailController::class);
