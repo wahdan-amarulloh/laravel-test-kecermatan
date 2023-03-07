@@ -24,7 +24,7 @@ class StoreDetailRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'detail' => 'array',
         ];
     }
 }

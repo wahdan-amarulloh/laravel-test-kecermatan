@@ -2,6 +2,7 @@
     'action' => null,
     'title' => null,
     'description' => null,
+    'close' => null,
 ])
 
 <div {{ $attributes->merge(['class' => 'mb-6 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800']) }}>
@@ -35,6 +36,9 @@
                     {{ $action }}
                 </div>
             </div>
+        @endisset
+        @isset($close)
+            {{ $close }}
         @endisset
 
     </div>

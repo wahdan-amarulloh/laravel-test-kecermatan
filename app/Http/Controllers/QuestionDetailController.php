@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreDetailRequest;
 use App\Models\QuestionDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class QuestionDetailController extends Controller
 {
@@ -33,9 +35,15 @@ class QuestionDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDetailRequest $request)
     {
-        logger($request);
+        $request->validated();
+
+        foreach ($request->input('detail') as $detail) {
+            $detail = QuestionDetail::create(Arr::toUpper($detail));
+
+            logger($detail);
+        }
 
         return response()->json(
             [

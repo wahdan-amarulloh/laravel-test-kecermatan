@@ -16,11 +16,11 @@ return new class () extends Migration {
         Schema::create('question_details', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Question::class);
-            $table->string('A');
-            $table->string('B');
-            $table->string('C');
-            $table->string('D');
-            $table->string('E');
+            $table->string('A')->nullable();
+            $table->string('B')->nullable();
+            $table->string('C')->nullable();
+            $table->string('D')->nullable();
+            $table->string('E')->nullable();
             $table->string('answer', 1);
             $table->timestamps();
         });

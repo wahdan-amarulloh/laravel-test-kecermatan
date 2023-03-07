@@ -95,6 +95,7 @@ Route::post('/questions', function (Request $request) {
 
 Route::get('/questions/{id?}', function (int $id = null) {
     $questions = \App\Models\Question::with('detail')
+    ->whereHas('detail')
     ->when(! is_null($id), fn ($query, $id) => $query->where('id', $id))
     ->when(is_null($id), fn ($query) => $query->inRandomOrder())
     ->first();
