@@ -24,7 +24,7 @@
         @endphp
 
         <!-- Sidebar menu -->
-        <ul id="side-menu" x-data="{ selected: 1 }"
+        <ul id="side-menu" x-data="{ selected: @js(App\Models\Menu::where('route', Route::currentRouteName())->first()->id) }"
             class="float-none flex w-full flex-col font-medium ltr:pl-1.5 rtl:pr-1.5">
             <!-- dropdown -->
 
