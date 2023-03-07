@@ -58,7 +58,7 @@
 
       <!-- menu -->
       <ul class="mt-2 mt-0 flex ltr:ml-auto rtl:mr-auto">
-          <li class="relative" @click="toggleDarkMode()" x-show="!isDark">
+          {{-- <li class="relative" @click="toggleDarkMode()" x-show="!isDark">
               <a href="javascript:;" class="block flex rounded-full py-3 px-4 text-sm focus:outline-none"
                   id="messages">
                   <div class="relative mx-auto my-auto inline-block">
@@ -70,7 +70,7 @@
                       </svg>
                   </div>
               </a>
-          </li>
+          </li> --}}
 
           <li class="relative" @click="toggleDarkMode()" x-show="isDark">
               <a href="javascript:;" class="block flex rounded-full py-3 px-4 text-sm focus:outline-none"
@@ -104,8 +104,7 @@
                   </div>
               </a>
 
-              <div x-show="open" @click.away="open = false"
-                  x-transition:enter="transition-all duration-200 ease-out"
+              <div x-show="open" @click.away="open = false" x-transition:enter="transition-all duration-200 ease-out"
                   x-transition:enter-start="transform opacity-0 scale-95"
                   x-transition:enter-end="transform opacity-100 scale-100"
                   x-transition:leave="transition-all duration-200 ease-in"
