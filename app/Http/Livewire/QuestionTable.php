@@ -15,12 +15,20 @@ class QuestionTable extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id');
+        $this->setTrAttributes(function ($row, $index) {
+            return [
+                'default' => true,
+                'class' => 'uppercase',
+              ];
+        });
     }
 
     public function columns(): array
     {
         return [
             Column::make("Id", "id")
+                ->sortable(),
+            Column::make("Name", "name")
                 ->sortable(),
             Column::make("A", "A")
                 ->sortable(),
@@ -32,11 +40,9 @@ class QuestionTable extends DataTableComponent
                 ->sortable(),
             Column::make("E", "E")
                 ->sortable(),
-            Column::make("Created at", "created_at")
+            Column::make("Status", "status")
                 ->sortable(),
-            Column::make("Updated at", "updated_at")
-                ->sortable(),
-                ButtonGroupColumn::make('Actions')
+            ButtonGroupColumn::make('Actions')
                 ->unclickable()
                 ->attributes(function ($row) {
                     return [
@@ -51,6 +57,15 @@ class QuestionTable extends DataTableComponent
                             return [
                                 'class' => 'text-blue-500 hover:text-blue-600',
                                 '@click' => 'toggleDetail('.$row->id.')',
+                            ];
+                        }),
+                    LinkColumn::make('Disable')
+                        ->title(fn ($row) => 'Disable')
+                        ->location(fn ($row) => '#')
+                        ->attributes(function ($row) {
+                            return [
+                                'class' => 'text-red-500 hover:text-red-600',
+                                '@click' => 'askDisable('.$row->id.')',
                             ];
                         }),
                 ]),

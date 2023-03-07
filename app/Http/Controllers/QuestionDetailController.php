@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDetailRequest;
+use App\Http\Requests\UpdateDetailRequest;
+use App\Models\Question;
 use App\Models\QuestionDetail;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
 class QuestionDetailController extends Controller
@@ -39,11 +40,7 @@ class QuestionDetailController extends Controller
     {
         $request->validated();
 
-        foreach ($request->input('detail') as $detail) {
-            $detail = QuestionDetail::create(Arr::toUpper($detail));
-
-            logger($detail);
-        }
+        Question::upsert(Arr::toUpper($request->input('detail')), ['id']);
 
         return response()->json(
             [
@@ -59,9 +56,13 @@ class QuestionDetailController extends Controller
      * @param  \App\Models\QuestionDetail  $questionDetail
      * @return \Illuminate\Http\Response
      */
-    public function show(QuestionDetail $questionDetail)
+    public function show(Question $detail)
     {
-        //
+        return QuestionDetail::query()
+        ->select('id', 'question_id', 'A', 'B', 'C', 'D', 'E', 'answer')
+        ->where('question_id', $detail->id)->get();
+
+        return response()->json($detail);
     }
 
     /**
@@ -82,9 +83,18 @@ class QuestionDetailController extends Controller
      * @param  \App\Models\QuestionDetail  $questionDetail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, QuestionDetail $questionDetail)
+    public function update(UpdateDetailRequest $request, QuestionDetail $questionDetail)
     {
-        //
+        $request->validated();
+
+        QuestionDetail::upsert(Arr::toUpper($request->input('detail')), ['id','question_id']);
+
+        return response()->json(
+            [
+                'request' => $request->all(),
+                'message' => 'success',
+            ]
+        );
     }
 
     /**

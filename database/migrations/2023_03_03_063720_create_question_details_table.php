@@ -22,6 +22,7 @@ return new class () extends Migration {
             $table->string('D')->nullable();
             $table->string('E')->nullable();
             $table->string('answer', 1);
+            $table->string('status', '3')->default('AC');
             $table->timestamps();
         });
     }

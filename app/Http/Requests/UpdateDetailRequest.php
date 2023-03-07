@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreDetailRequest extends FormRequest
+class UpdateDetailRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,12 @@ class StoreDetailRequest extends FormRequest
     {
         return [
             'detail' => 'array',
-            'detail.*.name' => 'required',
-            'detail.*.A' => 'required|max:1',
-            'detail.*.B' => 'required|max:1',
-            'detail.*.C' => 'required|max:1',
-            'detail.*.D' => 'required|max:1',
-            'detail.*.E' => 'required|max:1',
+            'detail.*.answer' => 'required|max:1',
+            'detail.*.A' => 'sometimes|max:1',
+            'detail.*.B' => 'sometimes|max:1',
+            'detail.*.C' => 'sometimes|max:1',
+            'detail.*.D' => 'sometimes|max:1',
+            'detail.*.E' => 'sometimes|max:1',
         ];
     }
 }
