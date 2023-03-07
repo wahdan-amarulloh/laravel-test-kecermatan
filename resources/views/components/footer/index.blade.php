@@ -19,7 +19,7 @@
             </div>
             <div class="w-full max-w-full flex-shrink px-4 text-center md:w-1/2 md:ltr:text-right md:rtl:text-left">
                 <p class="mb-0 mt-3 md:mt-0">
-                    <a href="index.html" class="hover:text-indigo-500">Tailnet</a> | All right reserved
+                    <a href="#" class="hover:text-indigo-500">W.A</a> | All right reserved
                 </p>
             </div>
         </div>
