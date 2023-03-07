@@ -150,7 +150,7 @@
             document.addEventListener('alpine:init', () => {
                 Alpine.data('local', () => ({
                     storeAnswer: {},
-                    timeTest: 120,
+                    timeTest: 5,
                     running: false,
                     errorMessage: null,
                     questions_detail: [],
@@ -207,7 +207,8 @@
                             question_id: this.storeAnswer.question_id,
                             detail_id: this.questions_detail
                         }
-                        let responses = axios.post('{{ route('questions.take') }}', param)
+                        let url = '{{ route('test.store') }}';
+                        let responses = axios.post(url, param)
                             .then((response) => {
                                 this.takeResponse(response);
                             });
