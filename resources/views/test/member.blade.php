@@ -207,7 +207,7 @@
                             question_id: this.storeAnswer.question_id,
                             detail_id: this.questions_detail
                         }
-                        let responses = axios.post('{{ route('answer.store') }}', param)
+                        let responses = axios.post('{{ route('questions.take') }}', param)
                             .then((response) => {
                                 this.takeResponse(response);
                             });

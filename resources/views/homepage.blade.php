@@ -59,7 +59,7 @@
                     <a class="my-2 transform text-white transition-colors duration-300 hover:text-amber-400 dark:text-gray-200 dark:hover:text-blue-400 md:mx-4 md:my-0"
                         href="{{ route('test') }}">Trial Test</a>
                     <a class="my-2 transform text-white transition-colors duration-300 hover:text-amber-400 dark:text-gray-200 dark:hover:text-blue-400 md:mx-4 md:my-0"
-                        href="#">Pendaftaran</a>
+                        href="{{ route('register') }}">Pendaftaran</a>
                 </div>
             </div>
         </div>

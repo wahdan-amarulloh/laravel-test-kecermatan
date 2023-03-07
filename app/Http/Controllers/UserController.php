@@ -12,4 +12,9 @@ class UserController extends Controller
 
         return view('users.index')->with('users', $users);
     }
+
+    public function test()
+    {
+        return view('test.member');
+    }
 }

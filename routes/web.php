@@ -37,6 +37,8 @@ Route::get('/test', function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('menu', MenuController::class);
     Route::resource('subscription', SubscriptionController::class);
+
+    Route::get('user/test', [UserController::class, 'test'])->name('user.test');
     Route::resource('user', UserController::class);
     Route::resource('question', QuestionController::class);
 });

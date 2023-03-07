@@ -63,7 +63,7 @@ Route::post('/answer', function (AnswerRequest $request) {
     );
 })->name('answer.store');
 
-Route::post('/questions', function (Request $request) {
+Route::post('/plan', function (Request $request) {
     $rules = [
         'name' => 'required|string|max:255',
         'status' => 'required|max:2',
@@ -91,7 +91,7 @@ Route::post('/questions', function (Request $request) {
             'message' => 'success',
         ]
     );
-})->name('questions.store');
+})->name('plan.store');
 
 Route::get('/questions/{id?}', function (int $id = null) {
     $questions = \App\Models\Question::with('detail')
