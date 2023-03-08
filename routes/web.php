@@ -43,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('question', QuestionController::class);
 });
 
+Route::get('test/trial', [UserController::class, 'test'])->name('test.trial');
+
 Route::get('/docs', function () {
     return view('docs');
 })->name('docs');
