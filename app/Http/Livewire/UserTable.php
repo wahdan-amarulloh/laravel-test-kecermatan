@@ -6,10 +6,13 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
 class UserTable extends DataTableComponent
 {
     protected $model = User::class;
+
+    protected $listeners = ['refreshComponent' => '$refresh'];
 
     public function builder(): Builder
     {
@@ -43,11 +46,16 @@ class UserTable extends DataTableComponent
             ->format(
                 fn ($value, $row, Column $column) => $value ?? $row->plan->name
             )
-                ->sortable(),
+            ->sortable(),
             Column::make("Created at", "created_at")
                 ->sortable(),
-            Column::make("Updated at", "updated_at")
-                ->sortable(),
+            ComponentColumn::make('Actions', 'id')
+                ->component('table.actions')
+                ->attributes(fn ($value, $row, Column $column) => [
+                    'edit' => true,
+                    'editLabel' => 'Change Plan',
+                    'id' => $value,
+                ]),
         ];
     }
 }

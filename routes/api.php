@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PlanApiController;
 use App\Http\Controllers\QuestionDetailController;
 use App\Http\Requests\AnswerRequest;
 use App\Models\Question;
@@ -24,35 +25,35 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/plan', function (Request $request) {
-    $rules = [
-        'name' => 'required|string|max:255',
-        'status' => 'required|max:2',
-        'attempt' => 'required|integer|min:1',
-    ];
+// Route::post('/plan', function (Request $request) {
+//     $rules = [
+//         'name' => 'required|string|max:255',
+//         'status' => 'required|max:2',
+//         'attempt' => 'required|integer|min:1',
+//     ];
 
-    // Validate the request data
-    $validator = Validator::make($request->all(), $rules);
+//     // Validate the request data
+//     $validator = Validator::make($request->all(), $rules);
 
-    // If the validation fails, return the error response
-    if ($validator->fails()) {
-        return response()->json([
-            'message' => 'The given data was invalid.',
-            'errors' => $validator->errors(),
-        ], 422);
-    }
-    $subscription = Subscription::create([
-        'name' => $request->name,
-        'attempt' => $request->attempt,
-    ]);
+//     // If the validation fails, return the error response
+//     if ($validator->fails()) {
+//         return response()->json([
+//             'message' => 'The given data was invalid.',
+//             'errors' => $validator->errors(),
+//         ], 422);
+//     }
+//     $subscription = Subscription::create([
+//         'name' => $request->name,
+//         'attempt' => $request->attempt,
+//     ]);
 
-    return response()->json(
-        [
-            'plan' => $subscription->name,
-            'message' => 'success',
-        ]
-    );
-})->name('plan.store');
+//     return response()->json(
+//         [
+//             'plan' => $subscription->name,
+//             'message' => 'success',
+//         ]
+//     );
+// })->name('plan.store');
 
 Route::get('/questions/{id?}', function (int $id = null) {
     $questions = \App\Models\Question::with('detail')
@@ -104,3 +105,6 @@ Route::post('/answer', function (AnswerRequest $request) {
 })->name('test.store');
 
 Route::apiResource('/question/detail', QuestionDetailController::class);
+
+Route::post('/plan/user/{user}', [PlanApiController::class,'user'])->name('plan.user');
+Route::apiResource('/plan', PlanApiController::class)->names('plan');
