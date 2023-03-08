@@ -26,4 +26,11 @@ class UserQuestion extends Model
     protected $guarded = ['id'];
 
     public $timestamps = false;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'user_question';
 }
