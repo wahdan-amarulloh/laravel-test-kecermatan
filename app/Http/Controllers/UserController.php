@@ -17,4 +17,9 @@ class UserController extends Controller
     {
         return view('test.member');
     }
+
+    public function trial()
+    {
+        return view('test.trial');
+    }
 }

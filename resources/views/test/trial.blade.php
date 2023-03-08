@@ -1,12 +1,73 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+
+
+    <!-- Scripts -->
+    @env('local')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @endenv
+
+    @env(['staging', 'production'])
+    <link href="{{ asset('build/assets/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('build/assets/app.js') }}" defer></script>
+    @endenv
+</head>
+
+<body class="bg-slate-800 bg-hero-pattern bg-cover p-6">
+    <nav x-data="{ isOpen: false }" class="relative">
+        <div class="container mx-auto px-6 py-4 md:flex md:items-center md:justify-between">
+            <div class="flex items-center justify-between">
+                <a href="#">
+                    <img class="h-16 w-auto" src="{{ asset('images/logo.png') }}" alt="">
+                </a>
+
+                <!-- Mobile menu button -->
+                <div class="flex md:hidden">
+                    <button x-cloak @click="isOpen = !isOpen" type="button"
+                        class="text-gray-500 hover:text-gray-600 focus:text-gray-600 focus:outline-none dark:text-gray-200 dark:hover:text-gray-400 dark:focus:text-gray-400"
+                        aria-label="toggle menu">
+                        <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
+                        </svg>
+
+                        <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+            <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']"
+                class="absolute inset-x-0 z-20 mt-5 w-full rounded-md bg-gray-600/90 px-6 py-4 pt-2 transition-all duration-300 ease-in-out dark:bg-gray-800 md:relative md:top-0 md:mt-0 md:flex md:w-auto md:translate-x-0 md:items-center md:bg-transparent md:p-0 md:opacity-100">
+                <div class="flex flex-col md:mx-6 md:flex-row">
+                    <a class="my-2 transform text-white transition-colors duration-300 hover:text-amber-400 dark:text-gray-200 dark:hover:text-blue-400 md:mx-4 md:my-0"
+                        href="/">Beranda</a>
+                    <a class="my-2 transform text-white transition-colors duration-300 hover:text-amber-400 dark:text-gray-200 dark:hover:text-blue-400 md:mx-4 md:my-0"
+                        href="{{ route('test.trial') }}">Trial Test</a>
+                    <a class="my-2 transform text-white transition-colors duration-300 hover:text-amber-400 dark:text-gray-200 dark:hover:text-blue-400 md:mx-4 md:my-0"
+                        href="{{ route('register') }}">Pendaftaran</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
 
     <div class="mx-auto p-2">
-        <x-card title="Test">
+        <x-card class="bg-slate-600/70">
             <div x-data="local">
                 {{-- timer --}}
                 <div class="flex flex-col">
@@ -144,212 +205,142 @@
         </x-card>
 
     </div>
-
-    @push('scripts')
-        <script>
-            document.addEventListener('alpine:init', () => {
-                Alpine.data('local', () => ({
-                    storeAnswer: {},
-                    timeTest: 5,
-                    running: false,
-                    errorMessage: null,
-                    questions_detail: [],
-                    questions: {
-                        A: 'A',
-                        B: 'B',
-                        C: 'C',
-                        D: 'D',
-                        E: 'E',
-                        detail: {
-                            0: {
-                                A: 'A',
-                                B: 'B',
-                                C: 'C',
-                                D: 'D',
-                                E: 'E',
-                            }
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('local', () => ({
+                storeAnswer: {},
+                timeTest: 120,
+                running: false,
+                errorMessage: null,
+                questions_detail: [],
+                questions: {
+                    A: 'A',
+                    B: 'B',
+                    C: 'C',
+                    D: 'D',
+                    E: 'E',
+                    detail: {
+                        0: {
+                            A: 'A',
+                            B: 'B',
+                            C: 'C',
+                            D: 'D',
+                            E: 'E',
                         }
-                    },
-                    questionsTotal: 0,
-                    currentStep: 0,
-                    answer(answer) {
-                        if (this.percentage < 90) {
-                            this.questions_detail.push({
-                                id: this.questions.detail[this.currentStep].id,
-                                answer: answer
-                            });
-                            this.currentStep++;
-                        } else {
-                            this.sendAnswer();
-                            this.currentStep = 0;
-                            this.getQuestions();
-                        }
-                    },
-                    get percentage() {
-                        return (this.currentStep / this.questionsTotal) * 100;
-                    },
-                    getQuestions() {
-                        axios.get('{{ route('questions.take') }}', {})
-                            .then((response) => {
-                                this.questions = response.data;
-                                this.questionsTotal = response.data.detail.length;
-                                this.storeAnswer.question_id = this.questions.id;
-                                console.log('getQuestions', this.storeAnswer);
-                            });
-                    },
-                    getDetail() {
-                        this.questions.detail[currentStep];
-
-                    },
-                    async sendAnswer() {
-                        let param = {
-                            user_id: sharedData.user.id,
-                            question_id: this.storeAnswer.question_id,
-                            detail_id: this.questions_detail
-                        }
-                        let url = '{{ route('test.store') }}';
-                        let responses = axios.post(url, param)
-                            .then((response) => {
-                                this.takeResponse(response);
-                            });
-                    },
-                    takeResponse(response) {
-                        console.log('response', response.data.error == 'Error')
-                        if (response.data.error == 'Error') {
-                            Swal.fire({
-                                title: 'Error!',
-                                text: 'An error occurred: ' + response.data.message,
-                                icon: 'error',
-                                confirmButtonText: 'OK'
-                            });
-                        }
-                    },
-                    expiry: new Date().setDate(new Date().getDate() + 1),
-                    remaining: null,
-                    interval: null,
-                    date(offset = 0) {
-                        return new Date(new Date().setSeconds(new Date().getSeconds() + offset))
-                    },
-                    start() {
-                        this.expiry = this.date(this.timeTest)
-                        this.running = true;
-                        this.setRemaining()
-                        this.interval = setInterval(() => {
-                            this.setRemaining();
-                        }, 1000);
-                    },
-                    setRemaining() {
-                        const diff = this.expiry - new Date().getTime();
-                        this.remaining = parseInt(diff / 1000);
-                        if (this.remaining <= 0) {
-                            this.sendAnswer();
-                            this.running = false;
-                            clearInterval(this.interval);
-                        }
-                    },
-                    days() {
-                        return {
-                            value: this.remaining / 86400,
-                            remaining: this.remaining % 86400
-                        };
-                    },
-                    hours() {
-                        return {
-                            value: this.days().remaining / 3600,
-                            remaining: this.days().remaining % 3600
-                        };
-                    },
-                    minutes() {
-                        return {
-                            value: this.hours().remaining / 60,
-                            remaining: this.hours().remaining % 60
-                        };
-                    },
-                    seconds() {
-                        return {
-                            value: this.minutes().remaining,
-                        };
-                    },
-                    format(value) {
-                        return ("0" + parseInt(value)).slice(-2)
-                    },
-                    time() {
-                        return {
-                            days: this.format(this.days().value),
-                            hours: this.format(this.hours().value),
-                            minutes: this.format(this.minutes().value),
-                            seconds: this.format(this.seconds().value),
-                        }
-                    },
-                    init() {
-                        console.log('init')
-
-                        this.$nextTick(() => {
-                            this.getQuestions();
-                        })
                     }
-                }))
-            })
-        </script>
-        {{-- <script>
-            document.addEventListener('alpine:init', () => {
-                Alpine.data('timer', () => ({
-                    expiry: new Date().setDate(new Date().getDate() + 1),
-                    remaining: null,
-                    interval: null,
-                    date(offset = 0) {
-                        return new Date(new Date().setSeconds(new Date().getSeconds() + offset))
-                    },
-                    start() {
-                        this.expiry = this.date(120)
-                        this.setRemaining()
-                        this.interval = setInterval(() => {
-                            this.setRemaining();
-                        }, 1000);
-                    },
-                    setRemaining() {
-                        const diff = this.expiry - new Date().getTime();
-                        this.remaining = parseInt(diff / 1000);
-                        if (this.remaining <= 0) {
-                            clearInterval(this.interval);
-                        }
-                    },
-                    days() {
-                        return {
-                            value: this.remaining / 86400,
-                            remaining: this.remaining % 86400
-                        };
-                    },
-                    hours() {
-                        return {
-                            value: this.days().remaining / 3600,
-                            remaining: this.days().remaining % 3600
-                        };
-                    },
-                    minutes() {
-                        return {
-                            value: this.hours().remaining / 60,
-                            remaining: this.hours().remaining % 60
-                        };
-                    },
-                    seconds() {
-                        return {
-                            value: this.minutes().remaining,
-                        };
-                    },
-                    format(value) {
-                        return ("0" + parseInt(value)).slice(-2)
-                    },
-                    time() {
-                        return {
-                            days: this.format(this.days().value),
-                            hours: this.format(this.hours().value),
-                            minutes: this.format(this.minutes().value),
-                            seconds: this.format(this.seconds().value),
-                        }
-                    },
-                }));
-            })
-        </script> --}}
-    @endpush
-</x-app-layout>
+                },
+                questionsTotal: 0,
+                currentStep: 0,
+                answer(answer) {
+                    if (this.percentage < 90) {
+                        this.questions_detail.push({
+                            id: this.questions.detail[this.currentStep].id,
+                            answer: answer
+                        });
+                        this.currentStep++;
+                    } else {
+                        this.sendAnswer();
+                        this.currentStep = 0;
+                        this.getQuestions();
+                    }
+                },
+                get percentage() {
+                    return (this.currentStep / this.questionsTotal) * 100;
+                },
+                getQuestions() {
+                    axios.get('{{ route('questions.take') }}', {})
+                        .then((response) => {
+                            this.questions = response.data;
+                            this.questionsTotal = response.data.detail.length;
+                            this.storeAnswer.question_id = this.questions.id;
+                            console.log('getQuestions', this.storeAnswer);
+                        });
+                },
+                getDetail() {
+                    this.questions.detail[currentStep];
+
+                },
+                async sendAnswer() {
+                    null;
+                },
+                takeResponse(response) {
+                    console.log('response', response.data.error == 'Error')
+                    if (response.data.error == 'Error') {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'An error occurred: ' + response.data.message,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                },
+                expiry: new Date().setDate(new Date().getDate() + 1),
+                remaining: null,
+                interval: null,
+                date(offset = 0) {
+                    return new Date(new Date().setSeconds(new Date().getSeconds() + offset))
+                },
+                start() {
+                    this.expiry = this.date(this.timeTest)
+                    this.running = true;
+                    this.setRemaining()
+                    this.interval = setInterval(() => {
+                        this.setRemaining();
+                    }, 1000);
+                },
+                setRemaining() {
+                    const diff = this.expiry - new Date().getTime();
+                    this.remaining = parseInt(diff / 1000);
+                    if (this.remaining <= 0) {
+                        this.sendAnswer();
+                        this.running = false;
+                        clearInterval(this.interval);
+                    }
+                },
+                days() {
+                    return {
+                        value: this.remaining / 86400,
+                        remaining: this.remaining % 86400
+                    };
+                },
+                hours() {
+                    return {
+                        value: this.days().remaining / 3600,
+                        remaining: this.days().remaining % 3600
+                    };
+                },
+                minutes() {
+                    return {
+                        value: this.hours().remaining / 60,
+                        remaining: this.hours().remaining % 60
+                    };
+                },
+                seconds() {
+                    return {
+                        value: this.minutes().remaining,
+                    };
+                },
+                format(value) {
+                    return ("0" + parseInt(value)).slice(-2)
+                },
+                time() {
+                    return {
+                        days: this.format(this.days().value),
+                        hours: this.format(this.hours().value),
+                        minutes: this.format(this.minutes().value),
+                        seconds: this.format(this.seconds().value),
+                    }
+                },
+                init() {
+                    console.log('init')
+
+                    this.$nextTick(() => {
+                        this.getQuestions();
+                    })
+                }
+            }))
+        })
+    </script>
+</body>
+
+</html>
