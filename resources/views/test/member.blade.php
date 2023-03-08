@@ -44,30 +44,70 @@
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 A
                             </span>
+                            <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
+                                <div class="flex content-end justify-end">
+                                    <button type="button"
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        A
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6">
                             <span x-text="questions['B']"
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 B
                             </span>
+                            <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
+                                <div class="flex content-end justify-end">
+                                    <button type="button"
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        B
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6">
                             <span x-text="questions['C']"
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 C
                             </span>
+                            <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
+                                <div class="flex content-end justify-end">
+                                    <button type="button"
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        C
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6">
                             <span x-text="questions['D']"
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 D
                             </span>
+                            <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
+                                <div class="flex content-end justify-end">
+                                    <button type="button"
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        D
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6">
                             <span x-text="questions['E']"
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 E
                             </span>
+                            <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
+                                <div class="flex content-end justify-end">
+                                    <button type="button"
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        E
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -150,7 +190,7 @@
             document.addEventListener('alpine:init', () => {
                 Alpine.data('local', () => ({
                     storeAnswer: {},
-                    timeTest: 5,
+                    timeTest: 120,
                     running: false,
                     errorMessage: null,
                     questions_detail: [],
@@ -180,7 +220,7 @@
                             });
                             this.currentStep++;
                         } else {
-                            this.sendAnswer();
+                            // this.sendAnswer();
                             this.currentStep = 0;
                             this.getQuestions();
                         }
@@ -211,6 +251,7 @@
                         let responses = axios.post(url, param)
                             .then((response) => {
                                 this.takeResponse(response);
+                                this.questions_detail = [];
                             });
                     },
                     takeResponse(response) {
@@ -231,6 +272,8 @@
                         return new Date(new Date().setSeconds(new Date().getSeconds() + offset))
                     },
                     start() {
+                        this.currentStep = 0;
+                        this.questions_detail = [];
                         this.expiry = this.date(this.timeTest)
                         this.running = true;
                         this.setRemaining()
@@ -282,8 +325,6 @@
                         }
                     },
                     init() {
-                        console.log('init')
-
                         this.$nextTick(() => {
                             this.getQuestions();
                         })
@@ -291,65 +332,5 @@
                 }))
             })
         </script>
-        {{-- <script>
-            document.addEventListener('alpine:init', () => {
-                Alpine.data('timer', () => ({
-                    expiry: new Date().setDate(new Date().getDate() + 1),
-                    remaining: null,
-                    interval: null,
-                    date(offset = 0) {
-                        return new Date(new Date().setSeconds(new Date().getSeconds() + offset))
-                    },
-                    start() {
-                        this.expiry = this.date(120)
-                        this.setRemaining()
-                        this.interval = setInterval(() => {
-                            this.setRemaining();
-                        }, 1000);
-                    },
-                    setRemaining() {
-                        const diff = this.expiry - new Date().getTime();
-                        this.remaining = parseInt(diff / 1000);
-                        if (this.remaining <= 0) {
-                            clearInterval(this.interval);
-                        }
-                    },
-                    days() {
-                        return {
-                            value: this.remaining / 86400,
-                            remaining: this.remaining % 86400
-                        };
-                    },
-                    hours() {
-                        return {
-                            value: this.days().remaining / 3600,
-                            remaining: this.days().remaining % 3600
-                        };
-                    },
-                    minutes() {
-                        return {
-                            value: this.hours().remaining / 60,
-                            remaining: this.hours().remaining % 60
-                        };
-                    },
-                    seconds() {
-                        return {
-                            value: this.minutes().remaining,
-                        };
-                    },
-                    format(value) {
-                        return ("0" + parseInt(value)).slice(-2)
-                    },
-                    time() {
-                        return {
-                            days: this.format(this.days().value),
-                            hours: this.format(this.hours().value),
-                            minutes: this.format(this.minutes().value),
-                            seconds: this.format(this.seconds().value),
-                        }
-                    },
-                }));
-            })
-        </script> --}}
     @endpush
 </x-app-layout>

@@ -105,30 +105,70 @@
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 A
                             </span>
+                            <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
+                                <div class="flex content-end justify-end">
+                                    <button type="button"
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        A
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6">
                             <span x-text="questions['B']"
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 B
                             </span>
+                            <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
+                                <div class="flex content-end justify-end">
+                                    <button type="button"
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        B
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6">
                             <span x-text="questions['C']"
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 C
                             </span>
+                            <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
+                                <div class="flex content-end justify-end">
+                                    <button type="button"
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        C
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6">
                             <span x-text="questions['D']"
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 D
                             </span>
+                            <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
+                                <div class="flex content-end justify-end">
+                                    <button type="button"
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        D
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6">
                             <span x-text="questions['E']"
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 E
                             </span>
+                            <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
+                                <div class="flex content-end justify-end">
+                                    <button type="button"
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        E
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
