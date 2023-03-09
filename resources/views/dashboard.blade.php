@@ -246,7 +246,6 @@
                         url += '/' + id;
                         this.canvasData = axios.get(url)
                             .then(response => {
-                                // Handle success
                                 this.canvasData = response.data.detail;
                                 this.build();
                             })
@@ -265,16 +264,13 @@
 
                         const trueAnswer = [];
                         const wrongAnswer = [];
-                        console.log(labels);
                         for (const property in labels) {
-                            let currentWrong = labels[property].filter(obj => obj.points !== 1).length;
-                            let currentRight = labels[property].filter(obj => obj.points === 1).length;
-
+                            console.log('labels[property]', labels[property][0].corrects);
                             trueAnswer.push(
-                                currentRight
+                                labels[property][0].corrects
                             );
                             wrongAnswer.push(
-                                currentWrong
+                                labels[property][0].wrongs
                             )
                         };
 
