@@ -9,7 +9,7 @@
         {{-- Put content here --}}
 
         {{-- info --}}
-        <div class="mx-auto mt-3 w-full">
+        {{-- <div class="mx-auto mt-3 w-full">
             <div>
                 <div class="flex flex-wrap">
                     <div class="w-full p-0 md:basis-1/4 md:p-1">
@@ -150,13 +150,96 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- end info --}}
+
+        <div class="mx-auto mt-3 flex flex-col items-center items-stretch space-x-0 md:flex-row md:space-x-4">
+            <x-card class="w-full md:basis-1/2" title="Profile">
+                <div
+                    class="flex flex-col divide-y divide-y font-mono text-sm font-bold leading-6 ltr:text-left rtl:text-right dark:divide-slate-700">
+                    <div class="flex-row content-end justify-end">
+                        <strong class="text-xl font-extrabold">Full Name </strong>
+                        <p class="mb-2">
+                            <span class="">
+                                {{ auth()->user()->name }}
+                            </span>
+                        </p>
+                    </div>
+                    <div class="flex-row content-end justify-end">
+                        <strong class="text-xl font-extrabold">Full Name </strong>
+                        <p class="mb-2">
+                            <span class="">
+                                {{ auth()->user()->phone }}
+                            </span>
+                        </p>
+                    </div>
+                    <div class="flex-row content-end justify-end">
+                        <strong class="text-xl font-extrabold">Email </strong>
+                        <p class="mb-2">
+                            <span class="">
+                                {{ auth()->user()->email }}
+                            </span>
+                        </p>
+                    </div>
+                    <div class="flex-row content-end justify-end">
+                        <strong class="text-xl font-extrabold">Location </strong>
+                        <p class="mb-2">
+                            <span class="">
+                                {{ auth()->user()->city }}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </x-card>
+            <x-card class="w-full md:basis-1/2" x-data="{
+                activeTab: 0,
+                tabs: [
+                    'Status',
+                    'Tab No.2',
+                    'Tab No.3',
+                    'Tab No.4',
+                ]
+            }">
+                {{-- <x-slot name="close">
+                    <ul class="mb-3 flex w-full items-center justify-center">
+                        <template x-for="(tab, index) in tabs" :key="index">
+                            <li class="cursor-pointer border-b-8 py-2 px-4 text-gray-500"
+                                :class="activeTab === index ? 'text-green-500 border-green-500' : ''"
+                                @click="activeTab = index" x-text="tab"></li>
+                        </template>
+                    </ul>
+                </x-slot> --}}
+                <div x-show="activeTab===0">
+                    <div
+                        class="flex flex-col divide-y divide-y font-mono text-sm font-bold leading-6 ltr:text-left rtl:text-right dark:divide-slate-700">
+                        <div class="flex-row content-end justify-end">
+                            <strong class="text-xl font-extrabold">Paket berlangganan </strong>
+                            <p class="mb-2">
+                                <span class="">
+                                    {{ auth()->user()->plan->name }}
+                                </span>
+                            </p>
+                        </div>
+                        <div class="flex-row content-end justify-end">
+                            <strong class="text-xl font-extrabold">Sisa quota tes kecermatan harian </strong>
+                            <p class="mb-2">
+                                <span class="">
+                                    {{ auth()->user()->plan->attempt - count($testLeft) }}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div x-show="activeTab===1">Content 2</div>
+                <div x-show="activeTab===2">Content 3</div>
+                <div x-show="activeTab===3">Content 4</div>
+            </x-card>
+        </div>
 
         {{-- member --}}
         <div x-data="detail()"
             class="mx-auto mt-3 flex flex-col items-center items-stretch space-x-0 md:flex-row md:space-x-4">
-            <x-card class="w-full basis-5/12" title="Test History">
+            <x-card class="w-full" title="Test History">
                 <div class="mt-0">
                     <div class="scrollbars flex max-h-[400px] w-full flex-col overflow-y-scroll">
                         @forelse ($histories as $key => $history)
@@ -222,7 +305,7 @@
                 </div>
             </x-card>
 
-            <x-card class="w-full basis-7/12">
+            <x-card class="w-full" title="Detail" x-show="id !== null">
                 <div>
                     <canvas x-ref="canvas" id="myChart"></canvas>
                 </div>
@@ -237,8 +320,10 @@
             document.addEventListener('alpine:init', () => {
                 Alpine.data('detail', () => ({
                     canvas: null,
+                    id: null,
                     canvasData: null,
                     async getDetail(id) {
+                        this.id = id;
                         if (this.canvas !== null) {
                             this.canvas.destroy();
                         }

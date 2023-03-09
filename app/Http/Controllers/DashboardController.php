@@ -16,9 +16,11 @@ class DashboardController extends Controller
             ->select('user_question.*', DB::raw('(CASE WHEN user_question.answer = question_details.answer THEN 1 ELSE 0 END) as points'))
             ->where('user_id', auth()->id())
             ->get();
+        $testLeft = (new \App\Models\User())->todatTest(auth()->id());
 
         return view('dashboard')
         ->with('users', $users)
-        ->with('histories', $histories->groupBy('test_id'));
+        ->with('histories', $histories->groupBy('test_id'))
+        ->with('testLeft', $testLeft);
     }
 }
