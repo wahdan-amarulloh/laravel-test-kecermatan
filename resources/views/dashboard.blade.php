@@ -277,7 +277,9 @@
                             )
                         };
 
-                        const dataset = {};
+                        console.log('currentWrong', currentWrong);
+                        console.log('currentRight', currentRight);
+
 
                         const data = {
                             labels: Object.keys(labels),
