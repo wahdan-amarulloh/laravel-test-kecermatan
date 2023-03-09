@@ -42,7 +42,7 @@
             </div>
 
 
-            <div class="mt-0">
+            {{-- <div class="mt-0">
                 <div class="mt-0 flex flex-col justify-center">
                     <a href="{{ route('auth.google') }}"
                         class="mt-4 rounded-md border-2 border-gray-500 bg-white px-6 py-3 font-semibold text-gray-900 shadow outline-none hover:border-blue-400 hover:bg-blue-50 focus:outline-none"><svg
@@ -63,7 +63,7 @@
                         </svg>Sign in with Google
                     </a>
                 </div>
-            </div>
+            </div> --}}
 
 
 
@@ -73,7 +73,8 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
-                <x-button class="ml-3">
+                <x-button
+                    class="ml-3 inline-block rounded border border-amber-500 bg-amber-600 py-2 px-4 text-center leading-normal text-gray-100 hover:border-amber-600 hover:bg-amber-600 hover:text-white hover:ring-0 focus:border-amber-600 focus:bg-amber-600 focus:outline-none focus:ring-0">
                     {{ __('Log in') }}
                 </x-button>
             </div>

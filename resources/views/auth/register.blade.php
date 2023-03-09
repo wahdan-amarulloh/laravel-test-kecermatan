@@ -46,7 +46,7 @@
 
             <div class="mt-3 grid">
                 <x-button type="submit"
-                    class="inline-block rounded border border-indigo-500 bg-indigo-500 py-2 px-4 text-center leading-normal text-gray-100 hover:border-indigo-600 hover:bg-indigo-600 hover:text-white hover:ring-0 focus:border-indigo-600 focus:bg-indigo-600 focus:outline-none focus:ring-0">
+                    class="inline-block rounded border border-amber-500 bg-amber-500 py-2 px-4 text-center leading-normal text-gray-100 hover:border-amber-600 hover:bg-amber-600 hover:text-white hover:ring-0 focus:border-amber-600 focus:bg-amber-600 focus:outline-none focus:ring-0">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         class="bi bi-box-arrow-in-right mr-3 inline-block h-4 w-4 ltr:mr-2 rtl:ml-2"
                         viewBox="0 0 16 16">
@@ -62,8 +62,11 @@
             </div>
 
             <div class="mt-3">
-                <p class="mb-4 text-center">Already have an account? <a class="hover:text-indigo-500"
-                        href="href="{{ route('login') }}"">Login</a></p>
+                <p class="mb-4 text-center">Already have an account?
+                    <a class="hover:text-indigo-500" href="{{ route('login') }}">
+                        Login
+                    </a>
+                </p>
             </div>
             {{-- <div class="mt-4 flex items-center justify-end">
                 <a class="text-sm text-gray-600 underline hover:text-gray-900" href="{{ route('login') }}">
