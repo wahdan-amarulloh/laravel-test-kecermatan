@@ -20,6 +20,7 @@ class SubscriptionFactory extends Factory
             'name' => fake()->word(),
             'status' => 'AC',
             'attempt' => fake()->randomDigit(),
+            'price' => fake()->randomDigitNotZero() * 100,
         ];
     }
 }

@@ -17,6 +17,7 @@ class SubscriptionTable extends DataTableComponent
 
     protected $listeners = [
         'confirmedDelete' => 'confirmedDelete',
+        'refreshComponent' => '$refresh',
     ];
 
     public function configure(): void
@@ -38,6 +39,8 @@ class SubscriptionTable extends DataTableComponent
                 ->sortable(),
             Column::make("Attempt", "attempt")
                 ->sortable(),
+            Column::make("Price", "price")
+                ->sortable(),
             Column::make("Created at", "created_at")
                 ->sortable(),
             Column::make("Updated at", "updated_at")
@@ -52,10 +55,10 @@ class SubscriptionTable extends DataTableComponent
                 ->buttons([
                     LinkColumn::make('Edit')
                         ->title(fn ($row) => 'Edit')
-                        ->location(fn ($row) => 'https://'.$row->id.'google1.com')
+                        ->location(fn ($row) => '#')
                         ->attributes(function ($row) {
                             return [
-                                'target' => '_blank',
+                                '@click' => 'askEdit('.$row->id.')',
                                 'class' => 'underline text-blue-500',
                             ];
                         }),
@@ -96,9 +99,5 @@ class SubscriptionTable extends DataTableComponent
         $subscription->delete();
 
         $this->alert('success', $subscription->name .' berhasil di hapus ');
-        // if ($subscription) {
-        //     $subscription->status = 'NA';
-        //     $subscription->save();
-        // }
     }
 }

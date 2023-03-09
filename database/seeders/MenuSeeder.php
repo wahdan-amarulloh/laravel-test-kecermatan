@@ -30,11 +30,6 @@ class MenuSeeder extends Seeder
                 'is_admin' => 1,
             ],
             [
-                'name' => 'DOCS',
-                'route' => 'docs',
-                'is_admin' => 1,
-            ],
-            [
                 'name' => 'TEST',
                 'route' => 'user.test',
                 'is_admin' => 0,

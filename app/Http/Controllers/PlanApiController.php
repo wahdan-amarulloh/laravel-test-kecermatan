@@ -31,6 +31,7 @@ class PlanApiController extends Controller
                     'name' => 'required|string|max:255',
                     'status' => 'required|max:2',
                     'attempt' => 'required|integer|min:1',
+                    'price' => 'required|integer|min:1',
                 ];
 
         // Validate the request data
@@ -46,6 +47,8 @@ class PlanApiController extends Controller
         $subscription = Subscription::create([
                     'name' => $request->name,
                     'attempt' => $request->attempt,
+                    'price' => $request->price,
+                    'status' => $request->status,
                 ]);
 
         return response()->json(
@@ -62,9 +65,9 @@ class PlanApiController extends Controller
      * @param  \App\Models\Subscription  $subscription
      * @return \Illuminate\Http\Response
      */
-    public function show(Subscription $subscription)
+    public function show(Subscription $plan)
     {
-        //
+        return response()->json($plan);
     }
 
     /**
@@ -74,9 +77,37 @@ class PlanApiController extends Controller
      * @param  \App\Models\Subscription  $subscription
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subscription $subscription)
+    public function update(Request $request, Subscription $plan)
     {
-        //
+        $rules = [
+            'name' => 'required|string|max:255',
+            'status' => 'required|max:2',
+            'attempt' => 'required|integer|min:1',
+            'price' => 'required|integer|min:1',
+        ];
+
+        // Validate the request data
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                        'message' => 'The given data was invalid.',
+                        'errors' => $validator->errors(),
+                    ], 422);
+        }
+
+        $plan->name = $request->name;
+        $plan->status = $request->status;
+        $plan->attempt = $request->attempt;
+        $plan->price = $request->price;
+        $plan->save();
+
+        return response()->json(
+            [
+                        'plan' => $plan->name,
+                        'message' => 'success',
+                    ]
+        );
     }
 
     /**
