@@ -192,7 +192,7 @@
                     storeAnswer: {},
                     timeTest: 60,
                     running: false,
-                    batch: 1,
+                    batch: 0,
                     errorMessage: null,
                     questions_detail: [],
                     questions: {
@@ -255,7 +255,7 @@
                             .then((response) => {
                                 this.takeResponse(response);
                                 this.questions_detail = [];
-                                this.batch = 1;
+                                this.batch = 0;
                             });
                     },
                     takeResponse(response) {
