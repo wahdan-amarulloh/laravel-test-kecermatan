@@ -277,8 +277,8 @@
                             )
                         };
 
-                        console.log('currentWrong', currentWrong);
-                        console.log('currentRight', currentRight);
+                        console.log('currentWrong', trueAnswer);
+                        console.log('currentRight', wrongAnswer);
 
 
                         const data = {
