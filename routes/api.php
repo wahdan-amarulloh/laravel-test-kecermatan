@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\PlanApiController;
 use App\Http\Controllers\QuestionDetailController;
 use App\Http\Requests\AnswerRequest;
@@ -108,3 +109,4 @@ Route::apiResource('/question/detail', QuestionDetailController::class);
 
 Route::post('/plan/user/{user}', [PlanApiController::class,'user'])->name('plan.user');
 Route::apiResource('/plan', PlanApiController::class)->names('plan');
+Route::get('/user/test/{testId}', [UserController::class,'test'])->name('user.test');

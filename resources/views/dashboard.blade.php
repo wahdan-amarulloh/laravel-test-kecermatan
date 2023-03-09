@@ -154,7 +154,8 @@
         {{-- end info --}}
 
         {{-- member --}}
-        <div class="mx-auto mt-3 flex flex-col items-center items-stretch space-x-0 md:flex-row md:space-x-4">
+        <div x-data="detail()"
+            class="mx-auto mt-3 flex flex-col items-center items-stretch space-x-0 md:flex-row md:space-x-4">
             <x-card class="w-full basis-5/12" title="Test History">
                 <div class="mt-0">
                     <div class="scrollbars flex max-h-[400px] w-full flex-col overflow-y-scroll">
@@ -169,7 +170,7 @@
                                     {{ $history->first()->test_at }}
                                 </span>
                             </div>
-                            <div
+                            <div @click="getDetail(@js($key))"
                                 class="group flex cursor-pointer items-center gap-x-5 rounded-md px-2.5 py-2 transition-all duration-75 hover:bg-green-100">
                                 <div
                                     class="flex h-12 w-12 items-center rounded-lg bg-gray-200 text-black group-hover:bg-green-200">
@@ -220,8 +221,55 @@
                     </div>
                 </div>
             </x-card>
+
+            <x-card class="w-full basis-7/12">
+                <div>
+                    <canvas x-ref="canvas" id="myChart"></canvas>
+                </div>
+            </x-card>
         </div>
         {{-- end member --}}
         {{-- end content --}}
     </div>
+
+    @push('scripts')
+        <script>
+            document.addEventListener('alpine:init', () => {
+                Alpine.data('detail', () => ({
+                    canvas: null,
+                    getDetail(id) {
+                        if (this.canvas !== null) {
+                            this.canvas.destroy();
+                        }
+                        this.canvas = new Chart(this.$refs.canvas, {
+                            type: 'bar',
+                            data: {
+                                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple',
+                                    'Orange'
+                                ],
+                                datasets: [{
+                                    label: '# of Votes',
+                                    data: [12, 19, 3, 5, 2, 3],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    },
+                    init() {
+                        console.log('init');
+                        this.$nextTick(() => {
+                            console.log('tick');
+                        });
+                    }
+                }))
+            })
+        </script>
+    @endpush
 </x-app-layout>
