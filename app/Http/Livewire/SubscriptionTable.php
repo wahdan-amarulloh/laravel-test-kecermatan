@@ -59,15 +59,6 @@ class SubscriptionTable extends DataTableComponent
                                 'class' => 'underline text-blue-500',
                             ];
                         }),
-                    LinkColumn::make('Disable')
-                        ->title(fn ($row) => 'Disable')
-                        ->location(fn ($row) => '#')
-                        ->attributes(function ($row) {
-                            return [
-                                'class' => 'underline text-red-600',
-                                'wire:click' => 'askDelete('.$row->id.')',
-                            ];
-                        }),
                     LinkColumn::make('Delete')
                         ->title(fn ($row) => 'Delete')
                         ->location(fn ($row) => '#')

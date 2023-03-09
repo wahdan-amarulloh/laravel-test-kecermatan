@@ -5,7 +5,7 @@
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
             <form class="w-full" method="POST" action="{{ route('register') }}">
-                <div class="mb-6 grid gap-6 md:grid-cols-2">
+                <div class="grid gap-6 md:grid-cols-2">
                     @csrf
                     <!-- Name -->
                     <div>
@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6 grid gap-6 md:grid-cols-2">
+                <div class="grid gap-6 md:grid-cols-2">
 
                     <!-- Password -->
                     <div class="mt-4">
@@ -42,6 +42,25 @@
                             name="password_confirmation" required />
                     </div>
                 </div>
+
+                {{-- Wa dan paket --}}
+                <div class="mb-6 grid gap-6 md:grid-cols-2">
+
+                    <!-- Password -->
+                    <div class="mt-4">
+                        <x-label class="text-white" for="phone" :value="__('Phone')" />
+
+                        <x-input id="phone" class="mt-1 block w-full" type="text" name="phone" required />
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="mt-4">
+                        <x-label class="text-white" for="city" :value="__('City')" />
+
+                        <x-input id="city" class="mt-1 block w-full" type="text" name="city" required />
+                    </div>
+                </div>
+
 
                 <div class="mt-3 grid">
                     <x-button type="submit"
