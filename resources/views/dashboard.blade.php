@@ -237,22 +237,66 @@
             document.addEventListener('alpine:init', () => {
                 Alpine.data('detail', () => ({
                     canvas: null,
-                    getDetail(id) {
+                    canvasData: null,
+                    async getDetail(id) {
                         if (this.canvas !== null) {
                             this.canvas.destroy();
                         }
-                        this.canvas = new Chart(this.$refs.canvas, {
-                            type: 'bar',
-                            data: {
-                                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple',
-                                    'Orange'
-                                ],
-                                datasets: [{
-                                    label: '# of Votes',
-                                    data: [12, 19, 3, 5, 2, 3],
+                        let url = '{{ route('test.show', '') }}';
+                        url += '/' + id;
+                        this.canvasData = axios.get(url)
+                            .then(response => {
+                                // Handle success
+                                this.canvasData = response.data.detail;
+                                this.build();
+                            })
+                            .catch(error => {
+                                // Handle error
+                                console.log(error);
+                            });
+                    },
+                    build() {
+                        const prefix = 'Kolom ';
+
+                        const labels = Object.keys(this.canvasData).reduce((result, key) => {
+                            result[prefix + key] = this.canvasData[key];
+                            return result;
+                        }, {});
+
+                        const trueAnswer = [];
+                        const wrongAnswer = [];
+                        for (const property in labels) {
+                            let currentWrong = labels[property].filter(obj => obj.points !== 1).length;
+                            let currentRight = labels[property].filter(obj => obj.points === 1).length;
+
+                            trueAnswer.push(
+                                currentRight
+                            );
+                            wrongAnswer.push(
+                                currentWrong
+                            )
+                        };
+
+                        const dataset = {};
+
+                        const data = {
+                            labels: Object.keys(labels),
+                            datasets: [{
+                                    label: 'Jawaban Benar',
+                                    data: trueAnswer,
                                     borderWidth: 1
-                                }]
-                            },
+                                },
+                                {
+                                    label: 'Jawaban Salah',
+                                    data: wrongAnswer,
+                                    borderWidth: 1
+                                }
+                            ]
+                        };
+
+                        const config = {
+                            type: 'bar',
+                            data: data,
                             options: {
                                 scales: {
                                     y: {
@@ -260,13 +304,11 @@
                                     }
                                 }
                             }
-                        });
+                        };
+                        this.canvas = new Chart(this.$refs.canvas, config);
                     },
                     init() {
                         console.log('init');
-                        this.$nextTick(() => {
-                            console.log('tick');
-                        });
                     }
                 }))
             })

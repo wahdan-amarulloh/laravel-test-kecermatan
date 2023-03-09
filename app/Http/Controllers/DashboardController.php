@@ -17,11 +17,6 @@ class DashboardController extends Controller
             ->where('user_id', auth()->id())
             ->get();
 
-        debug(
-            $histories
-            ->groupBy('test_id')
-        );
-
         return view('dashboard')
         ->with('users', $users)
         ->with('histories', $histories->groupBy('test_id'));

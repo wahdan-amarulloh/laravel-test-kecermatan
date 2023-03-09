@@ -18,6 +18,7 @@ return new class () extends Migration {
             $table->id();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Question::class);
+            $table->tinyInteger('batch')->nullable();
             $table->string('answer', 5)->nullable();
             $table->unsignedInteger('test_id')->nullable();
             $table->unsignedInteger('detail_id')->nullable();
