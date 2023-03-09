@@ -1,9 +1,10 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            {{-- <a href="/">
-                <x-application-logo class="h-20 w-20 fill-current text-gray-500" />
-            </a> --}}
+            <a href="/">
+                {{-- <x-application-logo class="h-20 w-20 fill-current text-gray-500" /> --}}
+                <h1 class="font-mono text-4xl font-extrabold text-white">Pendaftaran Pengguna Baru</h1>
+            </a>
         </x-slot>
 
         <!-- Validation Errors -->
@@ -13,7 +14,7 @@
             @csrf
             <!-- Name -->
             <div>
-                <x-label for="name" :value="__('Name')" />
+                <x-label class="text-white" for="name" :value="__('Name')" />
 
                 <x-input id="name" class="mt-1 block w-full" type="text" name="name" :value="old('name')" required
                     autofocus />
@@ -21,7 +22,7 @@
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+                <x-label class="text-white" for="email" :value="__('Email')" />
 
                 <x-input id="email" class="mt-1 block w-full" type="email" name="email" :value="old('email')"
                     required />
@@ -29,7 +30,7 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <x-label class="text-white" for="password" :value="__('Password')" />
 
                 <x-input id="password" class="mt-1 block w-full" type="password" name="password" required
                     autocomplete="new-password" />
@@ -37,7 +38,7 @@
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-label class="text-white" for="password_confirmation" :value="__('Confirm Password')" />
 
                 <x-input id="password_confirmation" class="mt-1 block w-full" type="password"
                     name="password_confirmation" required />
