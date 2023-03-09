@@ -265,6 +265,7 @@
 
                         const trueAnswer = [];
                         const wrongAnswer = [];
+                        console.log(labels);
                         for (const property in labels) {
                             let currentWrong = labels[property].filter(obj => obj.points !== 1).length;
                             let currentRight = labels[property].filter(obj => obj.points === 1).length;
@@ -279,7 +280,6 @@
 
                         console.log('currentWrong', trueAnswer);
                         console.log('currentRight', wrongAnswer);
-
 
                         const data = {
                             labels: Object.keys(labels),
