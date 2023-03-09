@@ -192,6 +192,7 @@
                     storeAnswer: {},
                     timeTest: 60,
                     running: false,
+                    batch: 1,
                     errorMessage: null,
                     questions_detail: [],
                     questions: {
@@ -216,7 +217,8 @@
                         if (this.percentage < 90) {
                             this.questions_detail.push({
                                 id: this.questions.detail[this.currentStep].id,
-                                answer: answer
+                                answer: answer,
+                                batch: this.batch
                             });
                             this.currentStep++;
                         } else {
@@ -234,6 +236,7 @@
                                 this.questions = response.data;
                                 this.questionsTotal = response.data.detail.length;
                                 this.storeAnswer.question_id = this.questions.id;
+                                this.batch++;
                                 console.log('getQuestions', this.storeAnswer);
                             });
                     },
@@ -252,6 +255,7 @@
                             .then((response) => {
                                 this.takeResponse(response);
                                 this.questions_detail = [];
+                                this.batch = 1;
                             });
                     },
                     takeResponse(response) {
