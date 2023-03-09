@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="container mx-auto">
-        <x-card class="mx-auto w-1/2 bg-indigo-700/70">
+        <div class="mx-auto mb-6 w-1/2 rounded-lg bg-indigo-600/70 p-6 shadow-lg dark:bg-gray-800">
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
@@ -63,8 +63,8 @@
 
 
                 <div class="mt-3 grid">
-                    <x-button type="submit"
-                        class="inline-block rounded border border-amber-500 bg-amber-500 py-2 px-4 text-center leading-normal text-gray-100 hover:border-amber-600 hover:bg-amber-600 hover:text-white hover:ring-0 focus:border-amber-600 focus:bg-amber-600 focus:outline-none focus:ring-0">
+                    <button type="submit"
+                        class="inline-flex items-center rounded-md border border-transparent border-amber-500 bg-amber-500 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white text-gray-100 ring-gray-300 transition duration-150 ease-in-out hover:border-amber-600 hover:bg-amber-600 hover:text-white hover:ring-0 focus:border-gray-900 focus:border-amber-600 focus:bg-amber-600 focus:outline-none focus:outline-none focus:ring focus:ring-0 active:bg-gray-900 disabled:opacity-25">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             class="bi bi-box-arrow-in-right mr-3 inline-block h-4 w-4 ltr:mr-2 rtl:ml-2"
                             viewBox="0 0 16 16">
@@ -76,7 +76,7 @@
                             </path>
                         </svg>
                         Register
-                    </x-button>
+                    </button>
                 </div>
 
                 <div class="mt-3">
@@ -96,6 +96,6 @@
                     </x-button>
                 </div> --}}
             </form>
-        </x-card>
+        </div>
     </div>
 </x-guest-layout>
