@@ -158,7 +158,7 @@
                 <div
                     class="flex flex-col divide-y divide-y font-mono text-sm font-bold leading-6 ltr:text-left rtl:text-right dark:divide-slate-700">
                     <div class="flex-row content-end justify-end">
-                        <strong class="text-xl font-extrabold">Full Name </strong>
+                        <strong class="text-xl font-extrabold">Nama Lengkap :</strong>
                         <p class="mb-2">
                             <span class="">
                                 {{ auth()->user()->name }}
@@ -166,7 +166,7 @@
                         </p>
                     </div>
                     <div class="flex-row content-end justify-end">
-                        <strong class="text-xl font-extrabold">Email </strong>
+                        <strong class="text-xl font-extrabold">Email : </strong>
                         <p class="mb-2">
                             <span class="">
                                 {{ auth()->user()->email }}
@@ -174,7 +174,7 @@
                         </p>
                     </div>
                     <div class="flex-row content-end justify-end">
-                        <strong class="text-xl font-extrabold">Location </strong>
+                        <strong class="text-xl font-extrabold">Kota Asal :</strong>
                         <p class="mb-2">
                             <span class="">
                                 {{ auth()->user()->city ?? '-' }}
@@ -182,7 +182,7 @@
                         </p>
                     </div>
                     <div class="flex-row content-end justify-end">
-                        <strong class="text-xl font-extrabold">Nomer Wa </strong>
+                        <strong class="text-xl font-extrabold">Nomor Whatsapp : </strong>
                         <p class="mb-2">
                             <span class="">
                                 {{ auth()->user()->phone ?? '-' }}
@@ -211,7 +211,7 @@
                     <div
                         class="flex flex-col divide-y divide-y font-mono text-sm font-bold leading-6 ltr:text-left rtl:text-right dark:divide-slate-700">
                         <div class="flex-row content-end justify-end">
-                            <strong class="text-xl font-extrabold">Paket berlangganan </strong>
+                            <strong class="text-xl font-extrabold">Paket Berlangganan :</strong>
                             <p class="mb-2">
                                 <span class="">
                                     {{ auth()->user()->plan->name }}
@@ -219,7 +219,7 @@
                             </p>
                         </div>
                         <div class="flex-row content-end justify-end">
-                            <strong class="text-xl font-extrabold">Sisa quota tes kecermatan harian </strong>
+                            <strong class="text-xl font-extrabold">Sisa Kuota Tes Kecermatan Hari Ini : </strong>
                             <p class="mb-2">
                                 <span class="">
                                     {{ auth()->user()->plan->attempt - count($testLeft) }}
@@ -239,7 +239,7 @@
         {{-- member --}}
         <div x-data="detail()"
             class="mx-auto mt-3 flex flex-col items-center items-stretch space-x-0 md:flex-row md:space-x-4">
-            <x-card class="w-full" title="Test History">
+            <x-card class="w-full" title="Riwayat Ujian">
                 <div class="mt-0">
                     <div class="scrollbars flex max-h-[400px] w-full flex-col overflow-y-scroll">
                         @forelse ($histories as $key => $history)
