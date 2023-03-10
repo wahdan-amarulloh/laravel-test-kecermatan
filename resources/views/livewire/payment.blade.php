@@ -72,3 +72,17 @@
         </li>
     </ul>
 </div>
+
+@push('scripts')
+    <script>
+        window.addEventListener('confirmedYt', event => {
+            console.log(event);
+            window.location = event.detail.link
+            // alert('Name updated to: ' + event.detail.value);
+        })
+        window.addEventListener('confirmedPayment', event => {
+            console.log(event);
+            window.location = event.detail.link
+        })
+    </script>
+@endpush

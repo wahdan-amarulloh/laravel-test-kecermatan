@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Setup;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
 
@@ -40,6 +41,15 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('memberdev'),
             'is_admin' => 0,
             'subscription_id' => $freePlan->id,
+        ]);
+
+        Setup::create([
+            'admin_phone' => '0899999',
+            'bca' => '837643887',
+            'youtube' => 'https://www.youtube.com/@LofiGirl',
+            'shopee' => '',
+            'ovo' => '',
+            'dana' => '',
         ]);
 
         $this->call(
