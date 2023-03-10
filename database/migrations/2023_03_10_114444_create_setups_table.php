@@ -15,11 +15,11 @@ return new class () extends Migration {
         Schema::create('setups', function (Blueprint $table) {
             $table->id();
             $table->string('admin_phone');
-            $table->string('bca');
-            $table->string('youtube');
-            $table->string('shopee');
-            $table->string('dana');
-            $table->string('ovo');
+            $table->string('bca')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('shopee')->nullable();
+            $table->string('dana')->nullable();
+            $table->string('ovo')->nullable();
             $table->timestamps();
         });
     }
