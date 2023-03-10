@@ -34,7 +34,7 @@
 
         </ul>
 
-        @if (auth()->user()->plan->name === 'Free Plan')
+        {{-- @if (auth()->user()->plan->name === 'Free Plan')
             <!-- Banner -->
             <div class="box-banner px-4">
                 <div class="my-8 rounded-lg bg-gray-300 bg-opacity-50 p-4 text-center dark:bg-gray-700">
@@ -51,6 +51,6 @@
                 </div>
             </div>
             <!-- end banner -->
-        @endif
+        @endif --}}
     </div>
 </nav>

@@ -166,14 +166,6 @@
                         </p>
                     </div>
                     <div class="flex-row content-end justify-end">
-                        <strong class="text-xl font-extrabold">Full Name </strong>
-                        <p class="mb-2">
-                            <span class="">
-                                {{ auth()->user()->phone }}
-                            </span>
-                        </p>
-                    </div>
-                    <div class="flex-row content-end justify-end">
                         <strong class="text-xl font-extrabold">Email </strong>
                         <p class="mb-2">
                             <span class="">
@@ -185,7 +177,15 @@
                         <strong class="text-xl font-extrabold">Location </strong>
                         <p class="mb-2">
                             <span class="">
-                                {{ auth()->user()->city }}
+                                {{ auth()->user()->city ?? '-' }}
+                            </span>
+                        </p>
+                    </div>
+                    <div class="flex-row content-end justify-end">
+                        <strong class="text-xl font-extrabold">Nomer Wa </strong>
+                        <p class="mb-2">
+                            <span class="">
+                                {{ auth()->user()->phone ?? '-' }}
                             </span>
                         </p>
                     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Setup;
+use App\Models\Subscription;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -19,10 +20,13 @@ class Payment extends Component
     ];
 
     public Setup $setup;
+    public $plans;
+    public $plan;
 
     public function mount()
     {
         $this->setup = Setup::find(1)->first();
+        $this->plans = Subscription::where('status', 'AC')->get();
     }
 
     public function render()
@@ -138,7 +142,7 @@ class Payment extends Component
 
     public function confirmedPayment()
     {
-        $link = 'https://api.whatsapp.com/send/?phone= ' . $this->setup->admin_phone . ' &text=Saya+baru+saja+mendaftar+di+Test+Hilang.%0A%0ANama%3A+'.auth()->user()->name.'%0AID%3A+'.auth()->id().'&type=phone_number&app_absent=0';
+        $link = 'https://api.whatsapp.com/send/?phone= ' . $this->setup->admin_phone . ' &text=Saya+baru+saja+mendaftar+di+Test+Hilang.%0A%0ANama%3A+'.auth()->user()->name.'%0AID%3A+ '.auth()->id().' Tipe paket '. $this->plan .' &type=phone_number&app_absent=0';
         $this->dispatchBrowserEvent('confirmedPayment', ['link' => $link]);
     }
 

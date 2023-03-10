@@ -2,6 +2,19 @@
     <ul class="flex w-full flex-col">
         <li
             class="-mt-px inline-flex items-center gap-x-2 border bg-white py-3 px-4 text-sm font-medium text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg odd:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+
+            <select id="countries" wire:model="plan"
+                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500">
+                <option selected>Pilih Paket</option>
+                @forelse ($plans as $plan)
+                    <option value="{{ $plan->id }}">{{ $plan->name }} - Rp. {{ $plan->price }}</option>
+                @empty
+                @endforelse
+            </select>
+
+        </li>
+        <li
+            class="-mt-px inline-flex items-center gap-x-2 border bg-white py-3 px-4 text-sm font-medium text-gray-800 first:mt-0 first:rounded-t-lg last:rounded-b-lg odd:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
             <div class="flex w-full justify-between">
                 <p class="text-base font-semibold">Youtube</p>
                 <button type="button" wire:click="askBank()"
