@@ -25,7 +25,7 @@
         </x-card>
 
         {{-- Create Detail --}}
-        <x-card class="col-span-3 sm:col-span-1" style="display: none" title="{{ __('Create Detail') }}"
+        <x-card class="col-span-3 sm:col-span-1" style="display: none" title="{{ __('Buat Soal') }}"
             x-show="showCreate" x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
             x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-x-0"
@@ -92,13 +92,13 @@
 
                 <div class="flex justify-between pt-3">
                     <div class="flex gap-2">
-                        <button @click="addDetail()"
+                        <!-- <button @click="addDetail()"
                             class="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">
                             Add
                         </button>
                         <button class="rounded bg-red-500 py-2 px-4 font-bold text-white hover:bg-red-700">
                             Delete
-                        </button>
+                        </button> -->
                     </div>
                     <button type="button" @click="submitCreate()"
                         class="inline-flex cursor-pointer items-center rounded-md bg-indigo-500 px-4 py-2 text-sm font-semibold leading-6 text-white shadow transition duration-150 ease-in-out hover:bg-indigo-400"
@@ -111,7 +111,7 @@
                                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                             </path>
                         </svg>
-                        Submit
+                        Buat Soal
                     </button>
                 </div>
 
@@ -128,7 +128,7 @@
         </x-card>
 
         {{-- Edit Detail --}}
-        <x-card class="col-span-3 sm:col-span-1" style="display: none" title="{{ __('Edit Detail') }}"
+        <x-card class="col-span-3 sm:col-span-1" style="display: none" title="{{ __('Detail Soal') }}"
             x-show="showDetail" x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
             x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-x-0"
@@ -148,7 +148,7 @@
             </x-slot>
 
             <div class="flex flex-col">
-                <span x-text="'Edit detail '+currentDetail"
+                <span x-text="'Detail Isi dari ID Soal :'+currentDetail"
                     class="text-sm text-gray-500 first-letter:uppercase">Loading</span>
             </div>
 
@@ -204,11 +204,11 @@
                     <div class="flex gap-2">
                         <button @click="addDetail()"
                             class="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700">
-                            Add
+                            Tambah
                         </button>
-                        <button class="rounded bg-red-500 py-2 px-4 font-bold text-white hover:bg-red-700">
+                        <!-- <button class="rounded bg-red-500 py-2 px-4 font-bold text-white hover:bg-red-700">
                             Delete
-                        </button>
+                        </button> -->
                     </div>
                     <button type="button" @click="submit(currentDetail)"
                         class="inline-flex cursor-pointer items-center rounded-md bg-indigo-500 px-4 py-2 text-sm font-semibold leading-6 text-white shadow transition duration-150 ease-in-out hover:bg-indigo-400"
@@ -221,7 +221,7 @@
                                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                             </path>
                         </svg>
-                        Submit
+                        Simpan
                     </button>
                 </div>
 

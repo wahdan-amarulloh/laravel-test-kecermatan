@@ -36,10 +36,10 @@
                         const {
                             value: plan
                         } = await Swal.fire({
-                            title: 'Select A Plan',
+                            title: 'Paket Berlangganan',
                             input: 'select',
                             inputOptions: this.plans,
-                            inputPlaceholder: 'Select a Plan',
+                            inputPlaceholder: 'Pilih Paket',
                             showCancelButton: true,
                         })
 

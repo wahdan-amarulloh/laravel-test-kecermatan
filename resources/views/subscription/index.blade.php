@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="mx-auto p-2">
-        <x-card x-data="plan" title="{{ __('Plan') }}">
+        <x-card x-data="plan" title="{{ __('Paket Langganan') }}">
             <x-slot name="action">
                 <x-card.action-link id="create" label="Create" />
             </x-slot>
