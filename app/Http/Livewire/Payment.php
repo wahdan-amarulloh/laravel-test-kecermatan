@@ -142,7 +142,7 @@ class Payment extends Component
 
     public function confirmedPayment()
     {
-        $link = 'https://api.whatsapp.com/send/?phone= ' . $this->setup->admin_phone . ' &text=Saya+baru+saja+mendaftar+di+Test+Hilang.%0A%0ANama%3A+'.auth()->user()->name.'%0AID%3A+ '.auth()->id().' Tipe paket '. $this->plan .' &type=phone_number&app_absent=0';
+        $link = 'https://api.whatsapp.com/send/?phone= ' . $this->setup->admin_phone . ' &text=Saya+baru+saja+mendaftar+di+Test+Hilang.%0A%0ANama%3A+'.auth()->user()->name.'%0AID%3A+ '.auth()->id().'%0ATipe paket%3A+'. $this->plan .' &type=phone_number&app_absent=0';
         $this->dispatchBrowserEvent('confirmedPayment', ['link' => $link]);
     }
 
