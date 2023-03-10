@@ -47,9 +47,9 @@ class DatabaseSeeder extends Seeder
             'admin_phone' => '0899999',
             'bca' => '837643887',
             'youtube' => 'https://www.youtube.com/@LofiGirl',
-            'shopee' => '',
-            'ovo' => '',
-            'dana' => '',
+            'shopee' => 'https://wsa.wallet.airpay.co.id/qr/00d0354a71e61ed03376',
+            'ovo' => 'https://www.dana.id/',
+            'dana' => 'https://www.ovo.id/',
         ]);
 
         $this->call(
