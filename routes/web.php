@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\SetupController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Artisan;
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('user/test', [UserController::class, 'test'])->name('user.test');
     Route::resource('user', UserController::class);
     Route::resource('question', QuestionController::class);
+    Route::resource('setup', SetupController::class);
 });
 
 Route::get('test/trial', [UserController::class, 'trial'])->name('test.trial');
