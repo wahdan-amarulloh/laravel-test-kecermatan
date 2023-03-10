@@ -195,20 +195,18 @@
                 activeTab: 0,
                 tabs: [
                     'Status',
-                    'Tab No.2',
-                    'Tab No.3',
-                    'Tab No.4',
+                    'Pembayaran',
                 ]
             }">
-                {{-- <x-slot name="close">
+                <x-slot name="close">
                     <ul class="mb-3 flex w-full items-center justify-center">
                         <template x-for="(tab, index) in tabs" :key="index">
                             <li class="cursor-pointer border-b-8 py-2 px-4 text-gray-500"
-                                :class="activeTab === index ? 'text-green-500 border-green-500' : ''"
+                                :class="activeTab === index ? 'text-indigo-500 border-indigo-500' : ''"
                                 @click="activeTab = index" x-text="tab"></li>
                         </template>
                     </ul>
-                </x-slot> --}}
+                </x-slot>
                 <div x-show="activeTab===0">
                     <div
                         class="flex flex-col divide-y divide-y font-mono text-sm font-bold leading-6 ltr:text-left rtl:text-right dark:divide-slate-700">
@@ -230,7 +228,9 @@
                         </div>
                     </div>
                 </div>
-                <div x-show="activeTab===1">Content 2</div>
+                <div x-show="activeTab===1">
+                    <livewire:payment />
+                </div>
                 <div x-show="activeTab===2">Content 3</div>
                 <div x-show="activeTab===3">Content 4</div>
             </x-card>
