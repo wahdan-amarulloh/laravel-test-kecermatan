@@ -9,7 +9,7 @@
                     @csrf
                     <!-- Name -->
                     <div>
-                        <x-label class="text-white" for="name" :value="__('Name')" />
+                        <x-label class="text-white" for="name" :value="__('Nama Lengkap')" />
 
                         <x-input id="name" class="mt-1 block w-full" type="text" name="name" :value="old('name')"
                             required autofocus />
@@ -17,7 +17,7 @@
 
                     <!-- Email Address -->
                     <div>
-                        <x-label class="text-white" for="email" :value="__('Email')" />
+                        <x-label class="text-white" for="email" :value="__('Alamat E-Mail')" />
 
                         <x-input id="email" class="mt-1 block w-full" type="email" name="email"
                             :value="old('email')" required />
@@ -28,7 +28,7 @@
 
                     <!-- Password -->
                     <div class="mt-4">
-                        <x-label class="text-white" for="password" :value="__('Password')" />
+                        <x-label class="text-white" for="password" :value="__('Kata Sandi')" />
 
                         <x-input id="password" class="mt-1 block w-full" type="password" name="password" required
                             autocomplete="new-password" />
@@ -36,7 +36,7 @@
 
                     <!-- Confirm Password -->
                     <div class="mt-4">
-                        <x-label class="text-white" for="password_confirmation" :value="__('Confirm Password')" />
+                        <x-label class="text-white" for="password_confirmation" :value="__('Ulangi Kata Sandi')" />
 
                         <x-input id="password_confirmation" class="mt-1 block w-full" type="password"
                             name="password_confirmation" required />
@@ -48,14 +48,14 @@
 
                     <!-- Password -->
                     <div class="mt-4">
-                        <x-label class="text-white" for="phone" :value="__('Phone')" />
+                        <x-label class="text-white" for="phone" :value="__('No. Whatsapp')" />
 
                         <x-input id="phone" class="mt-1 block w-full" type="text" name="phone" required />
                     </div>
 
                     <!-- Confirm Password -->
                     <div class="mt-4">
-                        <x-label class="text-white" for="city" :value="__('City')" />
+                        <x-label class="text-white" for="city" :value="__('Kota Asal')" />
 
                         <x-input id="city" class="mt-1 block w-full" type="text" name="city" required />
                     </div>
@@ -75,14 +75,14 @@
                                 d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z">
                             </path>
                         </svg>
-                        Register
+                        Daftar
                     </button>
                 </div>
 
                 <div class="mt-3">
-                    <p class="mb-4 text-center">Already have an account?
+                    <p class="mb-4 text-center">Sudah punya akun?
                         <a class="hover:text-indigo-500" href="{{ route('login') }}">
-                            Login
+                            Masuk Disini
                         </a>
                     </p>
                 </div>
