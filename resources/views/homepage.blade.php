@@ -18,7 +18,7 @@
     @endenv
 
     @env(['staging', 'production'])
-    <link href="{{ asset('build/assets/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('build/assets/app.css') }}" rel="lstylesheet">
     <script src="{{ asset('build/assets/app.js') }}" defer></script>
     @endenv
 </head>
@@ -67,7 +67,7 @@
 
     <div class="container mx-auto px-6 py-4 md:flex md:items-center md:justify-end">
         <div class="flex w-full max-w-md flex-col rounded-md bg-white/60 px-4 py-8 shadow-md sm:px-6 md:px-8 lg:px-10">
-            <div class="self-center text-xl font-medium uppercase text-gray-800 sm:text-2xl">Login To Your Account</div>
+            <div class="self-center text-xl font-medium uppercase text-gray-800 sm:text-2xl">Masuk ke akun Anda</div>
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -97,8 +97,7 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="mb-6 flex flex-col">
-                        <label for="email" class="mb-1 text-xs tracking-wide text-gray-600 sm:text-sm">E-Mail
-                            Address:</label>
+                        <label for="email" class="mb-1 text-xs tracking-wide text-gray-600 sm:text-sm">E-Mail:</label>
                         <div class="relative">
                             <div
                                 class="absolute left-0 top-0 inline-flex h-full w-10 items-center justify-center text-gray-400">
@@ -111,12 +110,12 @@
 
                             <input id="email" type="email" name="email"
                                 class="w-full rounded-lg border border-gray-400 py-2 pl-10 pr-4 text-sm placeholder-gray-500 focus:border-blue-400 focus:outline-none sm:text-base"
-                                placeholder="E-Mail Address" />
+                                placeholder="Alamat E-Mail" />
                         </div>
                     </div>
                     <div class="mb-6 flex flex-col">
                         <label for="password"
-                            class="mb-1 text-xs tracking-wide text-gray-600 sm:text-sm">Password:</label>
+                            class="mb-1 text-xs tracking-wide text-gray-600 sm:text-sm">Kata Sandi</label>
                         <div class="relative">
                             <div
                                 class="absolute left-0 top-0 inline-flex h-full w-10 items-center justify-center text-gray-400">
@@ -131,7 +130,7 @@
 
                             <input id="password" type="password" name="password"
                                 class="w-full rounded-lg border border-gray-400 py-2 pl-10 pr-4 text-sm placeholder-gray-500 focus:border-blue-400 focus:outline-none sm:text-base"
-                                placeholder="Password" />
+                                placeholder="Kata sandi" />
                         </div>
                     </div>
 
@@ -140,7 +139,7 @@
                             @if (Route::has('password.request'))
                                 <a href="{{ route('password.request') }}"
                                     class="inline-flex text-xs text-blue-500 hover:text-blue-700 sm:text-sm">
-                                    Forgot Your Password?
+                                    Lupa password?
                                 </a>
                             @endif
                         </div>
@@ -149,7 +148,7 @@
                     <div class="flex w-full">
                         <button type="submit"
                             class="flex w-full items-center justify-center rounded bg-blue-600 py-2 text-sm text-white transition duration-150 ease-in hover:bg-blue-700 focus:outline-none sm:text-base">
-                            <span class="mr-2 uppercase">Login</span>
+                            <span class="mr-2 uppercase">Masuk</span>
                             <span>
                                 <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -170,7 +169,7 @@
                                 d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                         </svg>
                     </span>
-                    <a href="{{ route('register') }}" class="ml-2">You don't have an account ? </a>
+                    <a href="{{ route('register') }}" class="ml-2">Belum memiliki akun? Akses pendaftaran di sini</a>
 
                 </a>
             </div>
