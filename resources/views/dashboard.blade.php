@@ -296,7 +296,7 @@
                                     </span>
                                 </div>
                                 <div class="flex flex-col items-start justify-between font-light text-gray-600">
-                                    <p class="text-[15px]">You haven't done the test yet</p>
+                                    <p class="text-[15px]">Anda belum melakukan test</p>
                                     <span class="text-xs font-light text-gray-400">{{ now()->diffForHumans() }}</span>
                                 </div>
                             </div>
