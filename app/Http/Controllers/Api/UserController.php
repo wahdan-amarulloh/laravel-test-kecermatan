@@ -35,37 +35,36 @@ class UserController extends Controller
         $question = Question::find($request->question_id);
         // $user = User::with('plan')->find($request->user_id);
         $user = User::with('plan')->where('id', $request->user_id)->first();
-        $testToday = (new \App\Models\User())->todatTest($request->user_id) ;
+        $testToday = (new \App\Models\User())->todatTest($request->user_id);
         $time = time();
 
         logger([count($testToday), $user->subscription_id]);
 
         if ($user->plan->attempt - count($testToday) <= 0) {
             return response()->json([
-            'error' => 'Error',
-            'message' => 'Anda sudah tidak punya kuota test untuk hari ini !',
-        ]);
+                'error' => 'Error',
+                'message' => 'Anda sudah tidak punya kuota test untuk hari ini !',
+            ]);
         }
 
         foreach ($request->detail_id as $detail) {
             $user->questions()->attach($question->id, [
-            'answer' => $detail['answer'],
-            'detail_id' => $detail['id'],
-            'batch' => $detail['batch'],
-            'test_id' => $time,
+                'answer' => $detail['answer'],
+                'detail_id' => $detail['id'],
+                'batch' => $detail['batch'],
+                'test_id' => $time,
             ]);
         }
 
-
         return response()->json(
             [
-            'request' => $request->all(),
-            'question' => $question,
-            'detail' => $question->detail_id,
-            'user' => $user,
-            'testToday' => count($testToday),
-            'message' => 'success',
-        ]
+                'request' => $request->all(),
+                'question' => $question,
+                'detail' => $question->detail_id,
+                'user' => $user,
+                'testToday' => count($testToday),
+                'message' => 'success',
+            ]
         );
     }
 
@@ -114,7 +113,7 @@ class UserController extends Controller
         //
     }
 
-    public function test(Request $request,  $testId)
+    public function test(Request $request, $testId)
     {
         return UserQuestion::leftJoin('question_details', 'user_question.detail_id', '=', 'question_details.id')
         ->select('user_question.*', DB::raw('(CASE WHEN user_question.answer = question_details.answer THEN 1 ELSE 0 END) as points'))

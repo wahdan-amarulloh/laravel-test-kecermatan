@@ -69,7 +69,7 @@ class User extends Authenticatable
      */
     public function questions(): BelongsToMany
     {
-        return $this->belongsToMany(Question::class, 'user_question')->withPivot(['test_at','detail_id'])->orderByPivot('test_at', 'desc');
+        return $this->belongsToMany(Question::class, 'user_question')->withPivot(['test_at', 'detail_id'])->orderByPivot('test_at', 'desc');
     }
 
     public function todatTest($user_id)
@@ -90,7 +90,7 @@ class User extends Authenticatable
                 `user_id`
             order by
                 `user_question`.`test_at` desc',
-            [$user_id,today()]
+            [$user_id, today()]
         );
     }
 }

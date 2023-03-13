@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(
             [
-            MenuSeeder::class,
+                MenuSeeder::class,
             ]
         );
 
@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
             \App\Models\User::factory(100)->create();
             $this->call(
                 [
-                QuestionSeeder::class,
+                    QuestionSeeder::class,
                 ]
             );
         }

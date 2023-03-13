@@ -33,6 +33,6 @@ Route::get('/questions/{id?}', function (int $id = null) {
 
 Route::apiResource('/question/detail', QuestionDetailController::class);
 
-Route::post('/plan/user/{user}', [PlanApiController::class,'user'])->name('plan.user');
+Route::post('/plan/user/{user}', [PlanApiController::class, 'user'])->name('plan.user');
 Route::apiResource('/plan', PlanApiController::class)->names('plan');
 Route::apiResource('/test', UserController::class)->names('test');

@@ -87,7 +87,7 @@ class QuestionDetailController extends Controller
     {
         $request->validated();
 
-        QuestionDetail::upsert(Arr::toUpper($request->input('detail')), ['id','question_id']);
+        QuestionDetail::upsert(Arr::toUpper($request->input('detail')), ['id', 'question_id']);
 
         return response()->json(
             [

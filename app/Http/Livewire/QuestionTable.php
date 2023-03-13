@@ -19,28 +19,28 @@ class QuestionTable extends DataTableComponent
             return [
                 'default' => true,
                 'class' => 'uppercase',
-              ];
+            ];
         });
     }
 
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
+            Column::make('Id', 'id')
                 ->sortable(),
-            Column::make("Name", "name")
+            Column::make('Name', 'name')
                 ->sortable(),
-            Column::make("A", "A")
+            Column::make('A', 'A')
                 ->sortable(),
-            Column::make("B", "B")
+            Column::make('B', 'B')
                 ->sortable(),
-            Column::make("C", "C")
+            Column::make('C', 'C')
                 ->sortable(),
-            Column::make("D", "D")
+            Column::make('D', 'D')
                 ->sortable(),
-            Column::make("E", "E")
+            Column::make('E', 'E')
                 ->sortable(),
-            Column::make("Status", "status")
+            Column::make('Status', 'status')
                 ->sortable(),
             ButtonGroupColumn::make('Actions')
                 ->unclickable()

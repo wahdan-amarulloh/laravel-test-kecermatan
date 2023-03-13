@@ -8,10 +8,15 @@ use Livewire\Component;
 class TestMember extends Component
 {
     public $started = true;
+
     public $percentage = 0;
+
     public $answerStep = 0;
+
     public $answer;
+
     public $totalQuestions;
+
     public $questions;
 
     public function mount()
@@ -32,7 +37,7 @@ class TestMember extends Component
 
     public function stop()
     {
-        $this->reset((['started','percentage','answerStep']));
+        $this->reset((['started', 'percentage', 'answerStep']));
         $this->getQuestions();
         $this->getAnswer();
     }

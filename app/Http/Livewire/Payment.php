@@ -20,7 +20,9 @@ class Payment extends Component
     ];
 
     public Setup $setup;
+
     public $plans;
+
     public $plan;
 
     public function mount()
@@ -51,7 +53,7 @@ class Payment extends Component
             'confirmButtonText' => 'Subscribe',
             'onDenied' => 'confirmedPayment',
             'onConfirmed' => 'confirmedYt',
-           ]);
+        ]);
     }
 
     public function askBank()
@@ -72,7 +74,7 @@ class Payment extends Component
             'confirmButtonText' => 'Bayar',
             'onDenied' => 'confirmedPayment',
             'onConfirmed' => 'confirmedYt',
-           ]);
+        ]);
     }
 
     public function askShopee()
@@ -92,7 +94,7 @@ class Payment extends Component
             'confirmButtonText' => 'Bayar',
             'onDenied' => 'confirmedPayment',
             'onConfirmed' => 'confirmedShopee',
-           ]);
+        ]);
     }
 
     public function askDana()
@@ -112,7 +114,7 @@ class Payment extends Component
             'confirmButtonText' => 'Bayar',
             'onDenied' => 'confirmedPayment',
             'onConfirmed' => 'confirmedDana',
-           ]);
+        ]);
     }
 
     public function askOvo()
@@ -132,7 +134,7 @@ class Payment extends Component
             'confirmButtonText' => 'Bayar',
             'onDenied' => 'confirmedPayment',
             'onConfirmed' => 'confirmedOvo',
-           ]);
+        ]);
     }
 
     public function confirmedYt()
@@ -142,22 +144,22 @@ class Payment extends Component
 
     public function confirmedPayment()
     {
-        $link = 'https://api.whatsapp.com/send/?phone= ' . $this->setup->admin_phone . ' &text=Saya+baru+saja+mendaftar+di+Test+Hilang.%0A%0ANama%3A+'.auth()->user()->name.'%0AID%3A+ '.auth()->id().'%0ATipe paket%3A+'. $this->plan .' &type=phone_number&app_absent=0';
+        $link = 'https://api.whatsapp.com/send/?phone= '.$this->setup->admin_phone.' &text=Saya+baru+saja+mendaftar+di+Test+Hilang.%0A%0ANama%3A+'.auth()->user()->name.'%0AID%3A+ '.auth()->id().'%0ATipe paket%3A+'.$this->plan.' &type=phone_number&app_absent=0';
         $this->dispatchBrowserEvent('confirmedPayment', ['link' => $link]);
     }
 
     public function confirmedShopee()
     {
-        $this->dispatchBrowserEvent('confirmedPayment', ['link' => $this->setup->shopee ]);
+        $this->dispatchBrowserEvent('confirmedPayment', ['link' => $this->setup->shopee]);
     }
 
     public function confirmedOvo()
     {
-        $this->dispatchBrowserEvent('confirmedPayment', ['link' => $this->setup->ovo ]);
+        $this->dispatchBrowserEvent('confirmedPayment', ['link' => $this->setup->ovo]);
     }
 
     public function confirmedDana()
     {
-        $this->dispatchBrowserEvent('confirmedPayment', ['link' => $this->setup->dana ]);
+        $this->dispatchBrowserEvent('confirmedPayment', ['link' => $this->setup->dana]);
     }
 }

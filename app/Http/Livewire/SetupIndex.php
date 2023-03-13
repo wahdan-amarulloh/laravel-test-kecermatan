@@ -9,6 +9,7 @@ use Livewire\Component;
 class SetupIndex extends Component
 {
     use LivewireAlert;
+
     public Setup $setup;
 
     protected $rules = [
@@ -44,7 +45,7 @@ class SetupIndex extends Component
             'onDismissed' => '',
             'denyButtonText' => 'Konfirmasi Pembayaran',
             'confirmButtonText' => 'Ok',
-           ]);
+        ]);
     }
 
     public function render()

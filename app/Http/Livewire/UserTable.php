@@ -34,20 +34,20 @@ class UserTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
+            Column::make('Id', 'id')
                 ->sortable()
                 ->searchable(),
-            Column::make("Name", "name")
+            Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
-            Column::make("Email", "email")
+            Column::make('Email', 'email')
                 ->sortable(),
-            Column::make("Plan Name", "plan.name")
+            Column::make('Plan Name', 'plan.name')
             ->format(
                 fn ($value, $row, Column $column) => $value ?? $row->plan->name
             )
             ->sortable(),
-            Column::make("Created at", "created_at")
+            Column::make('Created at', 'created_at')
                 ->sortable(),
             ComponentColumn::make('Actions', 'id')
                 ->component('table.actions')

@@ -28,11 +28,11 @@ class PlanApiController extends Controller
     public function store(Request $request)
     {
         $rules = [
-                    'name' => 'required|string|max:255',
-                    'status' => 'required|max:2',
-                    'attempt' => 'required|integer|min:1',
-                    'price' => 'required|integer|min:1',
-                ];
+            'name' => 'required|string|max:255',
+            'status' => 'required|max:2',
+            'attempt' => 'required|integer|min:1',
+            'price' => 'required|integer|min:1',
+        ];
 
         // Validate the request data
         $validator = Validator::make($request->all(), $rules);
@@ -40,22 +40,22 @@ class PlanApiController extends Controller
         // If the validation fails, return the error response
         if ($validator->fails()) {
             return response()->json([
-                        'message' => 'The given data was invalid.',
-                        'errors' => $validator->errors(),
-                    ], 422);
+                'message' => 'The given data was invalid.',
+                'errors' => $validator->errors(),
+            ], 422);
         }
         $subscription = Subscription::create([
-                    'name' => $request->name,
-                    'attempt' => $request->attempt,
-                    'price' => $request->price,
-                    'status' => $request->status,
-                ]);
+            'name' => $request->name,
+            'attempt' => $request->attempt,
+            'price' => $request->price,
+            'status' => $request->status,
+        ]);
 
         return response()->json(
             [
-                        'plan' => $subscription->name,
-                        'message' => 'success',
-                    ]
+                'plan' => $subscription->name,
+                'message' => 'success',
+            ]
         );
     }
 
@@ -91,9 +91,9 @@ class PlanApiController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                        'message' => 'The given data was invalid.',
-                        'errors' => $validator->errors(),
-                    ], 422);
+                'message' => 'The given data was invalid.',
+                'errors' => $validator->errors(),
+            ], 422);
         }
 
         $plan->name = $request->name;
@@ -104,9 +104,9 @@ class PlanApiController extends Controller
 
         return response()->json(
             [
-                        'plan' => $plan->name,
-                        'message' => 'success',
-                    ]
+                'plan' => $plan->name,
+                'message' => 'success',
+            ]
         );
     }
 
@@ -128,9 +128,9 @@ class PlanApiController extends Controller
 
         return response()
                ->json([
-                        'request' => $request->all(),
-                        'user' => $user,
-                        'message' => 'success',
-                    ]);
+                   'request' => $request->all(),
+                   'user' => $user,
+                   'message' => 'success',
+               ]);
     }
 }

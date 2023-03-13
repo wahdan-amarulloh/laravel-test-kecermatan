@@ -28,22 +28,22 @@ class SubscriptionTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
+            Column::make('Id', 'id')
                 ->searchable()
                 ->sortable(),
-            Column::make("Name", "name")
+            Column::make('Name', 'name')
                 ->searchable()
                 ->sortable(),
-            Column::make("Status", "status")
+            Column::make('Status', 'status')
                 ->searchable()
                 ->sortable(),
-            Column::make("Attempt", "attempt")
+            Column::make('Attempt', 'attempt')
                 ->sortable(),
-            Column::make("Price", "price")
+            Column::make('Price', 'price')
                 ->sortable(),
-            Column::make("Created at", "created_at")
+            Column::make('Created at', 'created_at')
                 ->sortable(),
-            Column::make("Updated at", "updated_at")
+            Column::make('Updated at', 'updated_at')
                 ->sortable(),
             ButtonGroupColumn::make('Actions')
                 ->unclickable()
@@ -77,7 +77,7 @@ class SubscriptionTable extends DataTableComponent
 
     public function askDelete(Subscription $subscription)
     {
-        $this->alert('question', 'Confirm delete ' . $subscription->name . ' ?', [
+        $this->alert('question', 'Confirm delete '.$subscription->name.' ?', [
             'position' => 'center',
             'timer' => 3000,
             'toast' => false,
@@ -87,9 +87,9 @@ class SubscriptionTable extends DataTableComponent
             'cancelButtonText' => 'Cancel',
             'inputAttributes' => [
                 'value' => $subscription->id,
-             ],
-             'onConfirmed' => 'confirmedDelete',
-           ]);
+            ],
+            'onConfirmed' => 'confirmedDelete',
+        ]);
     }
 
     public function confirmedDelete($data)
@@ -98,6 +98,6 @@ class SubscriptionTable extends DataTableComponent
         $subscription = Subscription::query()->where('id', $id)->first();
         $subscription->delete();
 
-        $this->alert('success', $subscription->name .' berhasil di hapus ');
+        $this->alert('success', $subscription->name.' berhasil di hapus ');
     }
 }
