@@ -318,26 +318,22 @@
     @push('scripts')
         <script>
             document.addEventListener('alpine:init', () => {
-                const text_primary_500 = '#6366F1';
                 Alpine.data('detail', () => ({
-                    canvas: null,
-                    id: null,
-                    canvasData: null,
-                    hexToRGBA(hex, opacity) {
-                        if (hex != null) {
-                            return 'rgba(' + (hex = hex.replace('#', '')).match(new RegExp('(.{' + hex
-                                .length / 3 + '})', 'g')).map(function(l) {
-                                return parseInt(hex.length % 2 ? l + l : l, 16)
-                            }).concat(isFinite(opacity) ? opacity : 1).join(',') + ')';
-                        }
+                    labels: ['0', '0', '0', '0'],
+                    values: {
+                        right: [4, 5, 6, 7],
+                        wrong: [2, 3, 4, 5],
                     },
+                    data: null,
+                    id: null,
+                    config: null,
+                    canvasData: null,
                     async getDetail(id) {
                         this.id = id;
-                        if (this.canvas !== null) {
-                            this.canvas.destroy();
-                        }
+
                         let url = '{{ route('test.show', '') }}';
                         url += '/' + id;
+
                         this.canvasData = axios.get(url)
                             .then(response => {
                                 this.canvasData = response.data.detail;
@@ -356,6 +352,8 @@
                             return result;
                         }, {});
 
+                        this.labels = Object.keys(labels);
+
                         const trueAnswer = [];
                         const wrongAnswer = [];
                         for (const property in labels) {
@@ -368,17 +366,18 @@
                             )
                         };
 
-                        console.log('currentWrong', trueAnswer);
-                        console.log('currentRight', wrongAnswer);
-
-                        const data = {
-                            labels: Object.keys(labels),
+                        // this.values = trueAnswer;
+                        this.values.right = trueAnswer;
+                        this.values.wrong = wrongAnswer;
+                    },
+                    init() {
+                        this.data = {
+                            labels: Object.keys(this.labels),
                             datasets: [{
                                     label: 'Jawaban Benar',
-                                    data: trueAnswer,
+                                    data: this.values.right,
                                     borderWidth: 2,
                                     fill: false,
-                                    pointBackgroundColor: text_primary_500,
                                     tension: 0.1,
                                     pointStyle: 'circle',
                                     pointRadius: 5,
@@ -386,7 +385,7 @@
                                 },
                                 {
                                     label: 'Jawaban Salah',
-                                    data: wrongAnswer,
+                                    data: this.values.wrong,
                                     borderWidth: 2,
                                     pointStyle: 'circle',
                                     pointRadius: 5,
@@ -395,9 +394,10 @@
                             ]
                         };
 
-                        const config = {
+
+                        this.config = {
                             type: 'line',
-                            data: data,
+                            data: this.data,
                             options: {
                                 scales: {
                                     y: {
@@ -413,10 +413,14 @@
                                 },
                             }
                         };
-                        this.canvas = new Chart(this.$refs.canvas, config);
-                    },
-                    init() {
-                        console.log('init');
+
+                        let chart = new Chart(this.$refs.canvas.getContext('2d'), this.config);
+                        this.$watch('labels', () => {
+                            chart.data.labels = this.labels;
+                            chart.data.datasets[0].data = this.values.right;
+                            chart.data.datasets[1].data = this.values.wrong;
+                            chart.update();
+                        })
                     }
                 }))
             })
