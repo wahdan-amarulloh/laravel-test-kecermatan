@@ -34,7 +34,7 @@ class QuestionIndex extends Component
         $collections = collect();
         $uniqueCollectionsCount = 0;
 
-        while ($uniqueCollectionsCount < 126) {
+        while ($uniqueCollectionsCount < 120) {
             $keys = $questions->keys()->toArray();
             $null_key = $keys[random_int(0, count($keys) - 1)];
             $values = $questions->except($null_key)->values()->random(4)->toArray();
