@@ -150,24 +150,29 @@
                     <form action="">
                         <div class="mt-3 flex">
                             <div class="mx-0 h-14 w-1/5 px-1 sm:mx-2 sm:px-2">
-                                <x-input maxlength="10" id="A" class="mt-1 block w-full uppercase"
-                                    type="text" x-model="detail.A" aria-placeholder="A" placeholder="A" />
+                                <x-input maxlength="10" id="A" ::class="detail.A ? '' : 'border-indigo-600'"
+                                    class="mt-1 block w-full uppercase" type="text" x-model="detail.A"
+                                    aria-placeholder="A" placeholder="A" />
                             </div>
                             <div class="mx-0 h-14 w-1/5 px-1 sm:mx-2 sm:px-2">
-                                <x-input maxlength="10" id="A" class="mt-1 block w-full uppercase"
-                                    type="text" x-model="detail.B" aria-placeholder="B" placeholder="B" />
+                                <x-input maxlength="10" id="B" ::class="detail.B ? '' : 'border-indigo-600'"
+                                    class="mt-1 block w-full uppercase" type="text" x-model="detail.B"
+                                    aria-placeholder="B" placeholder="B" />
                             </div>
                             <div class="mx-0 h-14 w-1/5 px-1 sm:mx-2 sm:px-2">
-                                <x-input maxlength="10" id="A" class="mt-1 block w-full uppercase"
-                                    type="text" x-model="detail.C" aria-placeholder="C" placeholder="C" />
+                                <x-input maxlength="10" id="C" ::class="detail.C ? '' : 'border-indigo-600'"
+                                    class="mt-1 block w-full uppercase" type="text" x-model="detail.C"
+                                    aria-placeholder="C" placeholder="C" />
                             </div>
                             <div class="mx-0 h-14 w-1/5 px-1 sm:mx-2 sm:px-2">
-                                <x-input maxlength="10" id="A" class="mt-1 block w-full uppercase"
-                                    type="text" x-model="detail.D" aria-placeholder="D" placeholder="D" />
+                                <x-input maxlength="10" id="D" ::class="detail.D ? '' : 'border-indigo-600'"
+                                    class="mt-1 block w-full uppercase" type="text" x-model="detail.D"
+                                    aria-placeholder="D" placeholder="D" />
                             </div>
                             <div class="mx-0 h-14 w-1/5 px-1 sm:mx-2 sm:px-2">
-                                <x-input maxlength="10" id="A" class="mt-1 block w-full uppercase"
-                                    type="text" x-model="detail.E" aria-placeholder="E" placeholder="E" />
+                                <x-input maxlength="10" id="E" ::class="detail.E ? '' : 'border-indigo-600'"
+                                    class="mt-1 block w-full uppercase" type="text" x-model="detail.E"
+                                    aria-placeholder="E" placeholder="E" />
                             </div>
                         </div>
                         <div class="mt-3 flex content-center justify-between">
