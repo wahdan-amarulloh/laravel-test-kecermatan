@@ -113,25 +113,25 @@
 
                     {{-- answer --}}
                     <div
-                        class="shadow-s mx-auto mt-3 flex w-full max-w-2xl content-center justify-center space-x-2 space-x-10 rounded-md bg-slate-300 text-lg">
+                        class="shadow-s mx-auto mt-3 flex w-full max-w-2xl content-center justify-center space-x-2 space-x-10 rounded-md bg-indigo-600 text-lg text-white">
                         <span x-text="questions?.detail[currentStep]['A']"
-                            class="py-6 text-3xl font-extrabold tracking-tight text-amber-500 dark:text-slate-50 sm:text-4xl">
+                            class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
                             A
                         </span>
                         <span x-text="questions?.detail[currentStep]['B']"
-                            class="py-6 text-3xl font-extrabold tracking-tight text-amber-500 dark:text-slate-50 sm:text-4xl">
+                            class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
                             A
                         </span>
                         <span x-text="questions?.detail[currentStep]['C']"
-                            class="py-6 text-3xl font-extrabold tracking-tight text-amber-500 dark:text-slate-50 sm:text-4xl">
+                            class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
                             A
                         </span>
                         <span x-text="questions?.detail[currentStep]['D']"
-                            class="py-6 text-3xl font-extrabold tracking-tight text-amber-500 dark:text-slate-50 sm:text-4xl">
+                            class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
                             A
                         </span>
                         <span x-text="questions?.detail[currentStep]['E']"
-                            class="py-6 text-3xl font-extrabold tracking-tight text-amber-500 dark:text-slate-50 sm:text-4xl">
+                            class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
                             A
                         </span>
                     </div>
