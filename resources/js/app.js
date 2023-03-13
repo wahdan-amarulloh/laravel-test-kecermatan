@@ -21,35 +21,72 @@ document.addEventListener("alpine:init", () => {
     Alpine.data("main", () => ({
         open: false,
         isDark: false,
-
         toggle() {
             this.open = !this.open;
         },
         toggleDarkMode() {
-            if (localStorage.theme === "dark") {
-                this.isDark = false;
-                localStorage.theme = "light";
-                document.documentElement.classList.remove("dark");
+            // if (localStorage.theme === "dark") {
+            //     this.isDark = false;
+            //     localStorage.theme = "light";
+            //     document.documentElement.classList.remove("dark");
+            // } else {
+            //     this.isDark = true;
+            //     localStorage.theme = "dark";
+            //     document.documentElement.classList.add("dark");
+            // }
+
+            if (localStorage.getItem("color-theme")) {
+                if (localStorage.getItem("color-theme") === "light") {
+                    this.isDark = true;
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("color-theme", "dark");
+                } else {
+                    this.isDark = false;
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("color-theme", "light");
+                }
             } else {
-                this.isDark = true;
-                localStorage.theme = "dark";
-                document.documentElement.classList.add("dark");
+                if (document.documentElement.classList.contains("dark")) {
+                    this.isDark = false;
+                    document.documentElement.classList.remove("dark");
+                    localStorage.setItem("color-theme", "light");
+                } else {
+                    this.isDark = true;
+                    document.documentElement.classList.add("dark");
+                    localStorage.setItem("color-theme", "dark");
+                }
             }
         },
 
         init() {
             this.$nextTick(() => {
-                if (
-                    localStorage.theme === "dark" ||
-                    (!("theme" in localStorage) &&
-                        window.matchMedia("(prefers-color-scheme: dark)")
-                            .matches)
-                ) {
-                    document.documentElement.classList.add("dark");
+                if (localStorage.getItem("color-theme")) {
+                    if (localStorage.getItem("color-theme") === "light") {
+                        this.isDark = false;
+                    } else {
+                        this.isDark = true;
+                    }
                 } else {
-                    document.documentElement.classList.remove("dark");
+                    if (document.documentElement.classList.contains("dark")) {
+                        this.isDark = true;
+                    } else {
+                        this.isDark = false;
+                    }
                 }
+                // if (
+                //     localStorage.theme === "dark" ||
+                //     (!("theme" in localStorage) &&
+                //         window.matchMedia("(prefers-color-scheme: dark)")
+                //             .matches)
+                // ) {
+                //     document.documentElement.classList.add("dark");
+                // } else {
+                //     document.documentElement.classList.remove("dark");
+                // }
             });
+            this.$watch("isDark", (value, oldValue) =>
+                console.log(value, oldValue)
+            );
         },
     }));
 
