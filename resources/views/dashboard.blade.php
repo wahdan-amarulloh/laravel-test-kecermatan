@@ -318,10 +318,19 @@
     @push('scripts')
         <script>
             document.addEventListener('alpine:init', () => {
+                const text_primary_500 = '#6366F1';
                 Alpine.data('detail', () => ({
                     canvas: null,
                     id: null,
                     canvasData: null,
+                    hexToRGBA(hex, opacity) {
+                        if (hex != null) {
+                            return 'rgba(' + (hex = hex.replace('#', '')).match(new RegExp('(.{' + hex
+                                .length / 3 + '})', 'g')).map(function(l) {
+                                return parseInt(hex.length % 2 ? l + l : l, 16)
+                            }).concat(isFinite(opacity) ? opacity : 1).join(',') + ')';
+                        }
+                    },
                     async getDetail(id) {
                         this.id = id;
                         if (this.canvas !== null) {
@@ -367,25 +376,41 @@
                             datasets: [{
                                     label: 'Jawaban Benar',
                                     data: trueAnswer,
-                                    borderWidth: 1
+                                    borderWidth: 2,
+                                    fill: false,
+                                    pointBackgroundColor: text_primary_500,
+                                    tension: 0.1,
+                                    pointStyle: 'circle',
+                                    pointRadius: 5,
+                                    pointHoverRadius: 15
                                 },
                                 {
                                     label: 'Jawaban Salah',
                                     data: wrongAnswer,
-                                    borderWidth: 1
+                                    borderWidth: 2,
+                                    pointStyle: 'circle',
+                                    pointRadius: 5,
+                                    pointHoverRadius: 15
                                 }
                             ]
                         };
 
                         const config = {
-                            type: 'bar',
+                            type: 'line',
                             data: data,
                             options: {
                                 scales: {
                                     y: {
                                         beginAtZero: true
                                     }
-                                }
+                                },
+                                responsive: true,
+                                animation: {
+                                    y: {
+                                        duration: 4000,
+                                        from: 500
+                                    }
+                                },
                             }
                         };
                         this.canvas = new Chart(this.$refs.canvas, config);
