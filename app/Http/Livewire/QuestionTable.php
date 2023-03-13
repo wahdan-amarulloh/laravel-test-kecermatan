@@ -12,6 +12,8 @@ class QuestionTable extends DataTableComponent
 {
     protected $model = Question::class;
 
+    protected $listeners = ['refreshComponent' => '$refresh'];
+
     public function configure(): void
     {
         $this->setPrimaryKey('id');
@@ -27,8 +29,10 @@ class QuestionTable extends DataTableComponent
     {
         return [
             Column::make('Id', 'id')
+            ->searchable()
                 ->sortable(),
             Column::make('Name', 'name')
+            ->searchable()
                 ->sortable(),
             Column::make('A', 'A')
                 ->sortable(),
