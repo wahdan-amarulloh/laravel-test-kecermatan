@@ -4,7 +4,7 @@
     "src": "public/images/bg.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app.e422300a.js",
+    "file": "assets/app.ef4967f2.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
@@ -16,7 +16,7 @@
     "src": "resources/js/app.css"
   },
   "resources/css/app.css": {
-    "file": "assets/app.965869ba.css",
+    "file": "assets/app.641af38b.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }
