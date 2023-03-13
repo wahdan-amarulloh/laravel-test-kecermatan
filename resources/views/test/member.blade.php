@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="mx-auto p-2">
+    <div class="mx-auto select-none p-2">
         <x-card title="Test">
             <div x-data="local">
                 {{-- timer --}}

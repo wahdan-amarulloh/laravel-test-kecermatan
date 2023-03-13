@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <div x-data="local">
+    <div x-data="local" class="select-none">
         <div class="container mx-auto" x-show="!running">
             <div class="flex content-center justify-center">
                 <div class="text-center">
