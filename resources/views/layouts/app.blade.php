@@ -23,6 +23,12 @@
     @endenv
 
     <x-livewire-alert::scripts />
+
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
     <script>
         window.sharedData = {
             user: @js(auth()->user()),

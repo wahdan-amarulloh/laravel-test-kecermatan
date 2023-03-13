@@ -58,7 +58,13 @@
 
       <!-- menu -->
       <ul class="mt-2 mt-0 flex ltr:ml-auto rtl:mr-auto">
-          <li class="relative" @click="toggleDarkMode()" x-show="!isDark">
+          <li x-cloack class="relative" @click="toggleDarkMode()" x-show="!isDark" style="display: none"
+              x-transition:enter="transition ease-out duration-500 transform"
+              x-transition:enter-start="opacity-0 rotate-90 scale-90"
+              x-transition:enter-end="opacity-100 rotate-0 scale-100"
+              x-transition:leave="transition ease-in duration-500 transform"
+              x-transition:leave-start="opacity-100 rotate-0 scale-100"
+              x-transition:leave-end="opacity-0 rotate-90 scale-90" x-cloak>
               <a href="javascript:;" class="block flex rounded-full py-3 px-4 text-sm focus:outline-none"
                   id="messages">
                   <div class="relative mx-auto my-auto inline-block">
@@ -72,7 +78,13 @@
               </a>
           </li>
 
-          <li class="relative" @click="toggleDarkMode()" x-show="isDark">
+          <li class="relative" @click="toggleDarkMode()" x-show="isDark" style="display: none"
+              x-transition:enter="transition ease-out duration-500 transform"
+              x-transition:enter-start="opacity-0 rotate-90 scale-90"
+              x-transition:enter-end="opacity-100 rotate-0 scale-100"
+              x-transition:leave="transition ease-in duration-500 transform"
+              x-transition:leave-start="opacity-100 rotate-0 scale-100"
+              x-transition:leave-end="opacity-0 rotate-90 scale-90" x-cloak>
               <a href="javascript:;" class="block flex rounded-full py-3 px-4 text-sm focus:outline-none"
                   id="messages">
                   <div class="relative mx-auto my-auto inline-block">
@@ -86,10 +98,7 @@
               </a>
           </li>
 
-
-
           <!-- notification -->
-
 
           <!-- profile -->
           <li x-data="{ open: false }" class="relative">
