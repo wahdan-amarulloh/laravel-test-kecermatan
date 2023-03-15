@@ -115,29 +115,33 @@
                     <div :class="{ 'animate-pulse ': loading }">
                         <div
                             class="shadow-s mx-auto mt-3 flex w-full max-w-2xl content-center justify-center space-x-2 space-x-10 rounded-md bg-indigo-600 text-lg text-white">
-                            <span x-text="questions?.detail[currentStep]['A']"
+                            <span x-show="loading"
+                                class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
+                                L O A D I N G . .
+                            </span>
+                            <span x-show="!loading" x-text="questions?.detail[currentStep]['A']"
                                 class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
                                 A
                             </span>
-                            <span x-text="questions?.detail[currentStep]['B']"
+                            <span x-show="!loading" x-text="questions?.detail[currentStep]['B']"
                                 class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
                                 A
                             </span>
-                            <span x-text="questions?.detail[currentStep]['C']"
+                            <span x-show="!loading" x-text="questions?.detail[currentStep]['C']"
                                 class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
                                 A
                             </span>
-                            <span x-text="questions?.detail[currentStep]['D']"
+                            <span x-show="!loading" x-text="questions?.detail[currentStep]['D']"
                                 class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
                                 A
                             </span>
-                            <span x-text="questions?.detail[currentStep]['E']"
+                            <span x-show="!loading" x-text="questions?.detail[currentStep]['E']"
                                 class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
                                 A
                             </span>
                         </div>
                     </div>
-                    <div class="mt-3 flex w-full justify-center space-x-2 text-lg">
+                    <div class="mt-3 flex w-full justify-center space-x-2 text-lg" x-show="!loading">
                         <div @click="answer('A')"
                             class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300">
                             <span
@@ -194,6 +198,7 @@
                     storeAnswer: {},
                     timeTest: 60,
                     timePause: null,
+                    pausedTime: 0,
                     pauseInterval: 5,
                     loading: false,
                     running: false,
@@ -236,7 +241,7 @@
                     get percentage() {
                         return (this.currentStep / this.questionsTotal) * 100;
                     },
-                    getQuestions() {
+                    async getQuestions() {
                         if (this.maxBatch === this.batch) {
                             this.sendAnswer();
                             this.running = false;
@@ -250,7 +255,6 @@
                         }
 
                         if (this.batch != 0) {
-                            console.log('should pause here');
                             this.pause();
                         }
 
@@ -308,10 +312,25 @@
                             this.setRemaining();
                         }, 1000);
                     },
+                    resume() {
+                        if (this.loading) {
+                            this.expiry = this.date(this.pausedTime);
+                            this.loading = false;
+                            this.setRemaining();
+                            this.interval = setInterval(() => {
+                                this.setRemaining();
+                            }, 1000);
+                        }
+                    },
                     pause() {
                         this.loading = true;
+                        this.pausedTime = this.remaining;
                         clearInterval(this.interval);
-                        this.setRemaining();
+                        setTimeout(() =>
+                            this.resume(), 5000)
+                        // this.interval = setInterval(() => {
+                        // }, 1000);
+                        return 0;
                     },
                     setRemaining() {
                         const diff = this.expiry - new Date().getTime();
