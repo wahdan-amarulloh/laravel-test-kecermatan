@@ -23,7 +23,7 @@
     @endenv
 </head>
 
-<body class="bg-slate-800 bg-hero-pattern bg-cover p-6">
+<body class="bg-slate-800 bg-cover p-6" style="background-image: url('{{ asset('images/bg.jpg') }}')">
     <nav x-data="{ isOpen: false }" class="relative">
         <div class="container mx-auto px-6 py-4 md:flex md:items-center md:justify-between">
             <div class="flex items-center justify-between">
@@ -97,7 +97,8 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="mb-6 flex flex-col">
-                        <label for="email" class="mb-1 text-xs tracking-wide text-gray-600 sm:text-sm">E-Mail:</label>
+                        <label for="email"
+                            class="mb-1 text-xs tracking-wide text-gray-600 sm:text-sm">E-Mail:</label>
                         <div class="relative">
                             <div
                                 class="absolute left-0 top-0 inline-flex h-full w-10 items-center justify-center text-gray-400">
@@ -114,8 +115,8 @@
                         </div>
                     </div>
                     <div class="mb-6 flex flex-col">
-                        <label for="password"
-                            class="mb-1 text-xs tracking-wide text-gray-600 sm:text-sm">Kata Sandi</label>
+                        <label for="password" class="mb-1 text-xs tracking-wide text-gray-600 sm:text-sm">Kata
+                            Sandi</label>
                         <div class="relative">
                             <div
                                 class="absolute left-0 top-0 inline-flex h-full w-10 items-center justify-center text-gray-400">
@@ -169,7 +170,8 @@
                                 d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                         </svg>
                     </span>
-                    <a href="{{ route('register') }}" class="ml-2">Belum memiliki akun? Akses pendaftaran di sini</a>
+                    <a href="{{ route('register') }}" class="ml-2">Belum memiliki akun? Akses pendaftaran di
+                        sini</a>
 
                 </a>
             </div>
