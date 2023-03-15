@@ -112,28 +112,30 @@
                     </div>
 
                     {{-- answer --}}
-                    <div
-                        class="shadow-s mx-auto mt-3 flex w-full max-w-2xl content-center justify-center space-x-2 space-x-10 rounded-md bg-indigo-600 text-lg text-white">
-                        <span x-text="questions?.detail[currentStep]['A']"
-                            class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
-                            A
-                        </span>
-                        <span x-text="questions?.detail[currentStep]['B']"
-                            class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
-                            A
-                        </span>
-                        <span x-text="questions?.detail[currentStep]['C']"
-                            class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
-                            A
-                        </span>
-                        <span x-text="questions?.detail[currentStep]['D']"
-                            class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
-                            A
-                        </span>
-                        <span x-text="questions?.detail[currentStep]['E']"
-                            class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
-                            A
-                        </span>
+                    <div :class="{ 'animate-pulse ': loading }">
+                        <div
+                            class="shadow-s mx-auto mt-3 flex w-full max-w-2xl content-center justify-center space-x-2 space-x-10 rounded-md bg-indigo-600 text-lg text-white">
+                            <span x-text="questions?.detail[currentStep]['A']"
+                                class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
+                                A
+                            </span>
+                            <span x-text="questions?.detail[currentStep]['B']"
+                                class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
+                                A
+                            </span>
+                            <span x-text="questions?.detail[currentStep]['C']"
+                                class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
+                                A
+                            </span>
+                            <span x-text="questions?.detail[currentStep]['D']"
+                                class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
+                                A
+                            </span>
+                            <span x-text="questions?.detail[currentStep]['E']"
+                                class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
+                                A
+                            </span>
+                        </div>
                     </div>
                     <div class="mt-3 flex w-full justify-center space-x-2 text-lg">
                         <div @click="answer('A')"
@@ -191,8 +193,12 @@
                 Alpine.data('local', () => ({
                     storeAnswer: {},
                     timeTest: 60,
+                    timePause: null,
+                    pauseInterval: 5,
+                    loading: false,
                     running: false,
                     batch: 0,
+                    maxBatch: 10,
                     errorMessage: null,
                     questions_detail: [],
                     questions: {
@@ -231,6 +237,23 @@
                         return (this.currentStep / this.questionsTotal) * 100;
                     },
                     getQuestions() {
+                        if (this.maxBatch === this.batch) {
+                            this.sendAnswer();
+                            this.running = false;
+                            clearInterval(this.interval);
+                            Swal.fire({
+                                title: 'Success',
+                                text: 'Sesi test sudah berakhir ',
+                                icon: 'warning',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+
+                        if (this.batch != 0) {
+                            console.log('should pause here');
+                            this.pause();
+                        }
+
                         axios.get('{{ route('questions.take') }}', {})
                             .then((response) => {
                                 this.questions = response.data;
@@ -284,6 +307,11 @@
                         this.interval = setInterval(() => {
                             this.setRemaining();
                         }, 1000);
+                    },
+                    pause() {
+                        this.loading = true;
+                        clearInterval(this.interval);
+                        this.setRemaining();
                     },
                     setRemaining() {
                         const diff = this.expiry - new Date().getTime();
