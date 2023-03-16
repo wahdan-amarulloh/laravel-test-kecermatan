@@ -314,7 +314,7 @@
                     },
                     resume() {
                         if (this.loading) {
-                            this.expiry = this.date(this.pausedTime);
+                            this.expiry = this.date(this.timeTest);
                             this.loading = false;
                             this.setRemaining();
                             this.interval = setInterval(() => {
