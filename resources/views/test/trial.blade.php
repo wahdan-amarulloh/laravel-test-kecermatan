@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="mx-auto p-2" x-show="running">
-            <x-card class="bg-indigo-700/70">
+            <x-card class="!bg-indigo-300/70">
                 <div>
                     {{-- timer --}}
                     <div class="flex flex-col">
@@ -39,7 +39,13 @@
                                 <div class="font-mono text-sm uppercase leading-none">Seconds</div>
                             </div>
                         </div>
+                        <div class="mt-3 flex w-full justify-evenly">
+                            <x-button x-show="!running"
+                                class="bg-indigo-500 hover:bg-indigo-400 focus:border-indigo-800 focus:bg-indigo-700 active:bg-indigo-700"
+                                @click="start()">Start</x-button>
+                        </div>
                     </div>
+
                     {{-- wrapper --}}
                     <div x-show="running" x-transition.opacity.duration.500ms>
                         {{-- question --}}
@@ -120,31 +126,38 @@
                                 </div>
                             </div>
                         </div>
+
                         {{-- answer --}}
-                        <div
-                            class="shadow-s mx-auto mt-3 flex w-full max-w-2xl content-center justify-center space-x-2 space-x-10 rounded-md bg-indigo-600 text-lg text-white">
-                            <span x-text="questions?.detail[currentStep]['A']"
-                                class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
-                                A
-                            </span>
-                            <span x-text="questions?.detail[currentStep]['B']"
-                                class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
-                                A
-                            </span>
-                            <span x-text="questions?.detail[currentStep]['C']"
-                                class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
-                                A
-                            </span>
-                            <span x-text="questions?.detail[currentStep]['D']"
-                                class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
-                                A
-                            </span>
-                            <span x-text="questions?.detail[currentStep]['E']"
-                                class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
-                                A
-                            </span>
+                        <div :class="{ 'animate-pulse ': loading }">
+                            <div
+                                class="shadow-s mx-auto mt-3 flex w-full max-w-2xl content-center justify-center space-x-2 space-x-10 rounded-md bg-indigo-600 text-lg text-white">
+                                <span x-show="loading"
+                                    class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
+                                    L O A D I N G . .
+                                </span>
+                                <span x-show="!loading" x-text="questions?.detail[currentStep]['A']"
+                                    class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
+                                    A
+                                </span>
+                                <span x-show="!loading" x-text="questions?.detail[currentStep]['B']"
+                                    class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
+                                    A
+                                </span>
+                                <span x-show="!loading" x-text="questions?.detail[currentStep]['C']"
+                                    class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
+                                    A
+                                </span>
+                                <span x-show="!loading" x-text="questions?.detail[currentStep]['D']"
+                                    class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
+                                    A
+                                </span>
+                                <span x-show="!loading" x-text="questions?.detail[currentStep]['E']"
+                                    class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
+                                    A
+                                </span>
+                            </div>
                         </div>
-                        <div class="mt-3 flex w-full justify-center space-x-2 text-lg">
+                        <div class="mt-3 flex w-full justify-center space-x-2 text-lg" x-show="!loading">
                             <div @click="answer('A')"
                                 class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300">
                                 <span
@@ -181,6 +194,7 @@
                                 </span>
                             </div>
                         </div>
+
                         {{-- indicator --}}
                         {{-- <div class="mt-6 h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
                             <div class="h-1.5 rounded-full bg-blue-400 transition dark:bg-blue-500"
@@ -197,7 +211,13 @@
             Alpine.data('local', () => ({
                 storeAnswer: {},
                 timeTest: 60,
+                timePause: null,
+                pausedTime: 0,
+                pauseInterval: 5,
+                loading: false,
                 running: false,
+                batch: 0,
+                maxBatch: 10,
                 errorMessage: null,
                 questions_detail: [],
                 questions: {
@@ -222,11 +242,12 @@
                     if (this.percentage < 90) {
                         this.questions_detail.push({
                             id: this.questions.detail[this.currentStep].id,
-                            answer: answer
+                            answer: answer,
+                            batch: this.batch
                         });
                         this.currentStep++;
                     } else {
-                        this.sendAnswer();
+                        // this.sendAnswer();
                         this.currentStep = 0;
                         this.getQuestions();
                     }
@@ -234,12 +255,29 @@
                 get percentage() {
                     return (this.currentStep / this.questionsTotal) * 100;
                 },
-                getQuestions() {
+                async getQuestions() {
+                    if (this.maxBatch === this.batch) {
+                        this.sendAnswer();
+                        this.running = false;
+                        clearInterval(this.interval);
+                        Swal.fire({
+                            title: 'Success',
+                            text: 'Sesi test sudah berakhir ',
+                            icon: 'warning',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+
+                    if (this.batch != 0) {
+                        this.pause();
+                    }
+
                     axios.get('{{ route('questions.take') }}', {})
                         .then((response) => {
                             this.questions = response.data;
                             this.questionsTotal = response.data.detail.length;
                             this.storeAnswer.question_id = this.questions.id;
+                            this.batch++;
                             console.log('getQuestions', this.storeAnswer);
                         });
                 },
@@ -268,12 +306,34 @@
                     return new Date(new Date().setSeconds(new Date().getSeconds() + offset))
                 },
                 start() {
+                    this.currentStep = 0;
+                    this.questions_detail = [];
                     this.expiry = this.date(this.timeTest)
                     this.running = true;
                     this.setRemaining()
                     this.interval = setInterval(() => {
                         this.setRemaining();
                     }, 1000);
+                },
+                resume() {
+                    if (this.loading) {
+                        this.expiry = this.date(this.timeTest);
+                        this.loading = false;
+                        this.setRemaining();
+                        this.interval = setInterval(() => {
+                            this.setRemaining();
+                        }, 1000);
+                    }
+                },
+                pause() {
+                    this.loading = true;
+                    this.pausedTime = this.remaining;
+                    clearInterval(this.interval);
+                    setTimeout(() =>
+                        this.resume(), 5000)
+                    // this.interval = setInterval(() => {
+                    // }, 1000);
+                    return 0;
                 },
                 setRemaining() {
                     const diff = this.expiry - new Date().getTime();
@@ -319,8 +379,6 @@
                     }
                 },
                 init() {
-                    console.log('init')
-
                     this.$nextTick(() => {
                         this.getQuestions();
                     })
