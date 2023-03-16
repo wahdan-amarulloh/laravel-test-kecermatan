@@ -336,15 +336,16 @@
                         const diff = this.expiry - new Date().getTime();
                         this.remaining = parseInt(diff / 1000);
                         if (this.remaining <= 0) {
-                            Swal.fire({
-                                title: 'Success',
-                                text: 'Sesi test sudah berakhir ',
-                                icon: 'warning',
-                                confirmButtonText: 'OK'
-                            });
-                            this.sendAnswer();
-                            this.running = false;
-                            clearInterval(this.interval);
+                            this.getQuestions();
+                            // Swal.fire({
+                            //     title: 'Success',
+                            //     text: 'Sesi test sudah berakhir ',
+                            //     icon: 'warning',
+                            //     confirmButtonText: 'OK'
+                            // });
+                            // this.sendAnswer();
+                            // this.running = false;
+                            // clearInterval(this.interval);
                         }
                     },
                     days() {
