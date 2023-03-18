@@ -25,10 +25,7 @@ class DetailArrayValuesDistinct implements Rule
      */
     public function passes($attribute, $value)
     {
-        logger($attribute);
-        logger($value);
-
-        $allValues = collect($value[0])->pluck(['A', 'B', 'C', 'D', 'E'])->flatten();
+        $allValues = collect($value[0])->except(['name'])->flatten();
 
         return $allValues->count() === $allValues->unique()->count();
     }
