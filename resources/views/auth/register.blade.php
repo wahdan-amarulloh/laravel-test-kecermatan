@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="container mx-auto">
-        <div class="mx-auto mb-6 w-1/2 rounded-lg bg-indigo-600/70 p-6 shadow-lg dark:bg-gray-800">
+        <div class="mx-auto mb-6 w-1/2 rounded-lg bg-white/60 p-6 shadow-lg dark:bg-gray-800">
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
@@ -9,7 +9,7 @@
                     @csrf
                     <!-- Name -->
                     <div>
-                        <x-label class="text-white" for="name" :value="__('Nama Lengkap')" />
+                        <x-label class="text-gray-600" for="name" :value="__('Nama Lengkap')" />
 
                         <x-input id="name" class="mt-1 block w-full" type="text" name="name" :value="old('name')"
                             required autofocus />
@@ -17,7 +17,7 @@
 
                     <!-- Email Address -->
                     <div>
-                        <x-label class="text-white" for="email" :value="__('Alamat E-Mail')" />
+                        <x-label class="text-gray-600" for="email" :value="__('Alamat E-Mail')" />
 
                         <x-input id="email" class="mt-1 block w-full" type="email" name="email"
                             :value="old('email')" required />
@@ -28,7 +28,7 @@
 
                     <!-- Password -->
                     <div class="mt-4">
-                        <x-label class="text-white" for="password" :value="__('Kata Sandi')" />
+                        <x-label class="text-gray-600" for="password" :value="__('Kata Sandi')" />
 
                         <x-input id="password" class="mt-1 block w-full" type="password" name="password" required
                             autocomplete="new-password" />
@@ -36,7 +36,7 @@
 
                     <!-- Confirm Password -->
                     <div class="mt-4">
-                        <x-label class="text-white" for="password_confirmation" :value="__('Ulangi Kata Sandi')" />
+                        <x-label class="text-gray-600" for="password_confirmation" :value="__('Ulangi Kata Sandi')" />
 
                         <x-input id="password_confirmation" class="mt-1 block w-full" type="password"
                             name="password_confirmation" required />
@@ -48,14 +48,14 @@
 
                     <!-- Password -->
                     <div class="mt-4">
-                        <x-label class="text-white" for="phone" :value="__('No. Whatsapp')" />
+                        <x-label class="text-gray-600" for="phone" :value="__('No. Whatsapp')" />
 
                         <x-input id="phone" class="mt-1 block w-full" type="text" name="phone" required />
                     </div>
 
                     <!-- Confirm Password -->
                     <div class="mt-4">
-                        <x-label class="text-white" for="city" :value="__('Kota Asal')" />
+                        <x-label class="text-gray-600" for="city" :value="__('Kota Asal')" />
 
                         <x-input id="city" class="mt-1 block w-full" type="text" name="city" required />
                     </div>

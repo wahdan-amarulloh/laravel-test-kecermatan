@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="mx-auto p-2" x-show="running">
-            <x-card class="!bg-indigo-300/70">
+            <x-card class="!bg-white/60">
                 <div>
                     {{-- timer --}}
                     <div class="flex flex-col">
