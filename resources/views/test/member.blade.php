@@ -11,7 +11,7 @@
                 {{-- timer --}}
                 <div class="flex flex-col">
                     <div class="flex w-full items-center justify-center text-center text-6xl">
-                        <div
+                        {{-- <div
                             class="mx-1 w-24 rounded-lg bg-slate-200 p-2 text-indigo-400 dark:bg-gray-700 dark:text-indigo-400">
                             <div class="font-mono leading-none" x-text="time().days">00</div>
                             <div class="font-mono text-sm uppercase leading-none">Days</div>
@@ -20,7 +20,7 @@
                             class="mx-1 w-24 rounded-lg bg-slate-200 p-2 text-indigo-400 dark:bg-gray-700 dark:text-indigo-400">
                             <div class="font-mono leading-none" x-text="time().hours">00</div>
                             <div class="font-mono text-sm uppercase leading-none">Hours</div>
-                        </div>
+                        </div> --}}
                         <div
                             class="mx-1 w-24 rounded-lg bg-slate-200 p-2 text-indigo-400 dark:bg-gray-700 dark:text-indigo-400">
                             <div class="font-mono leading-none" x-text="time().minutes">00</div>
