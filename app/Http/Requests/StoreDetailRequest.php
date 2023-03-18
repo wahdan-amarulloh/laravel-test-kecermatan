@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\DetailArrayValuesDistinct;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreDetailRequest extends FormRequest
@@ -24,7 +25,10 @@ class StoreDetailRequest extends FormRequest
     public function rules()
     {
         return [
-            'detail' => 'array',
+            'detail' => [
+                'array',
+                new DetailArrayValuesDistinct(),
+            ],
             'detail.*.name' => 'required',
             'detail.*.A' => 'required|max:1',
             'detail.*.B' => 'required|max:1',
