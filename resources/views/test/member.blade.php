@@ -11,19 +11,23 @@
                 {{-- timer --}}
                 <div class="flex flex-col">
                     <div class="flex w-full items-center justify-center text-center text-6xl">
-                        <div class="mx-1 w-24 rounded-lg bg-slate-200 p-2 text-indigo-400">
+                        <div
+                            class="mx-1 w-24 rounded-lg bg-slate-200 p-2 text-indigo-400 dark:bg-gray-700 dark:text-indigo-400">
                             <div class="font-mono leading-none" x-text="time().days">00</div>
                             <div class="font-mono text-sm uppercase leading-none">Days</div>
                         </div>
-                        <div class="mx-1 w-24 rounded-lg bg-slate-200 p-2 text-indigo-400">
+                        <div
+                            class="mx-1 w-24 rounded-lg bg-slate-200 p-2 text-indigo-400 dark:bg-gray-700 dark:text-indigo-400">
                             <div class="font-mono leading-none" x-text="time().hours">00</div>
                             <div class="font-mono text-sm uppercase leading-none">Hours</div>
                         </div>
-                        <div class="mx-1 w-24 rounded-lg bg-slate-200 p-2 text-indigo-400">
+                        <div
+                            class="mx-1 w-24 rounded-lg bg-slate-200 p-2 text-indigo-400 dark:bg-gray-700 dark:text-indigo-400">
                             <div class="font-mono leading-none" x-text="time().minutes">00</div>
                             <div class="font-mono text-sm uppercase leading-none">Minutes</div>
                         </div>
-                        <div class="mx-1 w-24 rounded-lg bg-slate-200 p-2 text-indigo-400">
+                        <div
+                            class="mx-1 w-24 rounded-lg bg-slate-200 p-2 text-indigo-400 dark:bg-gray-700 dark:text-indigo-400">
                             <div class="font-mono leading-none" x-text="time().seconds">00</div>
                             <div class="font-mono text-sm uppercase leading-none">Seconds</div>
                         </div>
@@ -39,7 +43,8 @@
                 <div x-show="running" x-transition.opacity.duration.500ms>
                     {{-- question --}}
                     <div class="mt-3 flex w-full justify-center space-x-2 text-lg">
-                        <div class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6">
+                        <div
+                            class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6 dark:bg-gray-600 dark:text-slate-800">
                             <span x-text="questions['A']"
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 A
@@ -47,13 +52,14 @@
                             <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
                                 <div class="flex content-end justify-end">
                                     <button type="button"
-                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0 dark:bg-gray-800">
                                         A
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6">
+                        <div
+                            class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6 dark:bg-gray-600 dark:text-slate-800">
                             <span x-text="questions['B']"
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 B
@@ -61,13 +67,14 @@
                             <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
                                 <div class="flex content-end justify-end">
                                     <button type="button"
-                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0 dark:bg-gray-800">
                                         B
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6">
+                        <div
+                            class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6 dark:bg-gray-600 dark:text-slate-800">
                             <span x-text="questions['C']"
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 C
@@ -75,13 +82,14 @@
                             <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
                                 <div class="flex content-end justify-end">
                                     <button type="button"
-                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0 dark:bg-gray-800">
                                         C
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6">
+                        <div
+                            class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6 dark:bg-gray-600 dark:text-slate-800">
                             <span x-text="questions['D']"
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 D
@@ -89,13 +97,14 @@
                             <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
                                 <div class="flex content-end justify-end">
                                     <button type="button"
-                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0 dark:bg-gray-800">
                                         D
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6">
+                        <div
+                            class="relative flex h-32 w-32 content-center justify-center rounded-md bg-gray-200 p-6 dark:bg-gray-600 dark:text-slate-800">
                             <span x-text="questions['E']"
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 E
@@ -103,7 +112,7 @@
                             <div class="absolute top-0 right-0 mt-0 mr-0 w-full">
                                 <div class="flex content-end justify-end">
                                     <button type="button"
-                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0">
+                                        class="inline-block rounded-bl-full border border-gray-500 bg-gray-600 py-2 px-4 text-center leading-5 text-gray-100 hover:border-slate-600 hover:bg-slate-700 hover:text-white hover:ring-0 focus:border-black focus:bg-black focus:outline-none focus:ring-0 dark:bg-gray-800">
                                         E
                                     </button>
                                 </div>
@@ -143,35 +152,35 @@
                     </div>
                     <div class="mt-3 flex w-full justify-center space-x-2 text-lg" x-show="!loading">
                         <div @click="answer('A')"
-                            class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300">
+                            class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300 dark:bg-gray-600 dark:hover:bg-slate-400">
                             <span
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 A
                             </span>
                         </div>
                         <div @click="answer('B')"
-                            class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300">
+                            class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300 dark:bg-gray-600 dark:hover:bg-slate-400">
                             <span
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 B
                             </span>
                         </div>
                         <div @click="answer('C')"
-                            class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300">
+                            class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300 dark:bg-gray-600 dark:hover:bg-slate-400">
                             <span
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 C
                             </span>
                         </div>
                         <div @click="answer('D')"
-                            class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300">
+                            class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300 dark:bg-gray-600 dark:hover:bg-slate-400">
                             <span
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 D
                             </span>
                         </div>
                         <div @click="answer('E')"
-                            class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300">
+                            class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300 dark:bg-gray-600 dark:hover:bg-slate-400">
                             <span
                                 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-4xl">
                                 E

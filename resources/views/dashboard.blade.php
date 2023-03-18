@@ -254,7 +254,7 @@
                                 </span>
                             </div>
                             <div @click="getDetail(@js($key))"
-                                class="group flex cursor-pointer items-center gap-x-5 rounded-md px-2.5 py-2 transition-all duration-75 hover:bg-green-100">
+                                class="group flex cursor-pointer items-center gap-x-5 rounded-md px-2.5 py-2 transition-all duration-75 hover:bg-green-100 dark:hover:bg-gray-700">
                                 <div
                                     class="flex h-12 w-12 items-center rounded-lg bg-gray-200 text-black group-hover:bg-green-200">
                                     <span
