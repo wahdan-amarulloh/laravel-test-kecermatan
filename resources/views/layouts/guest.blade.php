@@ -31,7 +31,7 @@
     </script>
 </head>
 
-<body class="bg-slate-800 bg-hero-pattern bg-cover p-6">
+<body class="bg-slate-800 bg-hero-pattern bg-cover p-6" style="background-image: url('{{ asset('images/bg.jpg') }}')">
     <nav x-data="{ isOpen: false }" class="relative">
         <div class="container mx-auto px-6 py-4 md:flex md:items-center md:justify-between">
             <div class="flex items-center justify-between">
