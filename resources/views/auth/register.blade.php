@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="container mx-auto">
-        <div class="mx-auto mb-6 w-1/2 rounded-lg bg-white/60 p-6 shadow-lg dark:bg-gray-800">
+        <div class="mx-auto mb-6 w-full rounded-lg bg-white/60 p-6 shadow-lg dark:bg-gray-800 md:w-1/2">
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
