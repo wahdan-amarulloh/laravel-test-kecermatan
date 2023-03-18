@@ -239,6 +239,7 @@
                 questionsTotal: 0,
                 currentStep: 0,
                 answer(answer) {
+                    navigator.vibrate(100);
                     if (this.percentage < 90) {
                         this.questions_detail.push({
                             id: this.questions.detail[this.currentStep].id,
