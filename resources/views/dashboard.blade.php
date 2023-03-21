@@ -357,7 +357,6 @@
                         const trueAnswer = [];
                         const wrongAnswer = [];
                         for (const property in labels) {
-                            console.log('labels[property]', labels[property][0].corrects);
                             trueAnswer.push(
                                 labels[property][0].corrects
                             );

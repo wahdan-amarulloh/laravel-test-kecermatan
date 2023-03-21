@@ -65,7 +65,16 @@
         </div>
     </nav>
 
-    <div class="container mx-auto px-6 py-4 md:flex md:items-center md:justify-end">
+    <div class="container mx-auto flex-col px-6 py-4 md:flex md:flex-row md:items-start md:justify-between">
+        <div class="flex w-full max-w-3xl flex-col rounded-md px-4 py-8 sm:px-6 md:px-8 lg:px-10">
+            <div class="text-white">
+                <h1 class="mb-6 font-mono text-6xl font-extrabold">Zona Latihan Calon Polisi</h1>
+                <span class="mb-6 text-4xl font-extrabold text-amber-400">Selamat Datang</span>
+                <p class="text-xl">Website ini merupakan tempat latihan bagi peserta yang ingin mengasah serta menguji
+                    kemampuan dalam
+                    menjawab tes kecermatan.</p>
+            </div>
+        </div>
         <div class="flex w-full max-w-md flex-col rounded-md bg-white/60 px-4 py-8 shadow-md sm:px-6 md:px-8 lg:px-10">
             <div class="self-center text-xl font-medium uppercase text-gray-800 sm:text-2xl">Masuk ke akun Anda</div>
             <!-- Session Status -->
