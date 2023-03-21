@@ -20,6 +20,7 @@ class Kernel extends ConsoleKernel
             // your schedule code
             logger()->info('working from scheduler');
         })->everyMinute();
+        $schedule->command('terminate:plan')->everyMinute();
     }
 
     /**
