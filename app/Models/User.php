@@ -28,6 +28,7 @@ class User extends Authenticatable
         'google_id',
         'phone',
         'city',
+        'expired_at',
     ];
 
     /**
@@ -47,6 +48,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'expired_at' => 'datetime',
         'is_admin' => 'boolean',
     ];
 

@@ -219,6 +219,14 @@
                             </p>
                         </div>
                         <div class="flex-row content-end justify-end">
+                            <strong class="text-xl font-extrabold">Sisa Waktu Berlangganan :</strong>
+                            <p class="mb-2">
+                                <span class="">
+                                    {{ auth()->user()->expired_at? auth()->user()->expired_at->diffForHumans(['parts' => 3]): '-' }}
+                                </span>
+                            </p>
+                        </div>
+                        <div class="flex-row content-end justify-end">
                             <strong class="text-xl font-extrabold">Sisa Kuota Tes Kecermatan Hari Ini : </strong>
                             <p class="mb-2">
                                 <span class="">

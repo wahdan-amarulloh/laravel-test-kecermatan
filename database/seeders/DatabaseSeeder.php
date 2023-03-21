@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admindev'),
             'is_admin' => 1,
             'subscription_id' => $paidPlan->id,
+            'expired_at' => now()->addDays(30),
         ]);
 
         \App\Models\User::factory()->create([
@@ -41,6 +42,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('memberdev'),
             'is_admin' => 0,
             'subscription_id' => $freePlan->id,
+            'expired_at' => now()->addDays(10),
         ]);
 
         Setup::create([
@@ -60,7 +62,9 @@ class DatabaseSeeder extends Seeder
 
         if (App::environment('local')) {
             // The environment is local
-            \App\Models\User::factory(100)->create();
+            \App\Models\User::factory(100)->create([
+                'password' => bcrypt('password'),
+            ]);
             $this->call(
                 [
                     QuestionSeeder::class,
