@@ -20,11 +20,13 @@ class DatabaseSeeder extends Seeder
         $freePlan = \App\Models\Subscription::factory()->create([
             'name' => 'Free Plan',
             'attempt' => 2,
+            'days' => 10,
         ]);
 
         $paidPlan = \App\Models\Subscription::factory()->create([
             'name' => 'Paid Plan',
             'attempt' => 10,
+            'days' => 30,
         ]);
 
         \App\Models\User::factory()->create([

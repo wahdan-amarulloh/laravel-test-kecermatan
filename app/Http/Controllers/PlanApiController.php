@@ -32,6 +32,7 @@ class PlanApiController extends Controller
             'status' => 'required|max:2',
             'attempt' => 'required|integer|min:1',
             'price' => 'required|integer|min:1',
+            'days' => 'required|integer|min:1',
         ];
 
         // Validate the request data
@@ -49,6 +50,7 @@ class PlanApiController extends Controller
             'attempt' => $request->attempt,
             'price' => $request->price,
             'status' => $request->status,
+            'days' => $request->days,
         ]);
 
         return response()->json(
@@ -84,6 +86,7 @@ class PlanApiController extends Controller
             'status' => 'required|max:2',
             'attempt' => 'required|integer|min:1',
             'price' => 'required|integer|min:1',
+            'days' => 'required|integer|min:1',
         ];
 
         // Validate the request data
@@ -100,6 +103,7 @@ class PlanApiController extends Controller
         $plan->status = $request->status;
         $plan->attempt = $request->attempt;
         $plan->price = $request->price;
+        $plan->days = $request->days;
         $plan->save();
 
         return response()->json(

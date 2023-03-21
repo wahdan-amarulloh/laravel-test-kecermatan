@@ -40,6 +40,8 @@ class SubscriptionTable extends DataTableComponent
                 ->sortable(),
             Column::make('Attempt', 'attempt')
                 ->sortable(),
+            Column::make('Day', 'Days')
+                ->sortable(),
             Column::make('Price', 'price')
                 ->sortable(),
             Column::make('Created at', 'created_at')

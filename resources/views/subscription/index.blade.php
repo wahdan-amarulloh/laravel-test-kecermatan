@@ -45,7 +45,8 @@
                                 `<input name="attempt" placeholder="Attempt" value="${this.plan.attempt}" id="swal-input2" class="swal2-input">` +
                                 `<input name="price" placeholder="Price" value="${this.plan.price}" id="swal-input3" class="swal2-input">` +
                                 `<input name="id" value="id" type="hidden" value="${this.plan.id}" id="swal-input4" class="swal2-input">` +
-                                `<input name="status" value="${this.plan.status}" id="swal-input5" class="swal2-input">`,
+                                `<input name="status" value="${this.plan.status}" id="swal-input5" class="swal2-input">` +
+                                `<input name="days" value="${this.plan.days}" id="swal-input6" class="swal2-input">`,
                             focusConfirm: false,
                             preConfirm: () => {
                                 return {
@@ -64,6 +65,9 @@
                                         .value,
                                     status: document.getElementById(
                                             'swal-input5')
+                                        .value,
+                                    days: document.getElementById(
+                                            'swal-input6')
                                         .value
                                 }
 
@@ -78,6 +82,7 @@
                                     price: formValues.price,
                                     id: formValues.id,
                                     status: formValues.status,
+                                    days: formValues.days,
                                     _method: 'PUT'
                                 })
                                 .then((response) => {
@@ -120,16 +125,18 @@
                     title: 'Create Plan',
                     showCancelButton: true,
                     html: '<input name="name" placeholder="Name" id="swal-input1" class="swal2-input">' +
-                        '<input name="attempt" placeholder="Attempt" id="swal-input2" class="swal2-input">' +
-                        '<input name="price" placeholder="Price" id="swal-input3" class="swal2-input">' +
-                        '<input name="status" value="AC" type="hidden" id="swal-input4" class="swal2-input">',
+                        '<input name="attempt" placeholder="Attempt" type="number" id="swal-input2" class="swal2-input">' +
+                        '<input name="price" placeholder="Price" type="number" id="swal-input3" class="swal2-input">' +
+                        '<input name="status" value="AC" type="hidden" id="swal-input4" class="swal2-input">' +
+                        '<input name="days" placeholder="Day" type="number" id="swal-input5" class="swal2-input">',
                     focusConfirm: false,
                     preConfirm: () => {
                         return {
                             name: document.getElementById('swal-input1').value.toUpperCase(),
                             attempt: document.getElementById('swal-input2').value.toUpperCase(),
                             price: document.getElementById('swal-input3').value.toUpperCase(),
-                            status: document.getElementById('swal-input4').value
+                            status: document.getElementById('swal-input4').value,
+                            days: document.getElementById('swal-input5').value
                         }
 
                     }
