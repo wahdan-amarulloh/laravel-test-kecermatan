@@ -6,7 +6,6 @@ namespace Database\Seeders;
 
 use App\Models\Setup;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
@@ -61,17 +60,5 @@ class DatabaseSeeder extends Seeder
                 MenuSeeder::class,
             ]
         );
-
-        if (App::environment('local')) {
-            // The environment is local
-            \App\Models\User::factory(100)->create([
-                'password' => bcrypt('password'),
-            ]);
-            $this->call(
-                [
-                    QuestionSeeder::class,
-                ]
-            );
-        }
     }
 }
