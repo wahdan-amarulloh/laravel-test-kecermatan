@@ -17,6 +17,7 @@ class SubscriptionTable extends DataTableComponent
 
     protected $listeners = [
         'confirmedDelete' => 'confirmedDelete',
+        'confirmedDisable' => 'confirmedDisable',
         'refreshComponent' => '$refresh',
     ];
 
@@ -71,8 +72,34 @@ class SubscriptionTable extends DataTableComponent
                                 'wire:click' => 'askDelete('.$row->id.')',
                             ];
                         }),
+                    LinkColumn::make('Disable')
+                        ->title(fn ($row) => 'Disable')
+                        ->location(fn ($row) => '#')
+                        ->attributes(function ($row) {
+                            return [
+                                'class' => 'underline text-green-600',
+                                'wire:click' => 'askDisable('.$row->id.')',
+                            ];
+                        }),
                 ]),
         ];
+    }
+
+    public function askDisable(Subscription $subscription)
+    {
+        $this->alert('question', 'Confirm Disable '.$subscription->name.' ?', [
+            'position' => 'center',
+            'timer' => 3000,
+            'toast' => false,
+            'showConfirmButton' => true,
+            'confirmButtonText' => 'Disable',
+            'showCancelButton' => true,
+            'cancelButtonText' => 'Cancel',
+            'inputAttributes' => [
+                'value' => $subscription->id,
+            ],
+            'onConfirmed' => 'confirmedDisable',
+        ]);
     }
 
     public function askDelete(Subscription $subscription)
@@ -90,6 +117,16 @@ class SubscriptionTable extends DataTableComponent
             ],
             'onConfirmed' => 'confirmedDelete',
         ]);
+    }
+
+    public function confirmedDisable($data)
+    {
+        $id = $data['data']['inputAttributes']['value'];
+        $subscription = Subscription::query()->where('id', $id)->first();
+        $subscription->status = 'NA';
+        $subscription->save();
+
+        $this->alert('success', $subscription->name.' berhasil di disable ');
     }
 
     public function confirmedDelete($data)
