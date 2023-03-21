@@ -23,12 +23,6 @@ class UserTable extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id');
-
-        debug(
-            User::query()
-            ->with('plan')
-            ->where('id', 3)->first()->plan
-        );
     }
 
     public function columns(): array

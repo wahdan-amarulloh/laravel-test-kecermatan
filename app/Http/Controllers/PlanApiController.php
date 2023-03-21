@@ -127,7 +127,11 @@ class PlanApiController extends Controller
 
     public function user(Request $request, User $user)
     {
+        $subscription = Subscription::where('id', $request->plan)->first();
+        $days = \Illuminate\Support\Carbon::now()->addDays($subscription->days)->toDateTimeString();
+
         $user->subscription_id = $request->plan;
+        $user->expired_at = $days;
         $user->save();
 
         return response()
