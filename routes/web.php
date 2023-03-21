@@ -55,6 +55,7 @@ Route::get('/deploy', function () {
     $info = [
         'optimize' => Artisan::call('optimize:clear'),
         'migrate' => Artisan::call('migrate:fresh --seed'),
+        'env' => \Illuminate\Support\Facades\App::environment('local'),
     ];
 
     return $info;
