@@ -45,7 +45,7 @@
                                 `<input name="attempt" placeholder="Attempt" value="${this.plan.attempt}" id="swal-input2" class="swal2-input">` +
                                 `<input name="price" placeholder="Price" value="${this.plan.price}" id="swal-input3" class="swal2-input">` +
                                 `<input name="id" value="id" type="hidden" value="${this.plan.id}" id="swal-input4" class="swal2-input">` +
-                                `<input name="status" value="AC" type="hidden" value="${this.plan.status}" id="swal-input5" class="swal2-input">`,
+                                `<input name="status" value="${this.plan.status}" id="swal-input5" class="swal2-input">`,
                             focusConfirm: false,
                             preConfirm: () => {
                                 return {

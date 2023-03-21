@@ -73,8 +73,8 @@ class SubscriptionTable extends DataTableComponent
                             ];
                         }),
                     LinkColumn::make('Disable')
-                        ->title(fn ($row) => 'Disable')
-                        ->location(fn ($row) => '#')
+                    ->title(fn ($row) => 'Disable')
+                    ->location(fn ($row) => '#')
                         ->attributes(function ($row) {
                             return [
                                 'class' => 'underline text-green-600',
