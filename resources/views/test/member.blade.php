@@ -207,6 +207,7 @@
                     storeAnswer: {},
                     timeTest: 60,
                     timePause: null,
+                    test_id: null,
                     pausedTime: 0,
                     pauseInterval: 5,
                     loading: false,
@@ -262,7 +263,8 @@
                                 icon: 'warning',
                                 confirmButtonText: 'OK'
                             }).then((result) => {
-                                window.location = @js(route('dashboard'))
+                                window.location =
+                                    `{{ route('dashboard') }}?question=${this.test_id}`
                             });
                         }
 
@@ -298,7 +300,6 @@
                             });
                     },
                     takeResponse(response) {
-                        console.log('response', response.data.error == 'Error')
                         if (response.data.error == 'Error') {
                             Swal.fire({
                                 title: 'Error!',
@@ -307,6 +308,8 @@
                                 confirmButtonText: 'OK'
                             });
                         }
+
+                        this.test_id = response.data.test_id
                     },
                     expiry: new Date().setDate(new Date().getDate() + 1),
                     remaining: null,

@@ -61,6 +61,7 @@ class UserController extends Controller
                 'request' => $request->all(),
                 'question' => $question,
                 'detail' => $question->detail_id,
+                'test_id' => $time,
                 'user' => $user,
                 'testToday' => count($testToday),
                 'message' => 'success',

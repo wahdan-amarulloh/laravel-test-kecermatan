@@ -245,7 +245,7 @@
         </div>
 
         {{-- member --}}
-        <div x-data="detail()"
+        <div x-data="detail(@js(request()->query('question')))"
             class="mx-auto mt-3 flex flex-col items-center items-stretch space-x-0 md:flex-row md:space-x-4">
             <x-card class="w-full" title="Riwayat Ujian">
                 <div class="mt-0">
@@ -326,7 +326,7 @@
     @push('scripts')
         <script>
             document.addEventListener('alpine:init', () => {
-                Alpine.data('detail', () => ({
+                Alpine.data('detail', (question) => ({
                     labels: ['0', '0', '0', '0'],
                     values: {
                         right: [4, 5, 6, 7],
@@ -422,6 +422,11 @@
                         };
 
                         let chart = new Chart(this.$refs.canvas.getContext('2d'), this.config);
+
+                        if (question) {
+                            this.getDetail(question);
+                        }
+
                         this.$watch('labels', () => {
                             chart.data.labels = this.labels;
                             chart.data.datasets[0].data = this.values.right;
