@@ -261,6 +261,8 @@
                                 text: 'Sesi test sudah berakhir ',
                                 icon: 'warning',
                                 confirmButtonText: 'OK'
+                            }).then((result) => {
+                                window.location = @js(route('dashboard'))
                             });
                         }
 
