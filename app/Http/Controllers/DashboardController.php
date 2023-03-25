@@ -15,6 +15,7 @@ class DashboardController extends Controller
         $histories = UserQuestion::leftJoin('question_details', 'user_question.detail_id', '=', 'question_details.id')
             ->select('user_question.*', DB::raw('(CASE WHEN user_question.answer = question_details.answer THEN 1 ELSE 0 END) as points'))
             ->where('user_id', auth()->id())
+            ->orderBy('test_at', 'desc')
             ->get();
         $testLeft = (new \App\Models\User())->todatTest(auth()->id());
 

@@ -49,7 +49,7 @@ class TerminateUsersPlanCommand extends Command
                 $this->terminateUserPlan($user);
             }
 
-            $this->info("All expired plans have been terminated successfully!");
+            $this->info('All expired plans have been terminated successfully!');
         }
 
         return 0;
@@ -58,7 +58,7 @@ class TerminateUsersPlanCommand extends Command
     /**
      * Terminate the user's plan by setting expired_at and subscription_id to null.
      *
-     * @param User $user
+     * @param  User  $user
      * @return void
      */
     protected function terminateUserPlan(User $user)
