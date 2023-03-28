@@ -21,18 +21,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/questions/{id?}', function (int $id = null) {
-    $questions = \App\Models\Question::with('detail')
-    ->whereHas('detail')
-    ->when(! is_null($id), fn ($query, $id) => $query->where('id', $id))
-    ->when(is_null($id), fn ($query) => $query->inRandomOrder())
-    ->first();
+Route::middleware(['api'])->group(function () {
+    // Route::get('/questions/{id?}', function (int $id = null) {
+    //     $questions = \App\Models\Question::with('detail')
+    // ->whereHas('detail')
+    // ->when(! is_null($id), fn ($query, $id) => $query->where('id', $id))
+    // ->when(is_null($id), fn ($query) => $query->inRandomOrder())
+    // ->first();
 
-    return response()->json($questions);
-})->name('questions.take');
+    //     return response()->json($questions);
+    // })->name('questions.take');
 
-Route::apiResource('/question/detail', QuestionDetailController::class);
+    Route::get('/questions/{id?}', [QuestionDetailController::class, 'take'])->name('questions.take');
+    Route::apiResource('/question/detail', QuestionDetailController::class);
 
-Route::post('/plan/user/{user}', [PlanApiController::class, 'user'])->name('plan.user');
-Route::apiResource('/plan', PlanApiController::class)->names('plan');
-Route::apiResource('/test', UserController::class)->names('test');
+    Route::post('/plan/user/{user}', [PlanApiController::class, 'user'])->name('plan.user');
+    Route::apiResource('/plan', PlanApiController::class)->names('plan');
+    Route::apiResource('/test', UserController::class)->names('test');
+});

@@ -107,4 +107,19 @@ class QuestionDetailController extends Controller
     {
         //
     }
+
+    public function take($id = null)
+    {
+        $query = Question::with('detail')->whereHas('detail');
+
+        if (! is_null($id)) {
+            $query = $query->where('id', $id);
+        } else {
+            $query = $query->inRandomOrder();
+        }
+
+        $question = $query->first();
+
+        return response()->json($question);
+    }
 }
