@@ -3,10 +3,12 @@
 namespace App\Http\Livewire;
 
 use App\Models\Subscription;
+use Illuminate\Database\Eloquent\Builder;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class SubscriptionTable extends DataTableComponent
@@ -14,6 +16,12 @@ class SubscriptionTable extends DataTableComponent
     use LivewireAlert;
 
     protected $model = Subscription::class;
+
+    public function builder(): Builder
+    {
+        return Subscription::query()
+        ->with('groups');
+    }
 
     protected $listeners = [
         'confirmedDelete' => 'confirmedDelete',
@@ -44,8 +52,18 @@ class SubscriptionTable extends DataTableComponent
                 ->sortable(),
             Column::make('Price', 'price')
                 ->sortable(),
+            // Column::make('groups', 'id')
+            // ->format(
+            //     fn ($value, $row, Column $column) => dd($row->groups)
+            // )
+            //     ->sortable(),
+            ComponentColumn::make('Groups', 'id')
+            ->component('badge')
+            ->attributes(fn ($value, $row, Column $column) => [
+                'items' => $row->groups,
+            ]),
             Column::make('Created at', 'created_at')
-                ->sortable(),
+            ->sortable(),
             Column::make('Updated at', 'updated_at')
                 ->sortable(),
             ButtonGroupColumn::make('Actions')
