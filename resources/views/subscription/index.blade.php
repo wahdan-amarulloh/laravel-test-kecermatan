@@ -5,12 +5,33 @@
         </h2>
     </x-slot>
 
-    <div class="mx-auto p-2">
-        <x-card x-data="plan" title="{{ __('Paket Langganan') }}">
+    <div class="mx-auto flex flex-col gap-2 p-2 sm:flex-row" x-data="plan">
+        <x-card title="{{ __('Paket Langganan') }}" class="w-full shrink grow">
             <x-slot name="action">
                 <x-card.action-link id="create" label="Create" />
+                <x-card.action-link @click="showGroup=true" id="group" label="Group" />
             </x-slot>
             <livewire:subscription-table />
+        </x-card>
+
+        <x-card title="{{ __('Group') }}" class="w-full shrink grow transition" style="display: none"
+            x-show="showGroup" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="translate-x-full">
+            <x-slot name="close">
+                <button type="button" @click="showGroup=false"
+                    class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
+                    <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Close Detail</span>
+                </button>
+            </x-slot>
+
         </x-card>
     </div>
 
@@ -19,6 +40,7 @@
             document.addEventListener('alpine:init', () => {
                 Alpine.data('plan', () => ({
                     plan: null,
+                    showGroup: false,
                     askEdit(id) {
                         let urlGet = '{{ route('plan.show', '') }}';
                         urlGet += '/' + id;

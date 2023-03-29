@@ -1,5 +1,5 @@
 <div class="mx-auto grid w-full gap-2 p-2 md:grid-cols-3" x-data="question()">
-    <x-card class="col-span-3 overflow-auto sm:block" ::class="showDetail || showCreate ? 'hidden md:block md:col-span-2' : 'block md:col-span-3'" title="{{ __('Plan') }}">
+    <x-card class="col-span-3 overflow-auto sm:block" ::class="showDetail || showCreate ? 'hidden md:block md:col-span-2' : 'block md:col-span-3'" title="{{ __('Pertanyaan') }}">
         <x-slot name="close">
             <button type="button" @click="toggleCreate()"
                 class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
@@ -17,11 +17,11 @@
     </x-card>
 
     {{-- Create Detail --}}
-    <x-card class="col-span-3 sm:col-span-1" style="display: none" title="{{ __('Buat Soal') }}" x-show="showCreate"
-        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="translate-x-full"
-        x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in duration-300"
-        x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
-        x-on:click.away="slideOut = false">
+    <x-card class="col-span-3 sm:col-span-1" style="display: none" title="{{ __('Detail Pertanyaan') }}"
+        x-show="showCreate" x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+        x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-x-0"
+        x-transition:leave-end="translate-x-full" x-on:click.away="slideOut = false">
         <x-slot name="close">
             <button type="button" @click="toggleCreate()"
                 class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
