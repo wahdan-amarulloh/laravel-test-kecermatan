@@ -17,17 +17,17 @@ class SubscriptionTable extends DataTableComponent
 
     protected $model = Subscription::class;
 
-    public function builder(): Builder
-    {
-        return Subscription::query()
-        ->with('groups');
-    }
-
     protected $listeners = [
         'confirmedDelete' => 'confirmedDelete',
         'confirmedDisable' => 'confirmedDisable',
         'refreshComponent' => '$refresh',
     ];
+
+    public function builder(): Builder
+    {
+        return Subscription::query()
+        ->with('groups');
+    }
 
     public function configure(): void
     {
@@ -52,11 +52,6 @@ class SubscriptionTable extends DataTableComponent
                 ->sortable(),
             Column::make('Price', 'price')
                 ->sortable(),
-            // Column::make('groups', 'id')
-            // ->format(
-            //     fn ($value, $row, Column $column) => dd($row->groups)
-            // )
-            //     ->sortable(),
             ComponentColumn::make('Groups', 'id')
             ->component('badge')
             ->attributes(fn ($value, $row, Column $column) => [

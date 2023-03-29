@@ -12,15 +12,16 @@ return new class () extends Migration {
      */
     public function up()
     {
-        Schema::create('group_subscription', function (Blueprint $table) {
+        Schema::create('group_question', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('group_id');
-            $table->unsignedBigInteger('subscription_id');
+            $table->unsignedBigInteger('question_id');
             $table->timestamps();
 
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
-            $table->foreign('subscription_id')->references('id')->on('subscriptions')->onDelete('cascade');
-            $table->unique(['group_id', 'subscription_id']);
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
+
+            $table->unique(['group_id', 'question_id']);
         });
     }
 
@@ -31,6 +32,6 @@ return new class () extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('group_subscription');
+        Schema::dropIfExists('group_question');
     }
 };

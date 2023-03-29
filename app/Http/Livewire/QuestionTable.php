@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Group;
 use App\Models\Question;
+use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
+use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
 class QuestionTable extends DataTableComponent
@@ -13,6 +16,16 @@ class QuestionTable extends DataTableComponent
     protected $model = Question::class;
 
     protected $listeners = ['refreshComponent' => '$refresh'];
+
+    public array $bulkActions = [
+        'groupSelected' => 'Add To Group',
+    ];
+
+    public function builder(): Builder
+    {
+        return Question::query()
+        ->with('groups');
+    }
 
     public function configure(): void
     {
@@ -44,6 +57,11 @@ class QuestionTable extends DataTableComponent
                 ->sortable(),
             Column::make('E', 'E')
                 ->sortable(),
+            ComponentColumn::make('Groups', 'id')
+                ->component('badge')
+                ->attributes(fn ($value, $row, Column $column) => [
+                    'items' => $row->groups,
+                ]),
             Column::make('Status', 'status')
                 ->sortable(),
             ButtonGroupColumn::make('Actions')
@@ -74,5 +92,12 @@ class QuestionTable extends DataTableComponent
                         }),
                 ]),
         ];
+    }
+
+    public function groupSelected()
+    {
+        $group = Group::find(1);
+
+        $group->questions()->syncWithoutDetaching($this->getSelected());
     }
 }

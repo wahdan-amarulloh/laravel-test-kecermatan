@@ -30,4 +30,14 @@ class Question extends Model
     {
         return $this->belongsToMany(User::class, 'user_question');
     }
+
+    /**
+     * The groups that belong to the Question
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function groups(): BelongsToMany
+    {
+        return $this->belongsToMany(Group::class);
+    }
 }

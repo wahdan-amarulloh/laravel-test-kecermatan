@@ -19,6 +19,11 @@ class Group extends Model
 
     public function subscriptions(): BelongsToMany
     {
-        return $this->belongsToMany(Subscription::class)->withDefault();
+        return $this->belongsToMany(Subscription::class);
+    }
+
+    public function questions(): BelongsToMany
+    {
+        return $this->belongsToMany(Question::class);
     }
 }
