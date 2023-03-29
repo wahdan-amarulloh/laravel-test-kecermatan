@@ -58,6 +58,8 @@ class DatabaseSeeder extends Seeder
         $this->call(
             [
                 MenuSeeder::class,
+                GroupSeeder::class,
+                QuestionSeeder::class,
             ]
         );
     }
