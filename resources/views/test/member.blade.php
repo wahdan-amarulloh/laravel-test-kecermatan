@@ -32,10 +32,16 @@
                             <div class="font-mono text-sm uppercase leading-none">Seconds</div>
                         </div>
                     </div>
-                    <div class="mt-3 flex w-full justify-evenly">
-                        <x-button x-show="!running"
+                    <div class="mt-3 flex w-full justify-center space-x-1">
+                        @foreach ($groups as $group)
+                            <x-button x-show="!running"
+                                class="bg-indigo-500 hover:bg-indigo-400 focus:border-indigo-800 focus:bg-indigo-700 active:bg-indigo-700"
+                                @click="start({{ $group->id }})">{{ $group->name }}
+                            </x-button>
+                        @endforeach
+                        {{-- <x-button x-show="!running"
                             class="bg-indigo-500 hover:bg-indigo-400 focus:border-indigo-800 focus:bg-indigo-700 active:bg-indigo-700"
-                            @click="start()">Start</x-button>
+                            @click="start()">Start</x-button> --}}
                     </div>
                 </div>
 
@@ -208,6 +214,7 @@
                     timeTest: 60,
                     timePause: null,
                     test_id: null,
+                    groupId: null,
                     pausedTime: 0,
                     pauseInterval: 5,
                     loading: false,
@@ -272,13 +279,26 @@
                             this.pause();
                         }
 
-                        axios.get('{{ route('questions.take') }}', {})
+                        let url = '{{ route('questions.take') }}';
+                        url += '/' + this.groupId;
+
+                        console.log(url);
+
+                        axios.get(url, {})
                             .then((response) => {
+                                if (response.data.errors) {
+                                    this.running = false;
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: 'Tidak ada soal untuk group ini',
+                                        icon: 'error',
+                                        confirmButtonText: 'OK'
+                                    });
+                                }
                                 this.questions = response.data;
                                 this.questionsTotal = response.data.detail.length;
                                 this.storeAnswer.question_id = this.questions.id;
                                 this.batch++;
-                                console.log('getQuestions', this.storeAnswer);
                             });
                     },
                     getDetail() {
@@ -317,7 +337,9 @@
                     date(offset = 0) {
                         return new Date(new Date().setSeconds(new Date().getSeconds() + offset))
                     },
-                    start() {
+                    start(groupId) {
+                        this.groupId = groupId;
+                        this.getQuestions();
                         this.currentStep = 0;
                         this.questions_detail = [];
                         this.expiry = this.date(this.timeTest)
@@ -399,7 +421,7 @@
                     },
                     init() {
                         this.$nextTick(() => {
-                            this.getQuestions();
+                            // this.getQuestions();
                         })
                     }
                 }))

@@ -21,4 +21,9 @@ class Subscription extends Model
     {
         return $this->belongsToMany(Group::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id', 'subscription_id');
+    }
 }

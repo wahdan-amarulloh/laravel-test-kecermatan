@@ -110,15 +110,23 @@ class QuestionDetailController extends Controller
 
     public function take($id = null)
     {
-        $query = Question::with('detail')->whereHas('detail');
+        $query = Question::with('detail')
+        ->whereHas('detail');
 
         if (! is_null($id)) {
-            $query = $query->where('id', $id);
+            $query = $query->whereHas('groups', fn ($builder) => $builder->where('group_id', $id));
         } else {
             $query = $query->inRandomOrder();
         }
 
         $question = $query->first();
+
+        if (is_null($question)) {
+            return response()->json([
+                'message' => 'Tidak ada pertanyaan untuk group ' . $id,
+                'errors' => true,
+            ]);
+        }
 
         return response()->json($question);
     }

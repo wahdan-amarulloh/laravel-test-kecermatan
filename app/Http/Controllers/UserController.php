@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\User;
 
 class UserController extends Controller
@@ -15,7 +16,10 @@ class UserController extends Controller
 
     public function test()
     {
-        return view('test.member');
+        $groups = Group::whereHas('subscriptions.user', fn ($builder) => $builder->select('id')->where('id', auth()->id()))->get();
+
+        return view('test.member')
+        ->with('groups', $groups);
     }
 
     public function trial()
