@@ -1,9 +1,9 @@
-<div x-data="{ selectedGroupId: '' }" class="mx-4 flex flex-col items-center sm:mx-0">
+<div x-data="{ selectedGroupId: '' }" class="mx-4 flex flex-col items-center p-4 sm:mx-0">
     <div class="mb-2 w-full">
         <div class="relative flex flex-wrap items-stretch space-x-2">
             <select x-model="selectedGroupId"
                 class="mb-6 block w-full flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500">
-                <option selected>Pilih group</option>
+                <option value="" disabled selected>Pilih group</option>
                 @foreach ($groups as $group)
                     <option value="{{ $group->id }}">{{ $group->name }}</option>
                 @endforeach

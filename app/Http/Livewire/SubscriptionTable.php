@@ -26,6 +26,7 @@ class SubscriptionTable extends DataTableComponent
     ];
 
     public Subscription $currentSubscription;
+
     public Collection $groups;
 
     public function builder(): Builder
@@ -168,9 +169,9 @@ class SubscriptionTable extends DataTableComponent
             'toast' => false,
             'target' => 'table',
             'html' => $html,
-            'showConfirmButton' => true,
+            'showConfirmButton' => false,
             'confirmButtonText' => 'Delete',
-            'showCancelButton' => true,
+            'showCancelButton' => false,
             'cancelButtonText' => 'Cancel',
             'onConfirmed' => 'confirmedDelete',
         ]);
@@ -183,6 +184,10 @@ class SubscriptionTable extends DataTableComponent
 
     public function attachGroup($selectedGroupId)
     {
+        if (empty($selectedGroupId) || $selectedGroupId === '') {
+            return;
+        }
+
         $check = $this->currentSubscription->groups()->where('group_id', $selectedGroupId)->exists();
 
         if (! $check) {
