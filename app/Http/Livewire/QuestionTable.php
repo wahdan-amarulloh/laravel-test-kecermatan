@@ -10,6 +10,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class QuestionTable extends DataTableComponent
 {
@@ -21,10 +22,28 @@ class QuestionTable extends DataTableComponent
         'groupSelected' => 'Add To Group',
     ];
 
+    public $groups;
+
     public function builder(): Builder
     {
         return Question::query()
-        ->with('groups');
+        ->with(['groups' => function ($query) {
+            $query->when($this->getAppliedFilterWithValue('group'), fn ($query, $value) => $query->where('group_id', $value));
+        }]);
+    }
+
+    public function mount(): void
+    {
+        $this->groups = Group::all()->pluck('name', 'id')->toArray();
+        array_unshift($this->groups, 'Default');
+    }
+
+    public function filters(): array
+    {
+        return [
+            SelectFilter::make('Group')
+            ->options($this->groups ?? []),
+        ];
     }
 
     public function configure(): void
@@ -96,7 +115,7 @@ class QuestionTable extends DataTableComponent
 
     public function groupSelected()
     {
-        $group = Group::find(1);
+        $group = Group::find(2);
 
         $group->questions()->syncWithoutDetaching($this->getSelected());
     }
