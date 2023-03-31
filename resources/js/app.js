@@ -25,16 +25,6 @@ document.addEventListener("alpine:init", () => {
             this.open = !this.open;
         },
         toggleDarkMode() {
-            // if (localStorage.theme === "dark") {
-            //     this.isDark = false;
-            //     localStorage.theme = "light";
-            //     document.documentElement.classList.remove("dark");
-            // } else {
-            //     this.isDark = true;
-            //     localStorage.theme = "dark";
-            //     document.documentElement.classList.add("dark");
-            // }
-
             if (localStorage.getItem("color-theme")) {
                 if (localStorage.getItem("color-theme") === "light") {
                     this.isDark = true;
@@ -73,16 +63,6 @@ document.addEventListener("alpine:init", () => {
                         this.isDark = false;
                     }
                 }
-                // if (
-                //     localStorage.theme === "dark" ||
-                //     (!("theme" in localStorage) &&
-                //         window.matchMedia("(prefers-color-scheme: dark)")
-                //             .matches)
-                // ) {
-                //     document.documentElement.classList.add("dark");
-                // } else {
-                //     document.documentElement.classList.remove("dark");
-                // }
             });
             this.$watch("isDark", (value, oldValue) =>
                 console.log(value, oldValue)
@@ -108,56 +88,6 @@ document.addEventListener("alpine:init", () => {
     Alpine.directive("calendar", (el) => {
         flatpickr(el, calendar);
     });
-
-    let date = (offset = 0) =>
-        new Date(new Date().setSeconds(new Date().getSeconds() + offset));
-
-    Alpine.data("countdown", () => ({
-        isRunning: false,
-        time: 10,
-        reset() {
-            location.reload();
-        },
-        toggle() {
-            if (!this.isRunning) {
-                this.start();
-            } else {
-                this.stop();
-            }
-
-            this.isRunning = !this.isRunning;
-        },
-        start() {
-            this.clock = new FlipClock(this.$refs.wrapper, () => date(10), {
-                face: "MinuteCounter",
-                countdown: true,
-                clockFaceOptions: {
-                    countdown: true,
-                },
-                stopAt: -11,
-            });
-
-            this.clock.on("start", () => {
-                console.log("clock started");
-            });
-            this.clock.on("stop", () => {
-                console.log("clock stopped");
-                this.isRunning = false;
-            });
-        },
-        stop() {
-            clock.reset();
-            this.clock.timer.isRunning && this.clock.stop();
-        },
-        init() {
-            // this.clock.on("start", () => {
-            //     console.log("clock started");
-            // });
-            // this.clock.on("stop", () => {
-            //     console.log("clock stopped");
-            // });
-        },
-    }));
 });
 
 Alpine.start();
