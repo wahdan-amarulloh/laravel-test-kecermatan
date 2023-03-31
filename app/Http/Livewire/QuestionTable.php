@@ -16,6 +16,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 class QuestionTable extends DataTableComponent
 {
     use LivewireAlert;
+
     protected $model = Question::class;
 
     protected $listeners = ['refreshComponent' => '$refresh'];
@@ -24,6 +25,9 @@ class QuestionTable extends DataTableComponent
         'groupSelected' => 'Add To Group',
     ];
 
+    /**
+     * @var @var \Illuminate\Support\Collection
+     */
     public $groups;
 
     public function builder(): Builder
@@ -42,16 +46,7 @@ class QuestionTable extends DataTableComponent
         return [
             SelectFilter::make('Group')
             ->setFilterPillTitle('Group')
-            ->setFilterPillValues([
-                '1' => 'Active',
-                '0' => 'Inactive',
-            ])
-            ->options([
-                '' => 'All',
-                '1' => 'Satu',
-                '2' => 'Dua',
-                '3' => 'Tiga',
-            ])
+            ->options($this->groups?->pluck('name', 'id')->toArray() ?? [])
             ->filter(function (Builder $builder, string $value) {
                 $builder->whereHas('groups', function ($query) use ($value) {
                     $query->where('group_id', '=', $value);
