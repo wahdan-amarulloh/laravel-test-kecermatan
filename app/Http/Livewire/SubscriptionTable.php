@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Group;
 use App\Models\Subscription;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -23,6 +25,9 @@ class SubscriptionTable extends DataTableComponent
         'refreshComponent' => '$refresh',
     ];
 
+    public Subscription $currentSubscription;
+    public Collection $groups;
+
     public function builder(): Builder
     {
         return Subscription::query()
@@ -32,6 +37,11 @@ class SubscriptionTable extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id');
+    }
+
+    public function mount()
+    {
+        $this->groups = Group::all();
     }
 
     public function columns(): array
@@ -96,6 +106,15 @@ class SubscriptionTable extends DataTableComponent
                                 'wire:click' => 'askDisable('.$row->id.')',
                             ];
                         }),
+                    LinkColumn::make('Group')
+                    ->title(fn ($row) => 'Group')
+                    ->location(fn ($row) => '#')
+                        ->attributes(function ($row) {
+                            return [
+                                'class' => 'underline text-indigo-600',
+                                'wire:click' => 'askGroup('.$row->id.')',
+                            ];
+                        }),
                 ]),
         ];
     }
@@ -132,6 +151,43 @@ class SubscriptionTable extends DataTableComponent
             ],
             'onConfirmed' => 'confirmedDelete',
         ]);
+    }
+
+    public function askGroup(Subscription $subscription)
+    {
+        $this->currentSubscription = $subscription;
+        $html = view('modals.group')
+        ->with('groups', $this->groups)
+        ->with('subscription', $subscription)
+        ->render();
+        $this->alert('question', 'Confirm delete  ?', [
+            'position' => 'center',
+            'title' => null,
+            'icon' => null,
+            'timer' => null,
+            'toast' => false,
+            'target' => 'table',
+            'html' => $html,
+            'showConfirmButton' => true,
+            'confirmButtonText' => 'Delete',
+            'showCancelButton' => true,
+            'cancelButtonText' => 'Cancel',
+            'onConfirmed' => 'confirmedDelete',
+        ]);
+    }
+
+    public function detachGroup($id)
+    {
+        $this->currentSubscription->groups()->detach($id);
+    }
+
+    public function attachGroup($selectedGroupId)
+    {
+        $check = $this->currentSubscription->groups()->where('group_id', $selectedGroupId)->exists();
+
+        if (! $check) {
+            $this->currentSubscription->groups()->attach($selectedGroupId);
+        }
     }
 
     public function confirmedDisable($data)
