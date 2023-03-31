@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Group;
 use App\Models\Question;
 use Illuminate\Database\Eloquent\Builder;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
@@ -14,6 +15,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class QuestionTable extends DataTableComponent
 {
+    use LivewireAlert;
     protected $model = Question::class;
 
     protected $listeners = ['refreshComponent' => '$refresh'];
@@ -32,8 +34,7 @@ class QuestionTable extends DataTableComponent
 
     public function mount(): void
     {
-        $this->groups = Group::all()->pluck('name', 'id')->toArray();
-        array_unshift($this->groups, 'Default');
+        $this->groups = Group::all();
     }
 
     public function filters(): array
@@ -93,6 +94,10 @@ class QuestionTable extends DataTableComponent
                 ->component('badge')
                 ->attributes(fn ($value, $row, Column $column) => [
                     'items' => $row->groups,
+                    'action' => [
+                        'id' => $row->id,
+                        'detachID' => null,
+                    ],
                 ]),
             Column::make('Status', 'status')
                 ->sortable(),
@@ -128,8 +133,36 @@ class QuestionTable extends DataTableComponent
 
     public function groupSelected()
     {
-        $group = Group::find(1);
+        if (! count($this->getSelected())) {
+            return;
+        }
+
+        $html = view('modals.question-group')
+        ->with('groups', $this->groups)
+        ->render();
+
+        $this->alert('question', 'Confirm delete  ?', [
+            'position' => 'center',
+            'title' => null,
+            'icon' => null,
+            'timer' => null,
+            'toast' => false,
+            'target' => 'table',
+            'html' => $html,
+            'showConfirmButton' => false,
+            'showCancelButton' => false,
+        ]);
+    }
+
+    public function attachGroup($id)
+    {
+        $group = Group::find($id);
 
         $group->questions()->syncWithoutDetaching($this->getSelected());
+    }
+
+    public function detachSingle(Question $question, $id)
+    {
+        $question->groups()->detach($id);
     }
 }

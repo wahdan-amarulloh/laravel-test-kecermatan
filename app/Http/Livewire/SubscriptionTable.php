@@ -67,6 +67,10 @@ class SubscriptionTable extends DataTableComponent
             ->component('badge')
             ->attributes(fn ($value, $row, Column $column) => [
                 'items' => $row->groups,
+                'action' => [
+                    'id' => $row->id,
+                    'detachID' => null,
+                ],
             ]),
             Column::make('Created at', 'created_at')
             ->sortable(),
@@ -180,6 +184,11 @@ class SubscriptionTable extends DataTableComponent
     public function detachGroup($id)
     {
         $this->currentSubscription->groups()->detach($id);
+    }
+
+    public function detachSingle(Subscription $subscription, $id)
+    {
+        $subscription->groups()->detach($id);
     }
 
     public function attachGroup($selectedGroupId)
