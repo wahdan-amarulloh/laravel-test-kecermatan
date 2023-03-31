@@ -27,9 +27,7 @@ class QuestionTable extends DataTableComponent
     public function builder(): Builder
     {
         return Question::query()
-        ->with(['groups' => function ($query) {
-            $query->when($this->getAppliedFilterWithValue('group'), fn ($query, $value) => $query->where('group_id', $value));
-        }]);
+        ->with('groups');
     }
 
     public function mount(): void
@@ -42,7 +40,22 @@ class QuestionTable extends DataTableComponent
     {
         return [
             SelectFilter::make('Group')
-            ->options($this->groups ?? []),
+            ->setFilterPillTitle('Group')
+            ->setFilterPillValues([
+                '1' => 'Active',
+                '0' => 'Inactive',
+            ])
+            ->options([
+                '' => 'All',
+                '1' => 'Satu',
+                '2' => 'Dua',
+                '3' => 'Tiga',
+            ])
+            ->filter(function (Builder $builder, string $value) {
+                $builder->whereHas('groups', function ($query) use ($value) {
+                    $query->where('group_id', '=', $value);
+                });
+            }),
         ];
     }
 
@@ -115,7 +128,7 @@ class QuestionTable extends DataTableComponent
 
     public function groupSelected()
     {
-        $group = Group::find(2);
+        $group = Group::find(1);
 
         $group->questions()->syncWithoutDetaching($this->getSelected());
     }
