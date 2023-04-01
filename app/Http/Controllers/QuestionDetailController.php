@@ -111,10 +111,10 @@ class QuestionDetailController extends Controller
     public function take($id = null)
     {
         $query = Question::with('detail')
-        ->whereHas('detail');
+        ->whereHas('detail', fn ($builder) => $builder->select('question_details.id'));
 
         if (! is_null($id)) {
-            $query = $query->whereHas('groups', fn ($builder) => $builder->where('group_id', $id));
+            $query = $query->whereHas('groups', fn ($builder) => $builder->select('groups.id')->where('group_id', $id));
         } else {
             $query = $query->inRandomOrder();
         }
