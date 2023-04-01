@@ -22,16 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware(['api'])->group(function () {
-    // Route::get('/questions/{id?}', function (int $id = null) {
-    //     $questions = \App\Models\Question::with('detail')
-    // ->whereHas('detail')
-    // ->when(! is_null($id), fn ($query, $id) => $query->where('id', $id))
-    // ->when(is_null($id), fn ($query) => $query->inRandomOrder())
-    // ->first();
-
-    //     return response()->json($questions);
-    // })->name('questions.take');
-
     Route::get('/questions/{id?}', [QuestionDetailController::class, 'take'])->name('questions.take');
     Route::apiResource('/question/detail', QuestionDetailController::class);
 
