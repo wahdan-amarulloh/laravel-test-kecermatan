@@ -6,6 +6,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\GroupIndex;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('subscription', SubscriptionController::class);
 
     Route::get('user/test', [UserController::class, 'test'])->name('user.test');
+    Route::get('group', GroupIndex::class)->name('group.index');
     Route::resource('user', UserController::class);
     Route::resource('question', QuestionController::class);
     Route::resource('setup', SetupController::class);
