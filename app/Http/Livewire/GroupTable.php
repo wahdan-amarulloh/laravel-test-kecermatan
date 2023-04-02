@@ -3,11 +3,13 @@
 namespace App\Http\Livewire;
 
 use App\Models\Group;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class GroupTable extends DataTableComponent
 {
+    use LivewireAlert;
     protected $model = Group::class;
 
     public function configure(): void
