@@ -46,7 +46,7 @@ class QuestionTable extends DataTableComponent
         return [
             SelectFilter::make('Group')
             ->setFilterPillTitle('Group')
-            ->options($this->groups?->pluck('name', 'id')->toArray() ?? [])
+            ->options($this->groups?->pluck('name', 'id')->prepend('All', '')->toArray() ?? [])
             ->filter(function (Builder $builder, string $value) {
                 $builder->whereHas('groups', function ($query) use ($value) {
                     $query->where('group_id', '=', $value);
