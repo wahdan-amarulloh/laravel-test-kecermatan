@@ -15,6 +15,8 @@ class GroupTable extends DataTableComponent
 
     protected $model = Group::class;
 
+    protected $listeners = ['refreshComponent' => '$refresh'];
+
     public function configure(): void
     {
         $this->setPrimaryKey('id');
@@ -44,8 +46,17 @@ class GroupTable extends DataTableComponent
                     ->location(fn ($row) => '#')
                     ->attributes(function ($row) {
                         return [
-                            '@click' => 'askEdit('.$row->id.')',
+                            '@click' => sprintf('showModal(%s,%s)', $row->id, "'edit'"),
                             'class' => 'underline text-blue-500',
+                        ];
+                    }),
+                LinkColumn::make('Delete')
+                    ->title(fn ($row) => 'Delete')
+                    ->location(fn ($row) => '#')
+                    ->attributes(function ($row) {
+                        return [
+                            '@click' => sprintf('showModal(%s,%s)', $row->id, "'delete'"),
+                            'class' => 'underline text-red-500',
                         ];
                     }),
             ]),

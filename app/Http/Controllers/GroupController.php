@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreGroupRequest;
 use App\Models\Group;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class GroupController extends Controller
@@ -60,9 +59,21 @@ class GroupController extends Controller
      * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Group $group)
+    public function update(StoreGroupRequest $request, Group $group)
     {
-        //
+        $request->validated();
+
+        $group->update([
+            'name' => Str::upper($request->name),
+        ]);
+
+        return response()->json(
+            [
+                'message' => 'success',
+                'errors' => null,
+                'group' => $group,
+            ]
+        );
     }
 
     /**
@@ -73,6 +84,8 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-        //
+        $group->delete();
+
+        return response()->json(['message' => 'Group deleted.']);
     }
 }
