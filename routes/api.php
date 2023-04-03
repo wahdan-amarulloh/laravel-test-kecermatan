@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PlanApiController;
 use App\Http\Controllers\QuestionDetailController;
 use Illuminate\Http\Request;
@@ -28,4 +29,5 @@ Route::middleware(['api'])->group(function () {
     Route::post('/plan/user/{user}', [PlanApiController::class, 'user'])->name('plan.user');
     Route::apiResource('/plan', PlanApiController::class)->names('plan');
     Route::apiResource('/test', UserController::class)->names('test');
+    Route::apiResource('/groups', GroupController::class)->names('groups');
 });
