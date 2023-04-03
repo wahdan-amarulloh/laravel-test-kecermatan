@@ -15,9 +15,9 @@
                 async showModal() {
                     let url = '{{ route('groups.index') }}';
                     this.formValues = await Swal.fire({
-                        title: 'Multiple inputs',
+                        title: 'Create Group',
                         target: 'table',
-                        html: '<input id="swal-input1" class="swal2-input">' +
+                        html: '<input id="swal-input1" placeholder="Group Name" class="swal2-input">' +
                             '<input type="hidden" id="swal-input2" class="swal2-input">',
                         focusConfirm: false,
                         preConfirm: () => {

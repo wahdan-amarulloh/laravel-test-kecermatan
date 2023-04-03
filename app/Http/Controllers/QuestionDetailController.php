@@ -123,7 +123,7 @@ class QuestionDetailController extends Controller
 
         if (is_null($question)) {
             return response()->json([
-                'message' => 'Tidak ada pertanyaan untuk group ' . $id,
+                'message' => 'Tidak ada pertanyaan untuk group '.$id,
                 'errors' => true,
             ]);
         }
