@@ -335,16 +335,24 @@
                                 this.messageError(error);
                             });
                     },
-                    askDisable(id) {
+                    askDelete(id) {
                         Swal.fire({
                             icon: 'question',
-                            title: 'Do you want to disable ?',
+                            title: 'Do you want to delete ?',
                             showCancelButton: true,
                             confirmButtonText: 'Save',
                         }).then((result) => {
+                            let url = '{{ route('question.destroy', 'id') }}';
                             /* Read more about isConfirmed, isDenied below */
                             if (result.isConfirmed) {
-                                Swal.fire('Saved!', '', 'success')
+                                axios.delete(url.replace('id', id))
+                                    .then(response => {
+                                        Swal.fire('Question Deleted', '', 'info')
+                                        Livewire.emit('refreshComponent');
+                                    })
+                                    .catch(error => {
+                                        console.log(error.response.data.message);
+                                    });
                             } else if (result.isDenied) {
                                 Swal.fire('Changes are not saved', '', 'info')
                             }

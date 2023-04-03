@@ -113,13 +113,13 @@ class QuestionTable extends DataTableComponent
                                 '@click' => 'toggleDetail('.$row->id.')',
                             ];
                         }),
-                    LinkColumn::make('Disable')
-                        ->title(fn ($row) => 'Disable')
+                    LinkColumn::make('Delete')
+                        ->title(fn ($row) => 'Delete')
                         ->location(fn ($row) => '#')
                         ->attributes(function ($row) {
                             return [
                                 'class' => 'text-red-500 hover:text-red-600',
-                                '@click' => 'askDisable('.$row->id.')',
+                                '@click' => 'askDelete('.$row->id.')',
                             ];
                         }),
                 ]),
