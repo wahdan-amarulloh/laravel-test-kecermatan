@@ -30,9 +30,6 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
-        // remark this if not work
-        Auth::logoutOtherDevices($request('password'));
-
         $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::HOME);
