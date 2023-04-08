@@ -210,7 +210,7 @@
         document.addEventListener('alpine:init', () => {
             Alpine.data('local', () => ({
                 storeAnswer: {},
-                timeTest: 60,
+                timeTest: 30,
                 timePause: null,
                 pausedTime: 0,
                 pauseInterval: 5,
