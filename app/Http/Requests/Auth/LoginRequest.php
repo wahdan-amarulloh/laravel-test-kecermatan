@@ -53,6 +53,8 @@ class LoginRequest extends FormRequest
             ]);
         }
 
+        Auth::logoutOtherDevices($this->get('password'));
+
         RateLimiter::clear($this->throttleKey());
     }
 
