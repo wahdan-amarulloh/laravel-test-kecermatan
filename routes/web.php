@@ -30,7 +30,7 @@ Route::get('/', function () {
     return view('homepage');
 })->name('homepage');
 
-Route::get('/dashboard', DashboardController::class)->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', DashboardController::class)->middleware(['auth','auth.session'])->name('dashboard');
 
 Route::middleware(['auth','auth.session'])->group(function () {
     Route::resource('menu', MenuController::class);
@@ -44,7 +44,7 @@ Route::middleware(['auth','auth.session'])->group(function () {
 
     Route::get('/test', function () {
         return view('test.member');
-    })->middleware(['auth'])->name('test');
+    })->name('test');
 });
 
 Route::get('test/trial', [UserController::class, 'trial'])->name('test.trial');
