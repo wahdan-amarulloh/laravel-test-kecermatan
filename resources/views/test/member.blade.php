@@ -127,7 +127,7 @@
                     </div>
 
                     {{-- answer --}}
-                    <div :class="{ 'animate-pulse ': loading }">
+                    {{-- <div :class="{ 'animate-pulse ': loading }">
                         <div
                             class="shadow-s mx-auto mt-3 flex w-full max-w-2xl content-center justify-center space-x-2 space-x-10 rounded-md bg-indigo-600 text-lg text-white">
                             <span x-show="loading"
@@ -155,7 +155,26 @@
                                 A
                             </span>
                         </div>
+                    </div> --}}
+
+                    <div :class="{ 'animate-pulse ': loading }">
+                        <div
+                            class="mx-auto mt-3 flex w-full max-w-2xl content-center justify-center space-x-2 space-x-10 rounded-md bg-indigo-600 py-8 text-lg text-white shadow-sm">
+                            <span x-show="loading"
+                                class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
+                                L O A D I N G . .
+                            </span>
+                            <template x-for="(key, index) in ['A', 'B', 'C', 'D', 'E']">
+                                <div x-show="questions.detail[currentStep][key]">
+                                    <span x-if="!loading" x-text="questions?.detail[currentStep][key]"
+                                        class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
+                                        A
+                                    </span>
+                                </div>
+                            </template>
+                        </div>
                     </div>
+
                     <div class="mt-3 flex w-full justify-center space-x-2 text-lg" x-show="!loading">
                         <div @click="answer('A')"
                             class="relative flex h-32 w-32 cursor-pointer content-center justify-center rounded-md bg-gray-200 p-6 hover:bg-slate-300 dark:bg-gray-600 dark:hover:bg-slate-400">
