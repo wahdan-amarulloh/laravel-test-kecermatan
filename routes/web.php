@@ -32,11 +32,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', DashboardController::class)->middleware(['auth'])->name('dashboard');
 
-Route::get('/test', function () {
-    return view('test.member');
-})->middleware(['auth'])->name('test');
-
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','auth.session'])->group(function () {
     Route::resource('menu', MenuController::class);
     Route::resource('subscription', SubscriptionController::class);
 
@@ -45,6 +41,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('question', QuestionController::class);
     Route::resource('setup', SetupController::class);
+
+    Route::get('/test', function () {
+        return view('test.member');
+    })->middleware(['auth'])->name('test');
 });
 
 Route::get('test/trial', [UserController::class, 'trial'])->name('test.trial');
