@@ -271,7 +271,7 @@
                             this.currentStep++;
                         } else {
                             // this.sendAnswer();
-                            this.currentStep = 0;
+                            // this.currentStep = 0;
                             this.getQuestions();
                         }
                     },
@@ -279,6 +279,7 @@
                         return (this.currentStep / this.questionsTotal) * 100;
                     },
                     async getQuestions() {
+                        this.currentStep = 0;
                         if (this.maxBatch === this.batch) {
                             this.sendAnswer();
                             this.running = false;
