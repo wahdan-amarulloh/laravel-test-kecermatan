@@ -166,7 +166,7 @@
                             </span>
                             <template x-for="(key, index) in ['A', 'B', 'C', 'D', 'E']">
                                 <div x-show="questions.detail[currentStep][key]">
-                                    <span x-if="!loading" x-text="questions?.detail[currentStep][key]"
+                                    <span x-show="!loading" x-text="questions?.detail[currentStep][key]"
                                         class="py-6 text-3xl font-extrabold tracking-tight dark:text-slate-50 sm:text-4xl">
                                         A
                                     </span>
@@ -318,7 +318,9 @@
                                 this.questionsTotal = response.data.detail.length;
                                 this.storeAnswer.question_id = this.questions.id;
                                 this.batch++;
+                                console.log(response.data);
                             });
+
                     },
                     getDetail() {
                         this.questions.detail[currentStep];

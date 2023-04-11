@@ -115,11 +115,9 @@ class QuestionDetailController extends Controller
 
         if (! is_null($id)) {
             $query = $query->whereHas('groups', fn ($builder) => $builder->select('groups.id')->where('group_id', $id));
-        } else {
-            $query = $query->inRandomOrder();
         }
 
-        $question = $query->first();
+        $question = $query->inRandomOrder()->first();
 
         if (is_null($question)) {
             return response()->json([
